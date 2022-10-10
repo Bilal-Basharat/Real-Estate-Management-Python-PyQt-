@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: redrgb(170, 0, 0)rgb(170, 0, 0)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(170, 0, 0)</string>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>1001</width>
+       <height>491</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../background pics/loginPagePic.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>181</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../background pics/icons/logo.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="openExternalLinks">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="LoginBtn">
+     <property name="geometry">
+      <rect>
+       <x>772</x>
+       <y>0</y>
+       <width>151</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#LoginBtn{
+background-color:rgb(255, 255, 255);
+color:rgb(170, 0, 0);
+font: 16pt &quot;Roboto Black&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="SignUpBtn">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>0</y>
+       <width>151</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#SignUpBtn{
+background-color:rgb(255, 255, 255);
+color:rgb(170, 0, 0);
+font: 16pt &quot;Roboto Black&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>SignUp</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="SignUpBtn_2">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>330</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#SignUpBtn_2{
+	font: 10pt &quot;Roboto&quot;;
+color:rgb(255, 255, 255);
+background-color:rgb(170, 0, 0);
+
+}</string>
+     </property>
+     <property name="text">
+      <string>SignUp</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="LoginBtn_2">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>330</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#LoginBtn_2{
+	font: 10pt &quot;Roboto&quot;;
+color:rgb(255, 255, 255);
+background-color:rgb(170, 0, 0 0.4);
+border: solid black white;
+}</string>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
