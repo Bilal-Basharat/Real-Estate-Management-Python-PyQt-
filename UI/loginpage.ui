@@ -70,31 +70,35 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lblTxt">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>330</x>
        <y>20</y>
-       <width>431</width>
+       <width>511</width>
        <height>41</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>Roboto Medium</family>
-       <pointsize>12</pointsize>
+       <family>Roboto Black</family>
+       <pointsize>-1</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label{
+      <string notr="true">#lblTxt{
 color:rgb(255,255,255);
+font: 24px  &quot;Roboto Black&quot;;
 }</string>
      </property>
      <property name="text">
-      <string>Make Your Life AUR BE BEHTAR With Paycash</string>
+      <string>Make Your Life AUR BHI BEHTAR With Paycash</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="lblPic">
      <property name="geometry">
       <rect>
        <x>4</x>
@@ -102,6 +106,14 @@ color:rgb(255,255,255);
        <width>1031</width>
        <height>491</height>
       </rect>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;#lblPic{&lt;/p&gt;&lt;p&gt;img: (opacity: 0.5);&lt;/p&gt;&lt;p&gt;}&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#lblPic:image{
+opacity: 0.5;
+}</string>
      </property>
      <property name="text">
       <string/>
@@ -113,17 +125,17 @@ color:rgb(255,255,255);
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QWidget" name="widget_2" native="true">
+    <widget class="QWidget" name="Loginwidget" native="true">
      <property name="geometry">
       <rect>
-       <x>679</x>
+       <x>639</x>
        <y>270</y>
-       <width>311</width>
+       <width>351</width>
        <height>271</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgb(240, 240, 2)</string>
+      <string notr="true">background-color:rgb(255, 170, 0);</string>
      </property>
      <widget class="QLabel" name="phone">
       <property name="geometry">
@@ -144,32 +156,32 @@ color:rgb(255,255,255);
        <string>Mobile no.</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="txtMobile">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>60</y>
-        <width>231</width>
-        <height>31</height>
+        <width>311</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#textEdit{
+       <string notr="true">#txtMobile{
 background-color:rgb(255, 255, 255);
 }</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit_2">
+     <widget class="QTextEdit" name="txtPassword">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>140</y>
-        <width>231</width>
-        <height>31</height>
+        <width>311</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#textEdit_2{
+       <string notr="true">#txtPassword{
 background-color:rgb(255, 255, 255);
 }</string>
       </property>
@@ -178,7 +190,7 @@ background-color:rgb(255, 255, 255);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>110</y>
         <width>101</width>
         <height>31</height>
        </rect>
@@ -196,9 +208,9 @@ background-color:rgb(255, 255, 255);
      <widget class="QPushButton" name="loginbtn">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>200</y>
-        <width>93</width>
+        <x>20</x>
+        <y>210</y>
+        <width>311</width>
         <height>41</height>
        </rect>
       </property>
@@ -218,6 +230,27 @@ background-color:rgb(255, 255, 255);
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>1001</width>
+       <height>491</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget_2{
+background-color: rgba(170,0, 0, 0.3) ;
+color: red;
+}</string>
+     </property>
+    </widget>
+    <zorder>label_3</zorder>
+    <zorder>lblTxt</zorder>
+    <zorder>lblPic</zorder>
+    <zorder>widget_2</zorder>
+    <zorder>Loginwidget</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
