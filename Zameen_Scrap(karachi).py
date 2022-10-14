@@ -35,7 +35,7 @@ filePath = 'E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/Prop
     
 with open(filePath,'a', newline='') as outfile:
     writer = csv.writer(outfile)
-    urls = "https://www.zameen.com/Homes/Lahore-1-"
+    urls = "https://www.zameen.com/Homes/Karachi-2-"
     for i in range(20,25):
         driver = webdriver.Chrome(executable_path="C:\Program Files (x86)\chromedriver.exe")
         driver.get(urls+str(i)+'.html')
