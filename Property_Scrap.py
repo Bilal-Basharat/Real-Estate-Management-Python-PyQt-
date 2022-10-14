@@ -1,3 +1,4 @@
+from http.client import FOUND
 from tkinter import Button
 from attr import attrs
 from select import select
@@ -35,7 +36,7 @@ filePath = 'E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/Prop
 with open(filePath,'a', newline='') as outfile:
     writer = csv.writer(outfile)
     urls = "https://www.zameen.com/Homes/Lahore-1-"
-    for i in range(5,10):
+    for i in range(11,20):
         driver = webdriver.Chrome(executable_path="C:\Program Files (x86)\chromedriver.exe")
         driver.get(urls+str(i)+'.html')
         content = driver.page_source
@@ -48,20 +49,25 @@ with open(filePath,'a', newline='') as outfile:
             driver.get(url)
             page_Content = driver.page_source
             soup = BeautifulSoup(page_Content, 'lxml')
-            Agency = soup.find('div',class_="_5a588edf").text
-            AgencyName.append(Agency)
-            column = soup.find('ul', class_="_033281ab")
-            type = column.find('span', {"aria-label" : "Type"}).text
-            propertyType.append(type)
-            Price = column.find('span', {"aria-label" : "Price"}).text
-            propertyprice.append(Price)
-            location = column.find('span', {"aria-label" : "Location"}).text
-            propertyLocation.append(location)
-            area= column.find('span', {"aria-label" : "Area"}).text
-            propertyArea.append(area)
-            purpose = column.find('span', {"aria-label" : "Purpose"}).text
-            propertyPurpose.append(purpose)
-            writer.writerow([Agency,type,Price,location,area,purpose])
+            try:
+                soup.find('div',class_="_5a588edf").text
+            except AttributeError as error:
+                print(error)
+            else:
+                Agency = soup.find('div',class_="_5a588edf").text
+                AgencyName.append(Agency)
+                column = soup.find('ul', class_="_033281ab")
+                type = column.find('span', {"aria-label" : "Type"}).text
+                propertyType.append(type)
+                Price = column.find('span', {"aria-label" : "Price"}).text
+                propertyprice.append(Price)
+                location = column.find('span', {"aria-label" : "Location"}).text
+                propertyLocation.append(location)
+                area= column.find('span', {"aria-label" : "Area"}).text
+                propertyArea.append(area)
+                purpose = column.find('span', {"aria-label" : "Purpose"}).text
+                propertyPurpose.append(purpose)
+                writer.writerow([Agency,type,Price,location,area,purpose])
 # print(AgencyName)
 # print(propertyType)
 # print(propertyprice)
