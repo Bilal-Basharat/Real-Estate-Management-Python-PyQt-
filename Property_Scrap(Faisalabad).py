@@ -32,7 +32,7 @@ filePath = 'E:/mid_project/CS261F22PID42/PropertyData(Faisalabad).csv'
 with open(filePath,'a', newline='') as outfile:
     writer = csv.writer(outfile)
     urls = "https://www.zameen.com/Homes/Faisalabad-16-"
-    for i in range(1,100):
+    for i in range(5,100):
         driver = webdriver.Chrome(executable_path="C:\Program Files (x86)\chromedriver.exe")
         driver.get(urls+str(i)+'.html')
         content = driver.page_source
