@@ -32,7 +32,7 @@ filePath = 'E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/Prop
 #     writer = csv.writer(file)
 #     writer.writerow['Agency Name','Property Type','Price','Location','Area','Purpose']
 mainURL = "https://www.zameen.com/Rentals/Lahore-1-"
-for i in range(33,100):
+for i in range(35,100):
     completeURL = mainURL+str(i)+'.html'
     urls.append(completeURL)
 
@@ -41,6 +41,7 @@ with open(filePath,'a', newline='') as outfile:
     def transform(url):
             driver = webdriver.Chrome(executable_path="C:\Program Files (x86)\chromedriver.exe")
             driver.get(url)
+            time.sleep(3)
             content = driver.page_source
             soup = BeautifulSoup(content, 'lxml')
             linksList = soup.findAll('div', class_="f74e80f3")
