@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(0, 170, 0)</string>
+     <string notr="true">background-color:rgb(0, 120, 0)</string>
     </property>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -54,14 +54,14 @@
        <x>20</x>
        <y>20</y>
        <width>181</width>
-       <height>51</height>
+       <height>91</height>
       </rect>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../background pics/icons/logo.png</pixmap>
+      <pixmap>../../background pics/propertyPics/DEVOE partners logo.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -82,7 +82,7 @@
      <property name="styleSheet">
       <string notr="true">#LoginBtn{
 background-color:rgb(255, 255, 255);
-color:rgb(0, 170, 0);
+color:rgb(0, 120, 0);
 font: 16pt &quot;Roboto Black&quot;;
 }</string>
      </property>
@@ -102,7 +102,7 @@ font: 16pt &quot;Roboto Black&quot;;
      <property name="styleSheet">
       <string notr="true">#SignUpBtn{
 background-color:rgb(255, 255, 255);
-color:rgb(0, 170, 0);
+color:rgb(0, 120, 0);
 font: 16pt &quot;Roboto Black&quot;;
 }</string>
      </property>
@@ -315,7 +315,7 @@ color:white;
      </property>
      <property name="styleSheet">
       <string notr="true">font: 20pt &quot;Roboto&quot;;
-color: rgb(0, 170, 0);
+color: rgb(0, 120, 0);
 background-color:none;</string>
      </property>
      <property name="text">

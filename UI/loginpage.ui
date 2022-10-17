@@ -46,83 +46,29 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(170, 0, 0)</string>
+     <string notr="true">background-color:rgb(0, 120, 0);
+color:white</string>
     </property>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
        <x>50</x>
        <y>20</y>
-       <width>181</width>
-       <height>51</height>
+       <width>151</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../background pics/icons/logo.png</pixmap>
+      <pixmap>../../background pics/propertyPics/DEVOE partners logo.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
      <property name="openExternalLinks">
       <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lblTxt">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>20</y>
-       <width>511</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Roboto Black</family>
-       <pointsize>-1</pointsize>
-       <weight>50</weight>
-       <italic>false</italic>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#lblTxt{
-color:rgb(255,255,255);
-font: 24px  &quot;Roboto Black&quot;;
-}</string>
-     </property>
-     <property name="text">
-      <string>Make Your Life AUR BHI BEHTAR With Paycash</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lblPic">
-     <property name="geometry">
-      <rect>
-       <x>4</x>
-       <y>85</y>
-       <width>1031</width>
-       <height>491</height>
-      </rect>
-     </property>
-     <property name="whatsThis">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;#lblPic{&lt;/p&gt;&lt;p&gt;img: (opacity: 0.5);&lt;/p&gt;&lt;p&gt;}&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#lblPic:image{
-opacity: 0.5;
-}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>../../background pics/loginPageBack.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
      </property>
     </widget>
     <widget class="QWidget" name="Loginwidget" native="true">
@@ -135,7 +81,8 @@ opacity: 0.5;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgb(255, 170, 0);</string>
+      <string notr="true">background-color:rgb(0, 120, 0);
+color: white;</string>
      </property>
      <widget class="QLabel" name="phone">
       <property name="geometry">
@@ -216,13 +163,18 @@ background-color:rgb(255, 255, 255);
       </property>
       <property name="font">
        <font>
-        <family>Roboto Medium</family>
-        <pointsize>12</pointsize>
+        <family>Roboto</family>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true">#loginbtn{
 background-color:rgb(255, 255, 255);
+	color: rgb(0, 120, 0);
+	font: 16pt &quot;Roboto&quot;;
 }</string>
       </property>
       <property name="text">
@@ -230,27 +182,50 @@ background-color:rgb(255, 255, 255);
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="widget_2" native="true">
+    <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>1001</width>
-       <height>491</height>
+       <x>420</x>
+       <y>20</y>
+       <width>401</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#widget_2{
-background-color: rgba(170,0, 0, 0.3) ;
-color: red;
-}</string>
+      <string notr="true">font: 20pt &quot;Roboto&quot;;
+color: rgb(255, 255, 255);
+background-color:none;</string>
+     </property>
+     <property name="text">
+      <string>Har Pata, Hamein Pata Hai</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>1000</width>
+       <height>521</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../background pics/propertyPics/construction-concept-with-engineering-tools.jpg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>label</zorder>
     <zorder>label_3</zorder>
-    <zorder>lblTxt</zorder>
-    <zorder>lblPic</zorder>
-    <zorder>widget_2</zorder>
     <zorder>Loginwidget</zorder>
+    <zorder>label_4</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
