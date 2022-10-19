@@ -6,21 +6,33 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>718</width>
-    <height>575</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+
+color:rgb(0,100,0);
+}</string>
+  </property>
   <widget class="QComboBox" name="cmbxType">
    <property name="geometry">
     <rect>
-     <x>48</x>
-     <y>40</y>
+     <x>50</x>
+     <y>51</y>
      <width>101</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#cmbxType{
+background-color : white;
+color:rgb(0,100,0);
+}</string>
    </property>
    <item>
     <property name="text">
@@ -29,50 +41,285 @@
    </item>
    <item>
     <property name="text">
-     <string>Rsidential Plot</string>
+     <string>Residential Plot</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Plot File</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Commercial Plot</string>
     </property>
    </item>
   </widget>
-  <widget class="QComboBox" name="cmbxType_2">
+  <widget class="QComboBox" name="cmbxCity">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>50</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#cmbxCity{
+background-color : white;
+color:rgb(0,100,0);
+}</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Lahore</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Islamabad</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Gujrawala</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Sialkot</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Karachi</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Rawalpindi</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="cmbxPurpose">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>50</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#cmbxPurpose{
+background-color : white;
+color:rgb(0,100,0);
+}</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Rent</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Buy</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="Price">
    <property name="geometry">
     <rect>
      <x>50</x>
      <y>90</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Price Range&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Price_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>130</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Area&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>153</x>
+     <y>100</y>
      <width>101</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="cmbxType_3">
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>100</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;To&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_2">
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>40</y>
+     <y>100</y>
      <width>101</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="cmbxType_4">
+  <widget class="QTextEdit" name="textEdit_3">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>40</y>
+     <x>153</x>
+     <y>140</y>
      <width>101</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="cmbxType_5">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>90</y>
+     <x>276</x>
+     <y>140</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;To&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_4">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>140</y>
      <width>101</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="btnSearch">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>200</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BtnExit">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>200</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="background" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#background{
+background-color:rgba(255,255,255,0.3);
+}</string>
+   </property>
+   <widget class="QLabel" name="lblImg">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">*{
+backgroun-color:rgb(255, 255, 255);
+}
+#lblImg{
+backgroun-color:rgba(255, 255, 255,0.5);
+
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../../../Project data dsa/propertyPics/hotel.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="lblBackground" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#lblBackground{
+background-color: rgba(255,255,255,0.35);
+}
+*{
+
+}</string>
+    </property>
+   </widget>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>cmbxType</zorder>
+  <zorder>cmbxCity</zorder>
+  <zorder>cmbxPurpose</zorder>
+  <zorder>Price</zorder>
+  <zorder>Price_2</zorder>
+  <zorder>textEdit</zorder>
+  <zorder>label</zorder>
+  <zorder>textEdit_2</zorder>
+  <zorder>textEdit_3</zorder>
+  <zorder>label_2</zorder>
+  <zorder>textEdit_4</zorder>
+  <zorder>btnSearch</zorder>
+  <zorder>BtnExit</zorder>
  </widget>
  <resources/>
  <connections/>
