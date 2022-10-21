@@ -75079,17 +75079,19 @@
       </property>
      </column>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="cmbxSort">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>40</y>
+       <x>20</x>
+       <y>30</y>
        <width>200</width>
        <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: bold 14pt &quot;Roboto&quot;;
+      <string notr="true">font: bold 12pt &quot;Roboto&quot;;
+background-color: white;
+color: rgb(0,120,0);
 </string>
      </property>
      <item>
@@ -75122,6 +75124,36 @@
        <string>Purpose</string>
       </property>
      </item>
+    </widget>
+    <widget class="QComboBox" name="cmbxSort_2">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>30</y>
+       <width>200</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 12pt &quot;Roboto&quot;;
+background-color: white;
+color: rgb(0,120,0);
+</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>30</y>
+       <width>221</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 20px;</string>
+     </property>
     </widget>
    </widget>
   </widget>
