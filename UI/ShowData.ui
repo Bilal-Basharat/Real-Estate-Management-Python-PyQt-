@@ -24,7 +24,8 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: green;</string>
+     <string notr="true">background-color: green;
+font: 12pt &quot;Roboto&quot;;</string>
     </property>
     <widget class="QTableWidget" name="TableData">
      <property name="geometry">
@@ -32,8 +33,11 @@
        <x>0</x>
        <y>90</y>
        <width>800</width>
-       <height>411</height>
+       <height>500</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="rowCount">
       <number>75000</number>
@@ -75128,7 +75132,7 @@ color: rgb(0,120,0);
     <widget class="QComboBox" name="cmbxSort_2">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>240</x>
        <y>30</y>
        <width>200</width>
        <height>35</height>
@@ -75141,7 +75145,7 @@ color: rgb(0,120,0);
 </string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="txtSearch">
      <property name="geometry">
       <rect>
        <x>550</x>
@@ -75152,23 +75156,62 @@ color: rgb(0,120,0);
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 20px;</string>
+border-radius: 20px;
+font: 12pt &quot;Roboto&quot;;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblSearch">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>35</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:none;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../icons/icons.qrc">:/icons/magnifier.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>30</y>
+       <width>93</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: white;
+color:rgb(0,120,0);</string>
+     </property>
+     <property name="text">
+      <string>Sort</string>
      </property>
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>cmbxSort</tabstop>
+  <tabstop>cmbxSort_2</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>txtSearch</tabstop>
+  <tabstop>TableData</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../icons/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
