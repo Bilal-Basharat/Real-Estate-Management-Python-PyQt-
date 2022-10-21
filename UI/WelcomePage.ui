@@ -324,11 +324,11 @@ background-color:none;</string>
 background-color: rgb(0, 120, 0);
 color: rgb(255, 255, 255);
 letter-spacing: 10px;
-padding: 160px;
+padding: 120px;
 border-radius: 20px;</string>
      </property>
      <property name="text">
-      <string>We made is </string>
+      <string>We made it easy</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">

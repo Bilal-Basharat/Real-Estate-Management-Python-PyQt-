@@ -125,7 +125,7 @@ class Ui_MainWindow(object):
 "background-color: rgb(0, 120, 0);\n"
 "color: rgb(255, 255, 255);\n"
 "letter-spacing: 10px;\n"
-"padding: 160px;\n"
+"padding: 120px;\n"
 "border-radius: 20px;")
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(self.widget)
@@ -183,7 +183,7 @@ class Ui_MainWindow(object):
         self.LoginBtn.setText(_translate("MainWindow", "Login"))
         self.SignUpBtn.setText(_translate("MainWindow", "SignUp"))
         self.label_5.setText(_translate("MainWindow", "Everyone  Wants a              of Land"))
-        self.label_6.setText(_translate("MainWindow", "We made is "))
+        self.label_6.setText(_translate("MainWindow", "We made it easy"))
         self.label_7.setText(_translate("MainWindow", "Piece "))
         self.label_8.setText(_translate("MainWindow", "Land"))
         self.label_10.setText(_translate("MainWindow", "Everyone"))
