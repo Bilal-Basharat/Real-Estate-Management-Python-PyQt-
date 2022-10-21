@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>997</width>
     <height>600</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: redrgb(170, 0, 0)rgb(170, 0, 0)</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="widget" native="true">
@@ -29,25 +29,6 @@
     <property name="styleSheet">
      <string notr="true">background-color:rgb(0, 120, 0)</string>
     </property>
-    <widget class="QLabel" name="label">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>90</y>
-       <width>1001</width>
-       <height>491</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>../../background pics/propertyPics/WelcomePage.jpg</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
@@ -300,16 +281,19 @@ color:white;
      <property name="text">
       <string/>
      </property>
+     <property name="pixmap">
+      <pixmap>../propertyPics/beautiful-sunny-cityscape.jpg</pixmap>
+     </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>120</y>
-       <width>401</width>
+       <x>260</x>
+       <y>245</y>
+       <width>481</width>
        <height>41</height>
       </rect>
      </property>
@@ -319,15 +303,114 @@ color: rgb(0, 120, 0);
 background-color:none;</string>
      </property>
      <property name="text">
-      <string>Har Pata, Hamein Pata Hai</string>
+      <string>Everyone  Wants a              of Land</string>
      </property>
     </widget>
-    <zorder>label</zorder>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>310</y>
+       <width>501</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Roboto&quot;;
+background-color: rgb(0, 120, 0);
+color: rgb(255, 255, 255);
+letter-spacing: 10px;
+padding: 160px;
+border-radius: 20px;</string>
+     </property>
+     <property name="text">
+      <string>We made is </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>250</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Roboto&quot;;
+color: rgb(0, 120, 0);
+background-color:rgb(0,120,0);
+color: white;</string>
+     </property>
+     <property name="text">
+      <string>Piece </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
+       <y>250</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Roboto&quot;;
+color: rgb(0, 120, 0);
+background-color:rgb(0,120,0);
+color: white;</string>
+     </property>
+     <property name="text">
+      <string>Land</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>250</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Roboto&quot;;
+color: rgb(0, 120, 0);
+background-color:rgb(0,120,0);
+color: white;</string>
+     </property>
+     <property name="text">
+      <string>Everyone</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>200</y>
+       <width>621</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(255,255,255, 0.7);
+border-radius: 20px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <zorder>label_3</zorder>
+    <zorder>label_4</zorder>
     <zorder>label_2</zorder>
     <zorder>LoginBtn</zorder>
     <zorder>SignUpBtn</zorder>
-    <zorder>label_4</zorder>
+    <zorder>label_5</zorder>
+    <zorder>label_6</zorder>
+    <zorder>label_7</zorder>
+    <zorder>label_8</zorder>
+    <zorder>label_10</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -335,7 +418,7 @@ background-color:none;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>997</width>
      <height>26</height>
     </rect>
    </property>

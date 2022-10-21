@@ -9,4 +9,7 @@
     <file>magnifier.png</file>
     <file>power-off.png</file>
   </qresource>
+  <qresource prefix="newPrefix">
+    <file>DEVOE partners logo.png</file>
+  </qresource>
 </RCC>
