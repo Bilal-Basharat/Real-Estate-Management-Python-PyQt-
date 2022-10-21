@@ -9,9 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from muser import MUser
+from SignUpPage import SignUpPage
 
-
-class Ui_MainWindow(object):
+class WelcomeWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -47,72 +48,6 @@ class Ui_MainWindow(object):
 "font: bold 16pt \"Roboto Black\";\n"
 "}")
         self.SignUpBtn.setObjectName("SignUpBtn")
-        self.label_3 = QtWidgets.QLabel(self.widget)
-        self.label_3.setGeometry(QtCore.QRect(0, 90, 800, 500))
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255, 76))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
-        self.label_3.setPalette(palette)
-        self.label_3.setStyleSheet("#label_3{\n"
-"background-color:rgba(255, 255, 255, 0.3);\n"
-"color:white;\n"
-"}")
-        self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap("../propertyPics/beautiful-sunny-cityscape.jpg"))
-        self.label_3.setScaledContents(True)
-        self.label_3.setObjectName("label_3")
         self.label_5 = QtWidgets.QLabel(self.widget)
         self.label_5.setGeometry(QtCore.QRect(160, 245, 481, 41))
         self.label_5.setStyleSheet("font: 20pt \"Roboto\";\n"
@@ -124,8 +59,8 @@ class Ui_MainWindow(object):
         self.label_6.setStyleSheet("font: 20pt \"Roboto\";\n"
 "background-color: rgb(0, 120, 0);\n"
 "color: rgb(255, 255, 255);\n"
-"letter-spacing: 10px;\n"
-"padding: 120px;\n"
+"letter-spacing: 5px;\n"
+"padding: 80px;\n"
 "border-radius: 20px;")
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(self.widget)
@@ -155,7 +90,13 @@ class Ui_MainWindow(object):
 "border-radius: 20px;")
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
-        self.label_3.raise_()
+        self.label = QtWidgets.QLabel(self.widget)
+        self.label.setGeometry(QtCore.QRect(0, 90, 800, 500))
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("../propertyPics/beautiful-sunny-cityscape.jpg"))
+        self.label.setScaledContents(True)
+        self.label.setObjectName("label")
+        self.label.raise_()
         self.label_4.raise_()
         self.label_2.raise_()
         self.LoginBtn.raise_()
@@ -177,6 +118,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.SignUpBtn.clicked.connect(self.ShowSignUpPage)
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -188,12 +131,19 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "Land"))
         self.label_10.setText(_translate("MainWindow", "Everyone"))
 
+    def ShowSignUpPage(self):
+        SignUp = SignUpPage()
+        SignUp.setupUi(MainWindow)
+        MainWindow.show()
+        sys.exit(app.exec_())
+
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = WelcomeWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'loginpage.ui'
+# Form implementation generated from reading ui file 'SignUpPage.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class SignUpPage(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -26,29 +26,34 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(-11, -1, 1031, 571))
-        self.widget.setStyleSheet("background-color:rgb(0, 120, 0);\n"
-"color:white")
+        self.widget.setStyleSheet("*{\n"
+"background-color:rgb(0, 120, 0);\n"
+"color:white;\n"
+"\n"
+"}")
         self.widget.setObjectName("widget")
-        self.label_3 = QtWidgets.QLabel(self.widget)
-        self.label_3.setGeometry(QtCore.QRect(50, 20, 151, 71))
-        self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap("../../background pics/propertyPics/DEVOE partners logo.png"))
-        self.label_3.setScaledContents(True)
-        self.label_3.setOpenExternalLinks(False)
-        self.label_3.setObjectName("label_3")
+        self.lblLogo = QtWidgets.QLabel(self.widget)
+        self.lblLogo.setGeometry(QtCore.QRect(50, 20, 151, 71))
+        self.lblLogo.setText("")
+        self.lblLogo.setPixmap(QtGui.QPixmap("../../background pics/propertyPics/DEVOE partners logo.png"))
+        self.lblLogo.setScaledContents(True)
+        self.lblLogo.setOpenExternalLinks(False)
+        self.lblLogo.setObjectName("lblLogo")
         self.Loginwidget = QtWidgets.QWidget(self.widget)
-        self.Loginwidget.setGeometry(QtCore.QRect(420, 230, 351, 261))
+        self.Loginwidget.setGeometry(QtCore.QRect(420, 150, 351, 341))
         self.Loginwidget.setStyleSheet("background-color:rgba(0, 120, 0,0.7);\n"
 "color: white;")
         self.Loginwidget.setObjectName("Loginwidget")
         self.txtUserName = QtWidgets.QTextEdit(self.Loginwidget)
-        self.txtUserName.setGeometry(QtCore.QRect(20, 60, 311, 41))
+        self.txtUserName.setGeometry(QtCore.QRect(20, 140, 311, 41))
         self.txtUserName.setStyleSheet("#txtUserName{\n"
 "background-color:rgb(255, 255, 255);\n"
+"color: black;\n"
+"    font: 12pt \"Roboto\";\n"
 "}")
         self.txtUserName.setObjectName("txtUserName")
         self.pswd = QtWidgets.QLabel(self.Loginwidget)
-        self.pswd.setGeometry(QtCore.QRect(20, 20, 101, 31))
+        self.pswd.setGeometry(QtCore.QRect(20, 100, 101, 31))
         font = QtGui.QFont()
         font.setFamily("Roboto Medium")
         font.setPointSize(12)
@@ -56,7 +61,7 @@ class Ui_MainWindow(object):
         self.pswd.setStyleSheet("background-color: none;")
         self.pswd.setObjectName("pswd")
         self.loginbtn = QtWidgets.QPushButton(self.Loginwidget)
-        self.loginbtn.setGeometry(QtCore.QRect(20, 200, 311, 41))
+        self.loginbtn.setGeometry(QtCore.QRect(20, 280, 311, 41))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(16)
@@ -72,36 +77,54 @@ class Ui_MainWindow(object):
 "}")
         self.loginbtn.setObjectName("loginbtn")
         self.txtPassword = QtWidgets.QTextEdit(self.Loginwidget)
-        self.txtPassword.setGeometry(QtCore.QRect(20, 140, 311, 41))
+        self.txtPassword.setGeometry(QtCore.QRect(20, 220, 311, 41))
         self.txtPassword.setStyleSheet("#txtPassword{\n"
 "background-color:rgb(255, 255, 255);\n"
+"color: black;\n"
+"    font: 12pt \"Roboto\";\n"
 "}")
         self.txtPassword.setObjectName("txtPassword")
         self.pswd_2 = QtWidgets.QLabel(self.Loginwidget)
-        self.pswd_2.setGeometry(QtCore.QRect(20, 100, 101, 31))
+        self.pswd_2.setGeometry(QtCore.QRect(20, 180, 101, 31))
         font = QtGui.QFont()
         font.setFamily("Roboto Medium")
         font.setPointSize(12)
         self.pswd_2.setFont(font)
         self.pswd_2.setStyleSheet("background-color: none;")
         self.pswd_2.setObjectName("pswd_2")
-        self.label_4 = QtWidgets.QLabel(self.widget)
-        self.label_4.setGeometry(QtCore.QRect(290, 20, 401, 41))
-        self.label_4.setStyleSheet("font: 20pt \"Roboto\";\n"
+        self.txtEmail = QtWidgets.QTextEdit(self.Loginwidget)
+        self.txtEmail.setGeometry(QtCore.QRect(20, 50, 311, 41))
+        self.txtEmail.setStyleSheet("#txtEmail{\n"
+"background-color:rgb(255, 255, 255);\n"
+"color: black;\n"
+"    font: 12pt \"Roboto\";\n"
+"}")
+        self.txtEmail.setObjectName("txtEmail")
+        self.pswd_3 = QtWidgets.QLabel(self.Loginwidget)
+        self.pswd_3.setGeometry(QtCore.QRect(20, 10, 101, 31))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Medium")
+        font.setPointSize(12)
+        self.pswd_3.setFont(font)
+        self.pswd_3.setStyleSheet("background-color: none;")
+        self.pswd_3.setObjectName("pswd_3")
+        self.lblQuote = QtWidgets.QLabel(self.widget)
+        self.lblQuote.setGeometry(QtCore.QRect(290, 20, 401, 41))
+        self.lblQuote.setStyleSheet("font: 20pt \"Roboto\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color:none;")
-        self.label_4.setObjectName("label_4")
+        self.lblQuote.setObjectName("lblQuote")
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(10, 70, 800, 500))
         self.label.setAutoFillBackground(False)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../propertyPics/construction-concept-with-engineering-tools.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("../propertyPics/construction-concept-engineering-tools.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.label.raise_()
-        self.label_3.raise_()
+        self.lblLogo.raise_()
         self.Loginwidget.raise_()
-        self.label_4.raise_()
+        self.lblQuote.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
@@ -117,17 +140,18 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pswd.setText(_translate("MainWindow", "UserName"))
-        self.loginbtn.setText(_translate("MainWindow", "Login"))
-        self.pswd_2.setText(_translate("MainWindow", "Passward"))
-        self.label_4.setText(_translate("MainWindow", "Har Pata, Hamein Pata Hai"))
+        self.pswd.setText(_translate("MainWindow", "UserName:"))
+        self.loginbtn.setText(_translate("MainWindow", "SignUp"))
+        self.pswd_2.setText(_translate("MainWindow", "Passward:"))
+        self.pswd_3.setText(_translate("MainWindow", "Email:"))
+        self.lblQuote.setText(_translate("MainWindow", "Har Pata, Hamein Pata Hai"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = SignUpPage()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

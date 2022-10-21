@@ -46,10 +46,13 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(0, 120, 0);
-color:white</string>
+     <string notr="true">*{
+background-color:rgb(0, 120, 0);
+color:white;
+
+}</string>
     </property>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="lblLogo">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -96,6 +99,8 @@ color: white;</string>
       <property name="styleSheet">
        <string notr="true">#txtUserName{
 background-color:rgb(255, 255, 255);
+color: black;
+	font: 12pt &quot;Roboto&quot;;
 }</string>
       </property>
      </widget>
@@ -163,6 +168,8 @@ filter: box-shadow(100px 100px red);
       <property name="styleSheet">
        <string notr="true">#txtPassword{
 background-color:rgb(255, 255, 255);
+color: black;
+	font: 12pt &quot;Roboto&quot;;
 }</string>
       </property>
      </widget>
@@ -200,6 +207,8 @@ background-color:rgb(255, 255, 255);
       <property name="styleSheet">
        <string notr="true">#txtEmail{
 background-color:rgb(255, 255, 255);
+color: black;
+	font: 12pt &quot;Roboto&quot;;
 }</string>
       </property>
      </widget>
@@ -226,7 +235,7 @@ background-color:rgb(255, 255, 255);
       </property>
      </widget>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="lblQuote">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -260,16 +269,16 @@ background-color:none;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../propertyPics/construction-concept-with-engineering-tools.jpg</pixmap>
+      <pixmap>../propertyPics/construction-concept-engineering-tools.jpg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
     <zorder>label</zorder>
-    <zorder>label_3</zorder>
+    <zorder>lblLogo</zorder>
     <zorder>Loginwidget</zorder>
-    <zorder>label_4</zorder>
+    <zorder>lblQuote</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
