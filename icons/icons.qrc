@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>user (2).png</file>
     <file>arrow.png</file>
     <file>bell Icon.png</file>
     <file>help1.png</file>
