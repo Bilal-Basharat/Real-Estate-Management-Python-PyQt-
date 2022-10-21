@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>arrow.png</file>
+    <file>bell Icon.png</file>
+    <file>help1.png</file>
+    <file>home logo.png</file>
+    <file>icons.qrc</file>
+    <file>magnifier.png</file>
+    <file>power-off.png</file>
+  </qresource>
+</RCC>

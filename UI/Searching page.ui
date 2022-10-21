@@ -45,6 +45,8 @@ background-color:rgba(255,255,255,0.3);
     <property name="styleSheet">
      <string notr="true">*{
 backgroun-color:rgb(255, 255, 255);
+color: rgb(0, 120, 0);
+font: 16pt &quot;Roboto&quot;;
 }
 #lblImg{
 backgroun-color:rgba(255, 255, 255,0.5);
@@ -55,7 +57,7 @@ backgroun-color:rgba(255, 255, 255,0.5);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../../../../../Project data dsa/propertyPics/hotel.jpg</pixmap>
+     <pixmap>../propertyPics/hotel.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -83,10 +85,10 @@ border-radius: 20px;
     <widget class="QPushButton" name="BtnExit">
      <property name="geometry">
       <rect>
-       <x>390</x>
-       <y>150</y>
-       <width>75</width>
-       <height>23</height>
+       <x>50</x>
+       <y>200</y>
+       <width>200</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -102,10 +104,10 @@ color:rgb(0,100,0);
     <widget class="QPushButton" name="btnSearch">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>150</y>
-       <width>75</width>
-       <height>23</height>
+       <x>270</x>
+       <y>200</y>
+       <width>200</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -118,59 +120,13 @@ color:rgb(0,100,0);
       <string>Search</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Price_2">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>90</y>
-       <width>81</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Area&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_3">
-     <property name="geometry">
-      <rect>
-       <x>460</x>
-       <y>100</y>
-       <width>101</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>580</x>
-       <y>100</y>
-       <width>41</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;To&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_4">
-     <property name="geometry">
-      <rect>
-       <x>610</x>
-       <y>100</y>
-       <width>101</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QComboBox" name="cmbxCity">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>60</y>
-       <width>130</width>
-       <height>30</height>
+       <x>510</x>
+       <y>90</y>
+       <width>200</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -179,6 +135,11 @@ background-color : white;
 color:rgb(0,100,0);
 }</string>
      </property>
+     <item>
+      <property name="text">
+       <string>Select City</string>
+      </property>
+     </item>
      <item>
       <property name="text">
        <string>Lahore</string>
@@ -213,10 +174,10 @@ color:rgb(0,100,0);
     <widget class="QComboBox" name="cmbxPurpose">
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>60</y>
-       <width>130</width>
-       <height>30</height>
+       <x>280</x>
+       <y>90</y>
+       <width>200</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -225,6 +186,11 @@ background-color : white;
 color:rgb(0,100,0);
 }</string>
      </property>
+     <item>
+      <property name="text">
+       <string>Purpose</string>
+      </property>
+     </item>
      <item>
       <property name="text">
        <string>Rent</string>
@@ -239,10 +205,10 @@ color:rgb(0,100,0);
     <widget class="QComboBox" name="cmbxType">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>60</y>
-       <width>130</width>
-       <height>30</height>
+       <x>50</x>
+       <y>90</y>
+       <width>200</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -253,12 +219,17 @@ color:rgb(0,100,0);
      </property>
      <item>
       <property name="text">
+       <string>Property Type</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>House</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Residential Plot</string>
+       <string>Flat</string>
       </property>
      </item>
      <item>
@@ -268,73 +239,68 @@ color:rgb(0,100,0);
      </item>
      <item>
       <property name="text">
+       <string>Residential Plot</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Commercial Plot</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>Agricultural Land</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QTextEdit" name="textEdit_2">
+    <widget class="QTextEdit" name="txtPrice2">
      <property name="geometry">
       <rect>
-       <x>280</x>
-       <y>100</y>
-       <width>101</width>
-       <height>21</height>
+       <x>340</x>
+       <y>140</y>
+       <width>150</width>
+       <height>35</height>
       </rect>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QTextEdit" name="txtPrice1">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>100</y>
-       <width>47</width>
-       <height>13</height>
+       <x>170</x>
+       <y>140</y>
+       <width>150</width>
+       <height>35</height>
       </rect>
      </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;To&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;From&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QPushButton" name="btnShowAll">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>100</y>
-       <width>101</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Price">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>90</y>
-       <width>81</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#Price{
-
-color:rgb(0,120,0);
-}</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Price Range&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnSearch_2">
-     <property name="geometry">
-      <rect>
-       <x>630</x>
-       <y>150</y>
-       <width>75</width>
-       <height>23</height>
+       <x>500</x>
+       <y>200</y>
+       <width>200</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#btnSearch{
+      <string notr="true">#btnShowAll{
 background-color : white;
 color:rgb(0,100,0);
 }</string>
@@ -356,13 +322,87 @@ color:rgb(0,100,0);
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../Project data dsa/propertyPics/DEVOE partners logo.png</pixmap>
+      <pixmap>../propertyPics/DEVOE partners logo.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
      <property name="openExternalLinks">
       <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cmbxArea">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>140</y>
+       <width>200</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#cmbxArea{
+background-color : white;
+color:rgb(0,100,0);
+}</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Area</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2 Marla</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3 Marla</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>5 Marla</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>10 Marla</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>20 Marla (1 Canal)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>100 Marla (5 Canal)</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>140</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Price Rance</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="PropertyDataTable">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>270</y>
+       <width>721</width>
+       <height>271</height>
+      </rect>
      </property>
     </widget>
    </widget>
