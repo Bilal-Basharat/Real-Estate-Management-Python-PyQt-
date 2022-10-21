@@ -32,10 +32,10 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>181</width>
-       <height>91</height>
+       <x>30</x>
+       <y>50</y>
+       <width>151</width>
+       <height>70</height>
       </rect>
      </property>
      <property name="text">
@@ -64,7 +64,7 @@
       <string notr="true">#LoginBtn{
 background-color:rgb(255, 255, 255);
 color:rgb(0, 120, 0);
-font: 16pt &quot;Roboto Black&quot;;
+font: bold 16pt &quot;Roboto Black&quot;;
 }</string>
      </property>
      <property name="text">
@@ -84,7 +84,7 @@ font: 16pt &quot;Roboto Black&quot;;
       <string notr="true">#SignUpBtn{
 background-color:rgb(255, 255, 255);
 color:rgb(0, 120, 0);
-font: 16pt &quot;Roboto Black&quot;;
+font: bold 16pt &quot;Roboto Black&quot;;
 }</string>
      </property>
      <property name="text">
@@ -425,6 +425,8 @@ border-radius: 20px;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
