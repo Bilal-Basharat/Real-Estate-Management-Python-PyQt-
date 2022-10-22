@@ -221,13 +221,5 @@ class MUserDL:
     @staticmethod
     def storedUserIntoFile(user, path):
         file = open (path, 'a')
-        file.write("\n" + user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," + user.userRole)
+        file.write("\n" + user.UserEmail + "," + user.UserPassword + "," + user.userPassword +","+ str(user.userMoney) +"," + user.userRole)
         file.close()
-    
-    # verifying user input with his account info to allow him to see his account info
-    @staticmethod
-    def checkAccountInfo(myAccount):
-        for userAccount in MUserDL.userList:
-            if(myAccount.userMobile == userAccount.userMobile and myAccount.userPassword == userAccount.userPassword):
-                return userAccount
-        return None

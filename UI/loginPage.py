@@ -11,20 +11,16 @@ class LoginScreen(QMainWindow):
         super(LoginScreen,self).__init__()
         loadUi("loginpage.ui",self)
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.loginbtn.clicked.connect(self.InitiateSignUp)
+        self.loginbtn.clicked.connect(self.checkLogin)
     
-    def InitiateSignUp(self):
-        userEmail = self.txtEmail.text()
+    def checkLogin(self):
         userName = self.txtUserName.text()
         UserPswd = self.txtPassword.text()
-        UserRole = self.txtRole.text()
 
         if len(userName) == 0 or len(UserPswd) == 0:
             self.lblError.setText('Do not leave any field empty')
         else:
             user = MUser(None, userName, UserPswd, None)
             user = MUserDL.SignIn(user)
-            if(user != None):
-                if(user.isAdmin()):
-
-        
+            # if(user != None):
+            #     if(user.isAdmin()):

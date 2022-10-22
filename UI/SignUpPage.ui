@@ -78,9 +78,9 @@ color:white;
      <property name="geometry">
       <rect>
        <x>420</x>
-       <y>130</y>
+       <y>110</y>
        <width>351</width>
-       <height>411</height>
+       <height>431</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -113,7 +113,7 @@ color: white;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>350</y>
+        <y>375</y>
         <width>311</width>
         <height>41</height>
        </rect>
@@ -271,6 +271,26 @@ background-color:rgb(255, 255, 255);
 color: black;
 	font: 12pt &quot;Roboto&quot;;
 }</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblError">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>311</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#lblError{
+background-color: none;
+	font: 10pt &quot;Roboto&quot;;
+color:red;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

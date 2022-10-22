@@ -1,7 +1,8 @@
 import sys
+from tkinter.messagebox import NO
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QLineEdit, QTextEdit
+from PyQt5.QtWidgets import QDialog, QMessageBox ,QApplication, QWidget, QStackedWidget, QMainWindow, QLineEdit, QTextEdit
 from PyQt5.QtGui import QPixmap
 from mUserDL import MUserDL
 from muser import MUser
@@ -11,4 +12,35 @@ class SignUpScreen(QMainWindow):
         super(SignUpScreen,self).__init__()
         loadUi("SignUpPage.ui",self)
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.SignUpBtn.clicked.connect(self.checkLogin, self.txtUserName)
+        self.SignUpBtn.clicked.connect(self.InitiateSignUp)
+        
+    def InitiateSignUp(self):
+        userEmail = self.txtEmail.text()
+        userName = self.txtUserName.text()
+        UserPswd = self.txtPassword.text()
+        UserRole = self.txtRole.text()
+        if(len(userEmail) == 0 and len(userName) == 0 and len(UserPswd) == 0 and len(UserRole) == 0):
+            self.lblError.setText('Do not leave any field empty')
+        else:
+            newUser = MUser(userEmail, userName, UserPswd, UserRole)
+            userVerify = MUserDL.checkIfUserAlreadyExists(newUser)
+            if(userVerify != None):
+                MUserDL.addUserIntoList(userVerify)
+                MUserDL.storedUserIntoFile(userVerify)
+                self.show_popUp(self,"User Registered Successfully!")
+            else:
+                self.show_popUp(self,"This user already exists")
+
+    def show_popUp(self,message):
+        msg = QMessageBox()
+        msg.setWindowTitle("User Registration")
+        msg.setText(message)
+        msg.setIcon(QMessageBox.question)
+
+        x = msg.exec_()
+
+
+
+
+
+        

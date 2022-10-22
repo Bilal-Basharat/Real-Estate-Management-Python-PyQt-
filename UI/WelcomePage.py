@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMai
 from PyQt5.QtGui import QPixmap
 from muser import MUser
 from loginPage import LoginScreen
+from SignUpPage import SignUpScreen
 
 class WelcomeScreen(QMainWindow):
     def __init__(self):
@@ -22,7 +23,6 @@ class WelcomeScreen(QMainWindow):
 
     def gotoSignUp(self):
         SignUp = SignUpScreen()
-        # widget = QStackedWidget()
         widget.addWidget(SignUp)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
