@@ -68,8 +68,8 @@ border: 3px solid rgb(0,120,0);
      <widget class="QLabel" name="lblUser">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>25</y>
+        <x>650</x>
+        <y>20</y>
         <width>60</width>
         <height>60</height>
        </rect>
@@ -224,7 +224,7 @@ border: 3px solid rgb(0,120,0);
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="cmbxPurpose_2">
+     <widget class="QComboBox" name="cmbxArea">
       <property name="geometry">
        <rect>
         <x>489</x>
@@ -274,26 +274,6 @@ border: 3px solid rgb(0,120,0);
        </property>
       </item>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
-      <property name="geometry">
-       <rect>
-        <x>105</x>
-        <y>280</y>
-        <width>170</width>
-        <height>35</height>
-       </rect>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:12pt; font-weight:600; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="placeholderText">
-       <string>From:</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
@@ -308,26 +288,6 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="text">
        <string>Price</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="textEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>280</y>
-        <width>170</width>
-        <height>35</height>
-       </rect>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Roboto'; font-size:12pt; font-weight:600; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="placeholderText">
-       <string>To:</string>
       </property>
      </widget>
      <widget class="QPushButton" name="BtnSearch">
@@ -397,8 +357,8 @@ border-radius: 20px;</string>
      <widget class="QPushButton" name="BtnAdd">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>30</y>
+        <x>450</x>
+        <y>25</y>
         <width>181</width>
         <height>50</height>
        </rect>
@@ -411,6 +371,48 @@ border-radius: 20px;</string>
       </property>
       <property name="text">
        <string>Add Property</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtPriceFrom">
+      <property name="geometry">
+       <rect>
+        <x>105</x>
+        <y>280</y>
+        <width>170</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>From:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtPriceTo">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>280</y>
+        <width>170</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>To:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblUserName">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>90</y>
+        <width>100</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0,120,0);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
