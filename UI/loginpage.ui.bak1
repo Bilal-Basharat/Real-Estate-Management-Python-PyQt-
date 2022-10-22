@@ -46,13 +46,10 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">*{
-background-color:rgb(0, 120, 0);
-color:white;
-
-}</string>
+     <string notr="true">background-color:rgb(0, 120, 0);
+color:white</string>
     </property>
-    <widget class="QLabel" name="lblLogo">
+    <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -65,7 +62,7 @@ color:white;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../background pics/propertyPics/DEVOE partners logo.png</pixmap>
+      <pixmap>../icons/DEVOE partners logo.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -78,20 +75,37 @@ color:white;
      <property name="geometry">
       <rect>
        <x>420</x>
-       <y>130</y>
+       <y>230</y>
        <width>351</width>
-       <height>411</height>
+       <height>301</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:rgba(0, 120, 0,0.7);
 color: white;</string>
      </property>
+     <widget class="QTextEdit" name="txtUserName">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>311</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#txtUserName{
+background-color:rgb(255, 255, 255);
+color:black;
+	font: 12pt &quot;Roboto&quot;;
+}</string>
+      </property>
+     </widget>
      <widget class="QLabel" name="pswd">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>95</y>
+        <y>20</y>
         <width>101</width>
         <height>31</height>
        </rect>
@@ -106,14 +120,14 @@ color: white;</string>
        <string notr="true">background-color: none;</string>
       </property>
       <property name="text">
-       <string>UserName:</string>
+       <string>UserName</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="SignUpBtn">
+     <widget class="QPushButton" name="loginbtn">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>350</y>
+        <y>200</y>
         <width>311</width>
         <height>41</height>
        </rect>
@@ -136,114 +150,14 @@ filter: box-shadow(100px 100px red);
 }</string>
       </property>
       <property name="text">
-       <string>SignUp</string>
+       <string>Login</string>
       </property>
      </widget>
-     <widget class="QLabel" name="pswd_2">
+     <widget class="QTextEdit" name="txtPassword">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>175</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto Medium</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: none;</string>
-      </property>
-      <property name="text">
-       <string>Passward:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pswd_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto Medium</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: none;</string>
-      </property>
-      <property name="text">
-       <string>Email:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pswd_4">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>255</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Roboto Medium</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: none;</string>
-      </property>
-      <property name="text">
-       <string>Role:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtEmail">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>50</y>
-        <width>311</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#txtEmail{
-background-color:rgb(255, 255, 255);
-color: black;
-	font: 12pt &quot;Roboto&quot;;
-}</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtUserName">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>130</y>
-        <width>311</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#txtUserName{
-background-color:rgb(255, 255, 255);
-color: black;
-	font: 12pt &quot;Roboto&quot;;
-}</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtPassword">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>210</y>
+        <y>140</y>
         <width>311</width>
         <height>41</height>
        </rect>
@@ -251,30 +165,69 @@ color: black;
       <property name="styleSheet">
        <string notr="true">#txtPassword{
 background-color:rgb(255, 255, 255);
-color: black;
+color:black;
 	font: 12pt &quot;Roboto&quot;;
 }</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="txtRole">
+     <widget class="QLabel" name="pswd_2">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>290</y>
-        <width>311</width>
+        <y>100</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Medium</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: none;</string>
+      </property>
+      <property name="text">
+       <string>Passward</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>231</width>
         <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#txtRole{
-background-color:rgb(255, 255, 255);
-color: black;
-	font: 12pt &quot;Roboto&quot;;
-}</string>
+       <string notr="true">font: 10pt &quot;Roboto&quot;;
+color: rgb(255, 255, 255);
+background-color:none;</string>
+      </property>
+      <property name="text">
+       <string>If you Don't have an account.</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>257</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Roboto&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Click Here</string>
       </property>
      </widget>
     </widget>
-    <widget class="QLabel" name="lblQuote">
+    <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -292,7 +245,7 @@ background-color:none;</string>
       <string>Har Pata, Hamein Pata Hai</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -301,23 +254,20 @@ background-color:none;</string>
        <height>500</height>
       </rect>
      </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../propertyPics/construction-concept-engineering-tools.jpg</pixmap>
+      <pixmap>../propertyPics/construction-concept-with-engineering-tools.jpg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <zorder>label</zorder>
-    <zorder>lblLogo</zorder>
+    <zorder>label_5</zorder>
+    <zorder>label_3</zorder>
     <zorder>Loginwidget</zorder>
-    <zorder>lblQuote</zorder>
+    <zorder>label_4</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

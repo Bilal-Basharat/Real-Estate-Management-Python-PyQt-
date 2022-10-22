@@ -3,16 +3,15 @@ from operator import truediv
 
 
 class MUser:
-    userName = ""
-  
-    userPassword = ""
-    UserEmail =""   
-    def __init__(self, userName, userMobile, userPassword, UserEmail):
-        self.userName = userName
-      
-        self.userPassword = userPassword
-       
+    UserEmail =""
+    UserName = ""
+    UserPassword = ""
+    UserRole = ""
+    def __init__(self, UserEmail, UserName, UserPassword, UserRole):
         self.UserEmail = UserEmail
+        self.UserName = UserName
+        self.UserPassword = UserPassword
+        self.UserRole = UserRole
     
     def isAdmin(self):
         if(self.userRole == "Admin"):

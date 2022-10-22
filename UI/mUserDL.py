@@ -2,9 +2,9 @@
 from collections import UserList
 import msvcrt
 import os.path
-from tarfile import RECORDSIZE
 from urllib.parse import uses_params
-from MUser import MUser
+from muser import MUser
+from csv import writer
 
 class MUserDL:
 
@@ -20,7 +20,7 @@ class MUserDL:
     @staticmethod
     def SignIn(user):
         for storedUser in MUserDL.userList:
-            if(storedUser.userMobile == user.userMobile and storedUser.userPassword == user.userPassword):
+            if(storedUser.UserName == user.UserName and storedUser.UserPassword == user.UserPassword):
                 return storedUser
         return None
     
