@@ -27,6 +27,7 @@ class SignUpScreen(QMainWindow):
             if(userVerify != None):
                 MUserDL.addUserIntoList(userVerify)
                 MUserDL.storedUserIntoFile(userVerify)
+                self.resetValues()
                 self.show_popUp(self,"User Registered Successfully!")
             else:
                 self.show_popUp(self,"This user already exists")
@@ -38,6 +39,11 @@ class SignUpScreen(QMainWindow):
         msg.setIcon(QMessageBox.question)
 
         x = msg.exec_()
+    def resetValues(self):
+        self.txtEmail.setText("Email")
+        self.txtUserName.setText("User Name")
+        self.txtPassword.setText("Password")
+        self.txtRole.setText("Role")
 
 
 

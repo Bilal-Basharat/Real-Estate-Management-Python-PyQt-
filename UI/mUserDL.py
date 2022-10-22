@@ -4,6 +4,7 @@ import msvcrt
 import os.path
 from urllib.parse import uses_params
 from muser import MUser
+import csv
 from csv import writer
 
 class MUserDL:
@@ -219,7 +220,9 @@ class MUserDL:
 
     # storing users data into file after registration
     @staticmethod
-    def storedUserIntoFile(user, path):
-        file = open (path, 'a')
-        file.write("\n" + user.UserEmail + "," + user.UserPassword + "," + user.userPassword +","+ str(user.userMoney) +"," + user.userRole)
-        file.close()
+    def storedUserIntoFile(user):
+        path = 'users.csv'
+        with open(path,'a',encoding="utf-8",newline="") as fileInput:
+            writer = csv.write(fileInput)
+            writer.writerow([user.UserEmail,user.UserName, user.UserPassword, user.UserRole])
+            fileInput.close()
