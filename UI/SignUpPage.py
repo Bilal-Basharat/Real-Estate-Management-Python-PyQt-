@@ -8,6 +8,7 @@ from mUserDL import MUserDL
 from muser import MUser
 import csv
 from csv import writer
+import pandas as pd
 
 class SignUpScreen(QMainWindow):
     def __init__(self):
@@ -15,6 +16,7 @@ class SignUpScreen(QMainWindow):
         loadUi("SignUpPage.ui",self)
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.SignUpBtn.clicked.connect(self.InitiateSignUp)
+        self.BtnBack.clicked.connect(self.WelcomePage)
         
     def InitiateSignUp(self):
         userEmail = self.txtEmail.text()
@@ -30,23 +32,24 @@ class SignUpScreen(QMainWindow):
             if(userVerify != None):
                 MUserDL.addUserIntoList(userVerify)
                 MUserDL.storedUserIntoFile(userVerify)
-                self.show_popUp("User Registered Successfully!")
+                self.lblError.setText("User Registered Successfully")
                 self.resetValues()
             else:
-                self.show_popUp("This user already exists")
-
-    def show_popUp(self,message):
-        msg = QMessageBox()
-        msg.setWindowTitle("User Registration")
-        msg.setText(message)
+                self.lblError.setText("This user already exists")
+# QMessageBox().setText("User Registered Successfully")
 
         # x = msg.exec_()
     def resetValues(self):
-        self.txtEmail.setText("Email")
-        self.txtUserName.setText("User Name")
-        self.txtPassword.setText("Password")
-        self.txtRole.setText("Role")
-
+        self.txtEmail.setText("")
+        self.txtUserName.setText("")
+        self.txtPassword.setText("")
+        self.txtRole.setText("")
+    
+    def WelcomePage(self):
+        welcome = WelcomeScreen()
+        widget.AddWidget(welcome)
+        
+        
 
 
 

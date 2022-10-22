@@ -6,6 +6,7 @@ from urllib.parse import uses_params
 from muser import MUser
 import csv
 from csv import writer
+import pandas as pd
 
 class MUserDL:
 
@@ -201,12 +202,13 @@ class MUserDL:
     @staticmethod
     def readDataFromFile(path):
         if(os.path.exists(path)):
-            fileVariable = open(path,'r')
-            records = fileVariable.read().split("\n")
-            fileVariable.close()
-            for line in records:
-                userName, userMobile, userPassword, userMoney, userRole = MUserDL.perseData(line)
-                user = MUser(userName, userMobile, userPassword, userMoney, userRole)
+            path = "users.csv"
+            with open(path , 'r') as csvfile:
+                # create the object of csv.reader()
+                df = pd.read_csv(csvfile,delimiter=',')
+            for row in csv_file_reader:
+                UserEmail, UserName, UserPassword, userRole = MUserDL.perseData(row)
+                user = MUser(UserEmail, UserName, UserPassword, userRole)
                 MUserDL.addUserIntoList(user)
             return True
         else:

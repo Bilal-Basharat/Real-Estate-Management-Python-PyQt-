@@ -6,6 +6,7 @@ from PyQt5.QtGui import QPixmap
 from mUserDL import MUserDL
 from muser import MUser
 from User_DashBoard import userDashBoard
+import pandas as pd
 
 class LoginScreen(QMainWindow):
     def __init__(self):
@@ -26,7 +27,7 @@ class LoginScreen(QMainWindow):
             if(checkUser != None):
                 self.userDashBoard()
             else:
-                self.show_popUp("Please enter a valid username and password")
+                self.lblError.setText("Please enter a valid username and password")
     
     def show_popUp(self,message):
         msg = QMessageBox()
