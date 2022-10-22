@@ -6,6 +6,8 @@ from PyQt5.QtWidgets import QDialog, QMessageBox ,QApplication, QWidget, QStacke
 from PyQt5.QtGui import QPixmap
 from mUserDL import MUserDL
 from muser import MUser
+import csv
+from csv import writer
 
 class SignUpScreen(QMainWindow):
     def __init__(self):
@@ -19,6 +21,7 @@ class SignUpScreen(QMainWindow):
         userName = self.txtUserName.text()
         UserPswd = self.txtPassword.text()
         UserRole = self.txtRole.text()
+        
         if(len(userEmail) == 0 and len(userName) == 0 and len(UserPswd) == 0 and len(UserRole) == 0):
             self.lblError.setText('Do not leave any field empty')
         else:
@@ -27,18 +30,17 @@ class SignUpScreen(QMainWindow):
             if(userVerify != None):
                 MUserDL.addUserIntoList(userVerify)
                 MUserDL.storedUserIntoFile(userVerify)
+                self.show_popUp("User Registered Successfully!")
                 self.resetValues()
-                self.show_popUp(self,"User Registered Successfully!")
             else:
-                self.show_popUp(self,"This user already exists")
+                self.show_popUp("This user already exists")
 
     def show_popUp(self,message):
         msg = QMessageBox()
         msg.setWindowTitle("User Registration")
         msg.setText(message)
-        msg.setIcon(QMessageBox.question)
 
-        x = msg.exec_()
+        # x = msg.exec_()
     def resetValues(self):
         self.txtEmail.setText("Email")
         self.txtUserName.setText("User Name")

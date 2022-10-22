@@ -6,13 +6,10 @@ from PyQt5.QtGui import QPixmap
 from mUserDL import MUserDL
 from muser import MUser
 
-class WelcomeScreen(QMainWindow):
+class userDashBoard(QMainWindow):
     def __init__(self):
-        super(WelcomeScreen,self).__init__()
-        loadUi("SearchPage.ui",self)
-        if(user != None):
-            self.loginbtn.clicked.connect(self.SeachPage())
-    def SearchPage():
+        super(userDashBoard,self).__init__()
+        loadUi("User_Dashboard.ui",self)        
         
 
                     

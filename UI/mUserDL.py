@@ -29,7 +29,7 @@ class MUserDL:
     @staticmethod
     def checkIfUserAlreadyExists(verifyUser):
         for user in MUserDL.userList:
-            if(user.userMobile == verifyUser.userMobile and user.userPassword == verifyUser.userPassword):
+            if(user.UserEmail == verifyUser.UserEmail):
                 return None
         return verifyUser
 
@@ -223,6 +223,6 @@ class MUserDL:
     def storedUserIntoFile(user):
         path = 'users.csv'
         with open(path,'a',encoding="utf-8",newline="") as fileInput:
-            writer = csv.write(fileInput)
+            writer = csv.writer(fileInput)
             writer.writerow([user.UserEmail,user.UserName, user.UserPassword, user.UserRole])
             fileInput.close()

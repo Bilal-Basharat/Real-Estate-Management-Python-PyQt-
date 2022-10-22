@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMai
 from PyQt5.QtGui import QPixmap
 from mUserDL import MUserDL
 from muser import MUser
+from User_DashBoard import userDashBoard
 
 class LoginScreen(QMainWindow):
     def __init__(self):
@@ -21,6 +22,18 @@ class LoginScreen(QMainWindow):
             self.lblError.setText('Do not leave any field empty')
         else:
             user = MUser(None, userName, UserPswd, None)
-            user = MUserDL.SignIn(user)
-            # if(user != None):
-            #     if(user.isAdmin()):
+            checkUser = MUserDL.SignIn(user)
+            if(checkUser != None):
+                self.userDashBoard()
+            else:
+                self.show_popUp("Please enter a valid username and password")
+    
+    def show_popUp(self,message):
+        msg = QMessageBox()
+        msg.setWindowTitle("Login")
+        msg.setText(message)
+        msg.setIcon(QMessageBox.warning)
+    def userDashBoard():
+        dashBoard = userDashBoard()
+        widget.addWidget(dashBoard)
+        widget.setCurrentIndex(currentIndex()+1)
