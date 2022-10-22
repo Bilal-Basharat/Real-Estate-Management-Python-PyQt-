@@ -45,9 +45,9 @@ class SignUpScreen(QMainWindow):
         self.txtPassword.setText("")
         self.txtRole.setText("")
     
-    def WelcomePage(self):
-        welcome = WelcomeScreen()
-        widget.AddWidget(welcome)
+    # def WelcomePage(self):
+    #     welcome = WelcomeScreen()
+    #     widget.AddWidget(welcome)
         
         
 

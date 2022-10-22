@@ -1,5 +1,6 @@
 # users (either customers or admin) BL Class
 from collections import UserList
+from lib2to3.pgen2.token import NEWLINE
 import msvcrt
 import os.path
 from urllib.parse import uses_params
@@ -22,7 +23,7 @@ class MUserDL:
     @staticmethod
     def SignIn(user):
         for storedUser in MUserDL.userList:
-            if(storedUser.UserName == user.UserName and storedUser.UserPassword == user.UserPassword):
+            if(storedUser.UserEmail == user.UserEmail and storedUser.UserPassword == user.UserPassword):
                 return storedUser
         return None
     
@@ -118,98 +119,20 @@ class MUserDL:
         else:
             print("\t The transaction is not happened as there is nothing in the object")
             msvcrt.getch()
-
-    # updating user accounts from file after paying bills
-    @staticmethod
-    def updateAccountAfterBill(payer, payBillsDetails, path):
-        if(payBillsDetails != None):
-            count = 0
-            # performing operation for transfering money
-            # payer info
-            payerTotalMoney = int(payer.userMoney)
-            payerTotalMoney = payerTotalMoney - payBillsDetails.billAmount
-            payer.userMoney = str(payerTotalMoney)
-
-            # updating user data in the  file after transfering money
-            updateFile = open (path, 'w')
-            for user in MUserDL.userList:
-                if(count == 0):
-                    updateFile.write(user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," +user.userRole)
-                else:
-                    updateFile.write("\n" + user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," + user.userRole)
-                count += 1
-            updateFile.close()
-            print("\t Bill Paid Successfully!")
-            msvcrt.getch()
-        else:
-            print("\t The pay bill operation is not happened as there is nothing in the object")
-            msvcrt.getch()
-
-    # updating users accounts from file after buying mobile load
-    @staticmethod
-    def updateAccountAfterMbLoad(buyer, MobileLoadInfo, path):
-        if(MobileLoadInfo != None):
-            count = 0
-            # performing operation for transfering money
-            # buyer info
-            buyerTotalMoney = int(buyer.userMoney)
-            buyerTotalMoney = buyerTotalMoney - MobileLoadInfo.loadAmount
-            buyer.userMoney = str(buyerTotalMoney)
-
-            # updating user data in the  file after buying load
-            updateFile = open (path, 'w')
-            for user in MUserDL.userList:
-                if(count == 0):
-                    updateFile.write(user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," +user.userRole)
-                else:
-                    updateFile.write("\n" + user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," + user.userRole)
-                count += 1
-            updateFile.close()
-            print("\t Mobile Load bought Successfully!")
-            msvcrt.getch()
-        else:
-            print("\t The Mobile load operation is not happened as there is nothing in the object")
-            msvcrt.getch()
-
-    # updating users accounts from file after buying mobile bundles
-    @staticmethod
-    def updateAccountAfterBoughtBundle(user, boughtBundleInfo, path):
-        if(boughtBundleInfo != None):
-            count = 0
-            # performing operation for transfering money
-            # buyer info
-            buyerTotalMoney = int(user.userMoney)
-
-            buyerTotalMoney = buyerTotalMoney - int(boughtBundleInfo.bBundlePrice)
-            user.userMoney = str(buyerTotalMoney)
-
-            # updating user data in the  file after buying load
-            updateFile = open (path, 'w')
-            for user in MUserDL.userList:
-                if(count == 0):
-                    updateFile.write(user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," +user.userRole)
-                else:
-                    updateFile.write("\n" + user.userName + "," + user.userMobile + "," + user.userPassword +","+ str(user.userMoney) +"," + user.userRole)
-                count += 1
-            updateFile.close()
-            print("\t Mobile Bundle Bought bought Successfully!")
-            msvcrt.getch()
-        else:
-            print("\t The Mobile bundle operation is not happened as there is nothing in the object")
-            msvcrt.getch()
     
     # reading users data from file
     @staticmethod
     def readDataFromFile(path):
         if(os.path.exists(path)):
             path = "users.csv"
-            with open(path , 'r') as csvfile:
+            with open(path , 'r', newline="") as csvfile:
                 # create the object of csv.reader()
-                df = pd.read_csv(csvfile,delimiter=',')
-            for row in csv_file_reader:
-                UserEmail, UserName, UserPassword, userRole = MUserDL.perseData(row)
-                user = MUser(UserEmail, UserName, UserPassword, userRole)
-                MUserDL.addUserIntoList(user)
+                # df = pd.read_csv(csvfile,delimiter=',')
+                csvReader = csv.reader(csvfile)
+                for UserEmail, UserName, UserPassword, UserRole in csvReader:
+                    # UserEmail, UserName, UserPassword, userRole = MUserDL.perseData(row)
+                    user = MUser(UserEmail, UserName, UserPassword, UserRole)
+                    MUserDL.addUserIntoList(user)
             return True
         else:
             return False

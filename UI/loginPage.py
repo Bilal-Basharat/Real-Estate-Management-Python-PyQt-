@@ -1,7 +1,7 @@
 import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QLineEdit, QTextEdit
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QLineEdit, QTextEdit, QMessageBox
 from PyQt5.QtGui import QPixmap
 from mUserDL import MUserDL
 from muser import MUser
@@ -16,15 +16,18 @@ class LoginScreen(QMainWindow):
         self.loginbtn.clicked.connect(self.checkLogin)
     
     def checkLogin(self):
-        userName = self.txtUserName.text()
+        path = "users.csv"
+        MUserDL.readDataFromFile(path)
+        userEmail = self.txtEmail.text()
         UserPswd = self.txtPassword.text()
 
-        if len(userName) == 0 or len(UserPswd) == 0:
+        if len(userEmail) == 0 or len(UserPswd) == 0:
             self.lblError.setText('Do not leave any field empty')
         else:
-            user = MUser(None, userName, UserPswd, None)
+            user = MUser(userEmail, None, UserPswd, None)
             checkUser = MUserDL.SignIn(user)
             if(checkUser != None):
+                self.lblError.setText("Login Successfully!")
                 self.userDashBoard()
             else:
                 self.lblError.setText("Please enter a valid username and password")
@@ -34,7 +37,12 @@ class LoginScreen(QMainWindow):
         msg.setWindowTitle("Login")
         msg.setText(message)
         msg.setIcon(QMessageBox.warning)
-    def userDashBoard():
+    def userDashBoard(self):
+        app = QApplication(sys.argv)
         dashBoard = userDashBoard()
+        widget = QStackedWidget()
         widget.addWidget(dashBoard)
-        widget.setCurrentIndex(currentIndex()+1)
+        widget.setFixedSize(800, 600)
+        widget.show()
+        
+if name == "__main__":
