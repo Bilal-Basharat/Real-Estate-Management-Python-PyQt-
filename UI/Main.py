@@ -1,11 +1,13 @@
 import imp
 import sys
+import csv
 from tkinter.filedialog import Open
 import sipbuild
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow
 from PyQt5.QtGui import QPixmap
+import sqlite3
 from muser import MUser
 from mUserDL import MUserDL
 
@@ -126,7 +128,15 @@ class ShowTableData(QMainWindow):
         self.tableWidget.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata()
     def loaddata(self):
-        with Open
+        path = "users.csv"
+        with open(path , 'r', newline="") as csvfile:
+            # create the object of csv.reader()
+            # df = pd.read_csv(csvfile,delimiter=',')
+            csvReader = csv.reader(csvfile)
+            self.tableWidget.setRowCount(len(csvReader))
+            i = 0
+            for row in csvReader:
+                
 
 #main
 app = QApplication(sys.argv)
