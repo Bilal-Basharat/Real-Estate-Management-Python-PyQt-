@@ -15,6 +15,14 @@ class LoginScreen(QMainWindow):
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.loginbtn.clicked.connect(self.checkLogin)
     
+    def userDashboard(self):
+        dashBoard = userDashBoard()
+        widget = QStackedWidget()
+        widget.addWidget(dashBoard)
+        # widget.setCurrentIndex(widget.currentIndex()+1)
+        # widget.setFixedSize(800, 600)
+        widget.show()
+        # sys.exit(app.exec_())
     def checkLogin(self):
         path = "users.csv"
         MUserDL.readDataFromFile(path)
@@ -28,7 +36,7 @@ class LoginScreen(QMainWindow):
             checkUser = MUserDL.SignIn(user)
             if(checkUser != None):
                 self.lblError.setText("Login Successfully!")
-                self.userDashBoard()
+                self.userDashboard()
             else:
                 self.lblError.setText("Please enter a valid username and password")
     
@@ -37,12 +45,3 @@ class LoginScreen(QMainWindow):
         msg.setWindowTitle("Login")
         msg.setText(message)
         msg.setIcon(QMessageBox.warning)
-    def userDashBoard(self):
-        app = QApplication(sys.argv)
-        dashBoard = userDashBoard()
-        widget = QStackedWidget()
-        widget.addWidget(dashBoard)
-        widget.setFixedSize(800, 600)
-        widget.show()
-        
-if name == "__main__":

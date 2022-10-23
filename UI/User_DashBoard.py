@@ -9,7 +9,5 @@ from muser import MUser
 class userDashBoard(QMainWindow):
     def __init__(self):
         super(userDashBoard,self).__init__()
-        loadUi("User_Dashboard.ui",self)        
+        loadUi("User_Dashboard.ui",self)
         
-
-                    

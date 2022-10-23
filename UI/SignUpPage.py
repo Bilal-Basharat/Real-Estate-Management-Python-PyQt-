@@ -16,7 +16,7 @@ class SignUpScreen(QMainWindow):
         loadUi("SignUpPage.ui",self)
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.SignUpBtn.clicked.connect(self.InitiateSignUp)
-        self.BtnBack.clicked.connect(self.WelcomePage)
+        # self.BtnBack.clicked.connect(self.WelcomePage)
         
     def InitiateSignUp(self):
         userEmail = self.txtEmail.text()
