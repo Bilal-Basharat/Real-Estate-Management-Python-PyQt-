@@ -1,3 +1,4 @@
+import time
 import imp
 import sys
 import csv
@@ -132,15 +133,21 @@ class AddPropertyClass(QMainWindow):
     def __init__(self):
         super(AddPropertyClass,self).__init__()
         loadUi("AddProperty.ui",self)
-        
+        self.purpose = ""
+        self.PropertyType = ""
         # checking purpose check boxes
-        PurposeRent = self.chckPurposeRent.stateChanged.connect(self.purposeCheck)
-        PurposeBuy = self.chckPurposeBuy.stateChanged.connect(self.purposeCheck)
+        if(self.chckPurposeRent.stateChanged.connect(self.purposeCheck) != None):
+            self.purpose = self.chckPurposeRent.stateChanged.connect(self.purposeCheck)
+        elif(self.chckPurposeSale.stateChanged.connect(self.purposeCheck) != None):
+            self.purpose = self.chckPurposeSale.stateChanged.connect(self.purposeCheck)
         
         # checking Property Type check boxes
-        PropertyTypeHouse = self.ChckTypeHouse.stateChanged.connect(self.TypeCheck)
-        PropertyTypeFlat = self.ChckTypeFlat.stateChanged.connect(self.TypeCheck)
-        PropertyTypePlot = self.ChckTypePlot.stateChanged.connect(self.TypeCheck)
+        if(self.ChckTypeHouse.stateChanged.connect(self.TypeCheck) != None):
+            self.PropertyType = self.ChckTypeHouse.stateChanged.connect(self.TypeCheck)
+        if(self.ChckTypeFlat.stateChanged.connect(self.TypeCheck) != None):
+            self.PropertyType = self.ChckTypeFlat.stateChanged.connect(self.TypeCheck)
+        if(self.ChckTypeFlat.stateChanged.connect(self.TypeCheck) != None):
+            self.PropertyType = self.ChckTypeFlat.stateChanged.connect(self.TypeCheck)
         
         # submit add property Form button
         self.BtnSubmit.clicked.connect(self.addPropertyFunc)
@@ -148,11 +155,11 @@ class AddPropertyClass(QMainWindow):
     # logic function for purpose check boxex
     def purposeCheck(self, state):
         if state == Qt.Checked:
-            if self.sender() == self.chckPurposeBuy:
+            if self.sender() == self.chckPurposeSale:
                 self.chckPurposeRent.setChecked(False)
-                return self.chckPurposeBuy.text()
+                return self.chckPurposeSale.text()
             else:
-                self.chckPurposeBuy.setChecked(False)
+                self.chckPurposeSale.setChecked(False)
                 return self.chckPurposeRent.text()
     
     # logic function for property type check boxex
@@ -161,21 +168,39 @@ class AddPropertyClass(QMainWindow):
         if state == Qt.Checked:
             if self.sender() == self.ChckTypeHouse:
                 self.ChckTypeFlat.setChecked(False)
-                self.ChckTypePlot.setChecked(False)
-                return self.checkTypeHoue.text()
+                self.ChckTypeFlat.setChecked(False)
+                return self.ChckTypeHouse.text()
 
             elif self.sender() == self.ChckTypeFlat:
                 self.ChckTypeHouse.setChecked(False)
-                self.ChckTypePlot.setChecked(False)
-                return self.checkTypeFlat.text()
-            
-            elif self.sender() == self.ChckTypePlot:
+                self.ChckTypeFlat.setChecked(False)
+                return self.ChckTypeFlat.text()
+
+            elif self.sender() == self.ChckTypeFlat:
                 self.ChckTypeHouse.setChecked(False)
                 self.ChckTypeFlat.setChecked(False)
-                return self.checkTypePlot.text()
+                return self.ChckTypeFlat.text()
+    # function for writing add property data to the file
+    def addPropertyFunc(self):
+        # retrieving data from input fields to store in file
+        AgencyName  = self.lineAgencyName.text()
+        CityName = self.cmbxCity.currentText()
+        location = self.lineLocation.text()
+        Area = self.cmbxArea.currentText()
+        Price = self.linePrice.text()
+        Contact = self.lineContactNo.text()
 
-    def addPropertyFunc(self,):
-
+        with open("AllPakPropertyData.csv",'a', newline="") as csvWriter:
+            writer = csv.writer(csvWriter)
+            writer.writerow([AgencyName,self.PropertyType,Price,location,Area,self.purpose,CityName,Contact])
+            csvWriter.close()
+        msg = QMessageBox()
+        msg.setText("Property Submitted Successfully!")
+        msg.setWindowTitle("Added")
+        msg.exec_()
+        dashBoard = userDashBoard()
+        widget.addWidget(dashBoard)
+        widget.setCurrentIndex(widget.currentIndex()+1)
 
 # Show Table Data
 class ShowTableData(QMainWindow):

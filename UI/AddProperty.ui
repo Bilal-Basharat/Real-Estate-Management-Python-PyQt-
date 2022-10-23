@@ -154,7 +154,7 @@ padding-left: 10px;
       <string>Area:</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="chckPurposeBuy">
+    <widget class="QCheckBox" name="chckPurposeSale">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -167,7 +167,7 @@ padding-left: 10px;
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>Buy</string>
+      <string>Sale</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="chckPurposeRent">
