@@ -27,7 +27,7 @@
      <string notr="true">background-color: green;
 font: 12pt &quot;Roboto&quot;;</string>
     </property>
-    <widget class="QTableWidget" name="TableData">
+    <widget class="QTableWidget" name="TableWidgetData">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -209,7 +209,7 @@ color:rgb(0,120,0);</string>
   <tabstop>cmbxSort_2</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>txtSearch</tabstop>
-  <tabstop>TableData</tabstop>
+  <tabstop>TableWidgetData</tabstop>
  </tabstops>
  <resources>
   <include location="../icons/icons.qrc"/>
