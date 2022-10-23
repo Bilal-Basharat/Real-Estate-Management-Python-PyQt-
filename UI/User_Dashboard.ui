@@ -354,7 +354,7 @@ border-radius: 20px;</string>
        <string>Search properties for sale in Pakistan</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="BtnAdd">
+     <widget class="QPushButton" name="BtnAddProperty">
       <property name="geometry">
        <rect>
         <x>450</x>

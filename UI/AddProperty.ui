@@ -154,7 +154,7 @@ padding-left: 10px;
       <string>Area:</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="chckPurposeBuy">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -170,7 +170,7 @@ padding-left: 10px;
       <string>Buy</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="chckPurposeRent">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -183,7 +183,7 @@ padding-left: 10px;
       <string>Rent</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_5">
+    <widget class="QCheckBox" name="ChckTypeHouse">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -196,7 +196,7 @@ padding-left: 10px;
       <string>House</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_6">
+    <widget class="QCheckBox" name="ChckTypeFlat">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -209,7 +209,7 @@ padding-left: 10px;
       <string>Flat</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_7">
+    <widget class="QCheckBox" name="ChckTypePlot">
      <property name="geometry">
       <rect>
        <x>420</x>
@@ -287,7 +287,7 @@ padding-left: 10px;
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="cmbxCity_2">
+    <widget class="QComboBox" name="cmbxArea">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -386,7 +386,7 @@ padding-left: 10px;
       <string>Agency Name</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="linePrice_2">
+    <widget class="QLineEdit" name="lineAgencyName">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -396,7 +396,7 @@ padding-left: 10px;
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="linePrice_3">
+    <widget class="QLineEdit" name="lineContactNo">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -505,7 +505,7 @@ padding: 5px;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

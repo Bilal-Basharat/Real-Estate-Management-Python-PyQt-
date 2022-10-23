@@ -3,11 +3,13 @@ import sys
 import csv
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
+import re
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -110,14 +112,69 @@ class userDashBoard(QMainWindow):
         loadUi("User_Dashboard.ui",self)
         self.BtnShowAll.clicked.connect(self.gotoShowAllData)
         self.BtnExit.clicked.connect(self.gotoExit)
+        self.BtnAddProperty.clicked.connect(self.gotoAddProperty)
     
     def gotoShowAllData(self):
         showTable = ShowTableData()
         widget.addWidget(showTable)
         widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def gotoAddProperty(self):
+        addProperty = AddPropertyClass()
+        widget.addWidget(addProperty)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
     def gotoExit(self):
         sys.exit(app.exec_())
 
+# Add Property Class
+class AddPropertyClass(QMainWindow):
+    def __init__(self):
+        super(AddPropertyClass,self).__init__()
+        loadUi("AddProperty.ui",self)
+        
+        # checking purpose check boxes
+        PurposeRent = self.chckPurposeRent.stateChanged.connect(self.purposeCheck)
+        PurposeBuy = self.chckPurposeBuy.stateChanged.connect(self.purposeCheck)
+        
+        # checking Property Type check boxes
+        PropertyTypeHouse = self.ChckTypeHouse.stateChanged.connect(self.TypeCheck)
+        PropertyTypeFlat = self.ChckTypeFlat.stateChanged.connect(self.TypeCheck)
+        PropertyTypePlot = self.ChckTypePlot.stateChanged.connect(self.TypeCheck)
+        
+        # submit add property Form button
+        self.BtnSubmit.clicked.connect(self.addPropertyFunc)
+    
+    # logic function for purpose check boxex
+    def purposeCheck(self, state):
+        if state == Qt.Checked:
+            if self.sender() == self.chckPurposeBuy:
+                self.chckPurposeRent.setChecked(False)
+                return self.chckPurposeBuy.text()
+            else:
+                self.chckPurposeBuy.setChecked(False)
+                return self.chckPurposeRent.text()
+    
+    # logic function for property type check boxex
+    def TypeCheck(self, state):
+        
+        if state == Qt.Checked:
+            if self.sender() == self.ChckTypeHouse:
+                self.ChckTypeFlat.setChecked(False)
+                self.ChckTypePlot.setChecked(False)
+                return self.checkTypeHoue.text()
+
+            elif self.sender() == self.ChckTypeFlat:
+                self.ChckTypeHouse.setChecked(False)
+                self.ChckTypePlot.setChecked(False)
+                return self.checkTypeFlat.text()
+            
+            elif self.sender() == self.ChckTypePlot:
+                self.ChckTypeHouse.setChecked(False)
+                self.ChckTypeFlat.setChecked(False)
+                return self.checkTypePlot.text()
+
+    def addPropertyFunc(self,):
 
 
 # Show Table Data
