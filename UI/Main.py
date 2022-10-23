@@ -227,7 +227,7 @@ class ShowTableData(QMainWindow):
             # df = pd.read_csv(csvfile,delimiter=',')
             csvReader = csv.reader(csvfile,delimiter=",")
             # self.tableWidgetData = QtWidgets.QTableWidget()
-            self.TableWidgetData.setRowCount(73409)
+            self.TableWidgetData.setRowCount(734500)
             i = 0
             for row in csvReader:
                 self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
