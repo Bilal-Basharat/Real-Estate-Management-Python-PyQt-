@@ -1,13 +1,16 @@
 import imp
 import sys
+import csv
 from tkinter.filedialog import Open
 import sipbuild
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView
 from PyQt5.QtGui import QPixmap
+import sqlite3
 from muser import MUser
 from mUserDL import MUserDL
+import pandas as pd
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -16,7 +19,6 @@ class WelcomeScreen(QMainWindow):
         loadUi("WelcomePage.ui",self)
         self.LoginBtn.clicked.connect(self.gotoLogin)
         self.SignUpBtn.clicked.connect(self.gotoSignUp)
-        
 
     def gotoLogin(self):
         login = LoginScreen()
@@ -109,25 +111,55 @@ class userDashBoard(QMainWindow):
     def __init__(self):
         super(userDashBoard,self).__init__()
         loadUi("User_Dashboard.ui",self)
+        self.BtnShowAll.clicked.connect(self.gotoShowAllData)
+        self.BtnExit.clicked.connect(self.gotoExit)
+    
+    def gotoShowAllData(self):
+        showTable = ShowTableData()
+        widget.addWidget(showTable)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    def gotoExit(self):
+        sys.exit(app.exec_())
+
+
 
 # Show Table Data
 class ShowTableData(QMainWindow):
     def __init__(self):
         super(ShowTableData,self).__init__()
-        loadUi("User_Dashboard.ui",self)
-        self.tableWidget.setColumnWidth(0, 200)
-        self.tableWidget.setColumnWidth(1, 200)
-        self.tableWidget.setColumnWidth(2, 200)
-        self.tableWidget.setColumnWidth(3, 200)
-        self.tableWidget.setColumnWidth(4, 200)
-        self.tableWidget.setColumnWidth(5, 200)
-        self.tableWidget.setColumnWidth(6, 200)
-        self.tableWidget.setColumnWidth(7, 200)
-        self.tableWidget.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
+        loadUi("ShowData.ui",self)
+        
+        # self.tableWidgetData = QtWidgets.QTableWidget()
+        self.TableWidgetData.setColumnWidth(0, 200)
+        self.TableWidgetData.setColumnWidth(1, 100)
+        self.TableWidgetData.setColumnWidth(2, 150)
+        self.TableWidgetData.setColumnWidth(3, 200)
+        self.TableWidgetData.setColumnWidth(4, 100)
+        self.TableWidgetData.setColumnWidth(5, 100)
+        self.TableWidgetData.setColumnWidth(6, 150)
+        self.TableWidgetData.setColumnWidth(7, 180)
+        # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata()
-    def loaddata(self):
-        with Open
 
+    def loaddata(self):
+        path = "AllPakPropertyData.csv"
+        with open(path , 'r', newline="") as csvfile:
+            # create the object of csv.reader()
+            # df = pd.read_csv(csvfile,delimiter=',')
+            csvReader = csv.reader(csvfile,delimiter=",")
+            # self.tableWidgetData = QtWidgets.QTableWidget()
+            self.TableWidgetData.setRowCount(73409)
+            i = 0
+            for row in csvReader:
+                self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
+                self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
+                self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
+                self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
+                self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
+                self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
+                self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
+                self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
+                i += 1
 #main
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
