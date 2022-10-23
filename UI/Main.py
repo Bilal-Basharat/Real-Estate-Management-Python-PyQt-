@@ -1,13 +1,10 @@
 import imp
 import sys
 import csv
-from tkinter.filedialog import Open
-import sipbuild
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView
 from PyQt5.QtGui import QPixmap
-import sqlite3
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
