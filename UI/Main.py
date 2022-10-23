@@ -54,16 +54,11 @@ class LoginScreen(QMainWindow):
                 self.lblError.setText("Please fill in the fields")
 
     def userDashboard(self):
-        # self.removeDockWidget(self.parentWidget)
-        # sipbuildbilalbisharat@gmail.com
         dashBoard = userDashBoard()
         # widget = QStackedWidget()
         widget.addWidget(dashBoard)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
-        # widget.setFixedSize(800, 600)
-        # widget.show()
-        # sys.exit(app.exec_())
 
 # signup class
 
