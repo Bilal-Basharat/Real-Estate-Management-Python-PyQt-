@@ -19,7 +19,6 @@ class WelcomeScreen(QMainWindow):
         loadUi("WelcomePage.ui",self)
         self.LoginBtn.clicked.connect(self.gotoLogin)
         self.SignUpBtn.clicked.connect(self.gotoSignUp)
-        
 
     def gotoLogin(self):
         login = LoginScreen()
@@ -120,7 +119,8 @@ class userDashBoard(QMainWindow):
         widget.addWidget(showTable)
         widget.setCurrentIndex(widget.currentIndex()+1)
     def gotoExit(self):
-        self.close()
+        sys.exit(app.exec_())
+
 
 
 # Show Table Data
@@ -128,38 +128,37 @@ class ShowTableData(QMainWindow):
     def __init__(self):
         super(ShowTableData,self).__init__()
         loadUi("ShowData.ui",self)
-        tableWidget = QtWidgets.QTableWidget()
         
-        tableWidget.setColumnWidth(0, 200)
-        tableWidget.setColumnWidth(1, 200)
-        tableWidget.setColumnWidth(2, 200)
-        tableWidget.setColumnWidth(3, 200)
-        tableWidget.setColumnWidth(4, 200)
-        tableWidget.setColumnWidth(5, 200)
-        tableWidget.setColumnWidth(6, 200)
-        tableWidget.setColumnWidth(7, 200)
+        # self.tableWidgetData = QtWidgets.QTableWidget()
+        self.TableWidgetData.setColumnWidth(0, 200)
+        self.TableWidgetData.setColumnWidth(1, 100)
+        self.TableWidgetData.setColumnWidth(2, 150)
+        self.TableWidgetData.setColumnWidth(3, 200)
+        self.TableWidgetData.setColumnWidth(4, 100)
+        self.TableWidgetData.setColumnWidth(5, 100)
+        self.TableWidgetData.setColumnWidth(6, 150)
+        self.TableWidgetData.setColumnWidth(7, 180)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata()
 
     def loaddata(self):
-        path = "users.csv"
+        path = "AllPakPropertyData.csv"
         with open(path , 'r', newline="") as csvfile:
             # create the object of csv.reader()
-            df = pd.read_csv(csvfile,delimiter=',')
-            # csvReader = csv.reader(csvfile,delimiter=",")
-            tableWidget = QtWidgets.QTableWidget()
-            
-            tableWidget.setRowCount(pd.options.display.max_rows)
+            # df = pd.read_csv(csvfile,delimiter=',')
+            csvReader = csv.reader(csvfile,delimiter=",")
+            # self.tableWidgetData = QtWidgets.QTableWidget()
+            self.TableWidgetData.setRowCount(73409)
             i = 0
-            for row in df:
-                tableWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
-                tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
-                tableWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
-                tableWidget.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
-                tableWidget.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
-                tableWidget.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
-                tableWidget.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
-                tableWidget.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
+            for row in csvReader:
+                self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
+                self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
+                self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
+                self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
+                self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
+                self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
+                self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
+                self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
                 i += 1
 #main
 app = QApplication(sys.argv)
