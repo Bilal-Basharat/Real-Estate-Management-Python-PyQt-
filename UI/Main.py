@@ -142,13 +142,18 @@ class AddProperty(QMainWindow):
         path = 'E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/AllPakPropertyData.csv'
         with open(path,'a',encoding="utf-8",newline="") as fileInput:
             writer = csv.writer(fileInput)
-            writer.writerow([Purpose,PropertyType,City,Location,Area,Price,AgencyName,Contact])
+            writer.writerow([AgencyName,PropertyType,Price,Location,Area,Purpose,City,Contact])
             fileInput.close()
         msg = QMessageBox()
         msg.setText("Property added successfully")
         msg.exec_()
         self.userDashboard()
-
+        
+    def userDashboard(self):
+        dashBoard = userDashBoard()
+        # widget = QStackedWidget()
+        widget.addWidget(dashBoard)
+        widget.setCurrentIndex(widget.currentIndex()+1)
 
 # Show Table Data
 class ShowTableData(QMainWindow):
