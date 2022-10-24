@@ -17,25 +17,24 @@ readable_price=[]
 for i in range (0,len(Price)):
     s=""
     v=Price[i]
-    if v[len(v)-1]=='e':
-       s=v[3]
-       if v[4]!=' ':
-        s=s+v[4]
-       #if (v[5]!=' '):
-        #s=s+v[5]
-       #if (v[6]!=' '):
-        #s=s+v[6] 
-       s=float(s)
-       readable_price.append((s*100.0))  
+    print("index: " + str(i))
+    if ' ' in v:
+        splited = v.split(' ')
     else:
-        s=v[3]
-        if v[4]!=' ':
-            s=s+v[4]
-        #if v[5]!=' ':
-         #   s=s+v[5]
-        #if v[6]!=' ':
-         #   s=s+v[6] 
-        readable_price.append(float(s))
+        splited = v
+    var=splited[0]
+    if v[len(v)-1]=='e':
+        for t in range (3,len(var),1): 
+            s=s+var[t]
+            #q=int(s)
+        print(s)
+        s = float(s)
+        readable_price.append(s*100)
+    else:
+        for t in range (3,len(var),1): 
+            s=s+var[t]
+        q=float(s)
+        readable_price.append(float(s)) 
 def SelectionSort(arr,start,end):
     l=1000000000000.0
     for i in range(start,end,1):
@@ -48,7 +47,7 @@ sorted_indeces=[]
 for i in range (0,len(readable_price)-1):
     w= SelectionSort(readable_price,0,len(readable_price))   
     sorted_indeces.append(w)
-for i in range (0,len(sorted_indeces)):    
-    print(Agency_list[sorted_indeces[i]]+Price[sorted_indeces[i]]+City[sorted_indeces[i]])            
+#for i in range (0,len(sorted_indeces)):    
+ #   print(Agency_list[sorted_indeces[i]]+Price[sorted_indeces[i]]+City[sorted_indeces[i]])            
 
        
