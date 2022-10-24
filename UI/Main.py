@@ -1,10 +1,12 @@
 import imp
 import sys
 import csv
+import os.path
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
@@ -17,7 +19,7 @@ class WelcomeScreen(QMainWindow):
         self.LoginBtn.clicked.connect(self.gotoLogin)
         self.SignUpBtn.clicked.connect(self.gotoSignUp)
 
-    def gotoLogin(self):
+    def gotoLogin(self): 
         login = LoginScreen()
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -113,6 +115,30 @@ class userDashBoard(QMainWindow):
     def gotoExit(self):
         sys.exit(app.exec_())
 
+class AddProperty(QMainWindow):
+    def __init__(self):
+        super(AddProperty,self).__init__()
+        loadUi("AddProperty.ui",self)
+        self.BtnSubmit.clicked.connect(self.submitAddProperty)
+    
+    def submitAddProperty(self):
+        Purpose = self.cmbxPurpose.currentText()
+        PropertyType = self.cmbxPropertyType.currentText()
+        City = self.cmbxCity.currentText()
+        Location = self.lineLocation.text()
+        Area = self.cmbxArea.currentText()
+        Price = self.linePrice.text()
+        AgencyName = self.lineAgencyName.text()
+        Contact = self.lineContact.text()
+        path = 'AllPakPropertyData.csv'
+        with open(path,'a',encoding="utf-8",newline="") as fileInput:
+            writer = csv.writer(fileInput)
+            writer.writerow([Purpose,PropertyType,City,Location,Area,Price,AgencyName,Contact])
+            fileInput.close()
+        msg = QMessageBox()
+        msg.setText("Property added successfully")
+        msg.exec_()
+        self.userDashboard()
 
 
 # Show Table Data
