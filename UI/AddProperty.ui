@@ -318,7 +318,7 @@ padding-left: 10px;
       <string>Agency Name</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="linePrice_2">
+    <widget class="QLineEdit" name="lineAgencyName">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -328,7 +328,7 @@ padding-left: 10px;
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="linePrice_3">
+    <widget class="QLineEdit" name="lineContact">
      <property name="geometry">
       <rect>
        <x>220</x>

@@ -122,9 +122,9 @@ class MUserDL:
     
     # reading users data from file
     @staticmethod
-    def readDataFromFile(path):
+    def readDataFromFile():
+        path = "E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/users.csv"
         if(os.path.exists(path)):
-            path = "users.csv"
             with open(path , 'r', newline="") as csvfile:
                 # create the object of csv.reader()
                 # df = pd.read_csv(csvfile,delimiter=',')
