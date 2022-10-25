@@ -1,1 +1,1 @@
-add
+self.BtnBack.clicked.connect(self.Welcome)

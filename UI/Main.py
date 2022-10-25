@@ -1,12 +1,12 @@
-import importlib
+import imp
 import sys
+import re
 import csv
 import os
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView
+from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
@@ -15,7 +15,7 @@ import pandas as pd
 class WelcomeScreen(QMainWindow):
     def __init__(self):
         super(WelcomeScreen,self).__init__()
-        loadUi("E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/WelcomePage.ui",self)
+        loadUi("WelcomePage.ui",self)
         self.LoginBtn.clicked.connect(self.gotoLogin)
         self.SignUpBtn.clicked.connect(self.gotoSignUp)
 
@@ -34,9 +34,14 @@ class WelcomeScreen(QMainWindow):
 class LoginScreen(QMainWindow):
     def __init__(self):
         super(LoginScreen,self).__init__()
-        loadUi("E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/loginpage.ui",self)
+        loadUi("loginpage.ui",self)
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.loginbtn.clicked.connect(self.checkLogin)
+        self.BtnBack.clicked.connect(self.WelcomePage)
+    def WelcomePage(self):
+        welcome = WelcomeScreen()
+        widget.addWidget(welcome)
+        widget.setCurrentIndex(widget.currentIndex()+1)
     
     def checkLogin(self):
         
@@ -67,10 +72,14 @@ class LoginScreen(QMainWindow):
 class SignUpScreen(QMainWindow):
     def __init__(self):
         super(SignUpScreen,self).__init__()
-        loadUi("E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/SignUpPage.ui",self)
+        loadUi("SignUpPage.ui",self)
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.SignUpBtn.clicked.connect(self.InitiateSignUp)
-        # self.BtnBack.clicked.connect(self.WelcomePage)
+        self.BtnBack.clicked.connect(self.WelcomePage)
+    def WelcomePage(self):
+        welcome = WelcomeScreen()
+        widget.addWidget(welcome)
+        widget.setCurrentIndex(widget.currentIndex()+1)
         
     def InitiateSignUp(self):
         userEmail = self.txtEmail.text()
@@ -104,7 +113,7 @@ class SignUpScreen(QMainWindow):
 class userDashBoard(QMainWindow):
     def __init__(self):
         super(userDashBoard,self).__init__()
-        loadUi("E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/User_Dashboard.ui",self)
+        loadUi("User_Dashboard.ui",self)
         self.BtnShowAll.clicked.connect(self.gotoShowAllData)
         self.BtnAdd.clicked.connect(self.gotoAddProperty)
         self.BtnExit.clicked.connect(self.gotoExit)
@@ -127,7 +136,7 @@ class userDashBoard(QMainWindow):
 class AddProperty(QMainWindow):
     def __init__(self):
         super(AddProperty,self).__init__()
-        loadUi("E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/AddProperty.ui",self)
+        loadUi("AddProperty.ui",self)
         self.BtnSubmit.clicked.connect(self.submitAddProperty)
     
     def submitAddProperty(self):
@@ -139,7 +148,7 @@ class AddProperty(QMainWindow):
         Price = self.linePrice.text()
         AgencyName = self.lineAgencyName.text()
         Contact = self.lineContact.text()
-        path = 'E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/AllPakPropertyData.csv'
+        path = 'AllPakPropertyData.csv'
         with open(path,'a',encoding="utf-8",newline="") as fileInput:
             writer = csv.writer(fileInput)
             writer.writerow([AgencyName,PropertyType,Price,Location,Area,Purpose,City,Contact])
@@ -159,7 +168,7 @@ class AddProperty(QMainWindow):
 class ShowTableData(QMainWindow):
     def __init__(self):
         super(ShowTableData,self).__init__()
-        loadUi("E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/ShowData.ui",self)
+        loadUi("ShowData.ui",self)
         
         # self.tableWidgetData = QtWidgets.QTableWidget()
         self.TableWidgetData.setColumnWidth(0, 200)
@@ -174,7 +183,7 @@ class ShowTableData(QMainWindow):
         self.loaddata()
 
     def loaddata(self):
-        path = "E:/BSCS/3rd_Semester_Data/DSA_Lab/MidTerm_Project/CS261F22PID42/UI/AllPakPropertyData.csv"
+        path = "AllPakPropertyData.csv"
         with open(path , 'r', newline="") as csvfile:
             # create the object of csv.reader()
             # df = pd.read_csv(csvfile,delimiter=',')

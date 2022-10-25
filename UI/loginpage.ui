@@ -284,10 +284,28 @@ background-color:none;</string>
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="BtnBack">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>490</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 12pt &quot;Roboto&quot;;
+</string>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
     <zorder>label_5</zorder>
     <zorder>label_3</zorder>
     <zorder>Loginwidget</zorder>
     <zorder>label_4</zorder>
+    <zorder>BtnBack</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
