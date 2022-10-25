@@ -38,9 +38,14 @@ class LoginScreen(QMainWindow):
         self.txtPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.loginbtn.clicked.connect(self.checkLogin)
         self.BtnBack.clicked.connect(self.WelcomePage)
+        self.BtnClickHere.clicked.connect(self.signUpPage)
     def WelcomePage(self):
         welcome = WelcomeScreen()
         widget.addWidget(welcome)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    def signUpPage(self):
+        signUp = SignUpScreen()
+        widget.addWidget(signUp)
         widget.setCurrentIndex(widget.currentIndex()+1)
     
     def checkLogin(self):
