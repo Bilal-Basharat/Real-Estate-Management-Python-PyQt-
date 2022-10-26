@@ -15,7 +15,7 @@ Area=df['Area'].values.tolist()
 Purpose_list=df['Purpose'].values.tolist()
 City=df['City'].values.tolist()
 readable_price=[]
-print (City)
+
 for i in range (0,len(Price)):
     s=""
     v=Price[i]
@@ -35,60 +35,39 @@ for i in range (0,len(Price)):
             s=s+var[t]
         q=float(s)
         readable_price.append(float(s)) 
-def Insertionsort(arr,start,ending):
-    for i in range(start,ending,1):
-        k=arr[i]
-        j=i-1
-        while k<arr[j] and j>=start:
-            arr[j+1]=arr[j]
-            j=j-1
-        arr[j+1]=k  
-def merge(arr, p, q, r):
-	n1 = q - p + 1
-	n2 = r - q
-	# create temp arrays
-	L = [0] * (n1)
-	R = [0] * (n2)
-	# Copy data to temp arrays L[] and R[]
-	for i in range(0, n1):
-		L[i] = arr[p + i]
-	for j in range(0, n2):
-		R[j] = arr[q + j ]
-	i = 0	 
-	j = 0	 
-	k = p	 
-	while i < n1 and j<n2:
-		if L[i] <= R[j]:
-			arr[k] = L[i]
-			i += 1
-		else:
-			arr[k] = R[j]
-			j += 1
-		k += 1
-	while i < n1:# this is for to print the last indices of array
-		arr[k] = L[i]
-		i += 1
-		k += 1
-	while j < n2:
-		arr[k] = R[j]
-		j += 1
-		k += 1
-#sorted_indeces=[]    
-#print(sorted_indeces)
-st=time.time
-def HybridmergeSort(arr, p, r):
-    n=r-p
-    if(n>43):
-        if(p<r):
-            q = p+(r-p)//2
-            HybridmergeSort(arr, p, q)
-            HybridmergeSort(arr, q+1, r)
-            merge(arr, p, q, r)
-    else:
-        Insertionsort(arr,p,r)
-HybridmergeSort(readable_price,0,len(readable_price))
-et =time.time
+st=time.time()
+def partition(array, low, high):
+  # choose the rightmost element as pivot
+  pivot = array[high]
+  # pointer for greater element
+  i = low - 1
+  # traverse through all elements
+  # compare each element with pivot
+  for j in range(low, high):
+    if array[j] <= pivot:
+      # if element smaller than pivot is found
+      # swap it with the greater element pointed by i
+      i = i + 1
+      # swapping element at i with element at j
+      (array[i], array[j]) = (array[j], array[i])
+  # swap the pivot element with the greater element specified by i
+  (array[i + 1], array[high]) = (array[high], array[i + 1])
+  # return the position from where partition is done
+  return i + 1
+# function to perform quicksort
+def quickSort(array, low, high):
+  if low < high:
+    # find pivot element such that
+    # element smaller than pivot are on the left
+    # element greater than pivot are on the right
+    pi = partition(array, low, high)
+    # recursive call on the left of pivot
+    quickSort(array, low, pi - 1)
+    # recursive call on the right of pivot
+    quickSort(array, pi + 1, high)
+et =time.time()
 t=et-st
+quickSort(readable_price, 0, 68000)
 print(readable_price) 
 print("Total time in Sorting ",t)       
 #for i in range (0,len(sorted_indeces)):    
