@@ -48,8 +48,7 @@ class LoginScreen(QMainWindow):
         widget.addWidget(signUp)
         widget.setCurrentIndex(widget.currentIndex()+1)
     
-    def checkLogin(self):
-        
+    def checkLogin(self):        
         MUserDL.readDataFromFile()
         userEmail = self.txtEmail.text()
         UserPswd = self.txtPassword.text()
@@ -174,6 +173,7 @@ class ShowTableData(QMainWindow):
     def __init__(self):
         super(ShowTableData,self).__init__()
         loadUi("ShowData.ui",self)
+        self.BtnSort
         
         # self.tableWidgetData = QtWidgets.QTableWidget()
         self.TableWidgetData.setColumnWidth(0, 200)
