@@ -23,7 +23,7 @@ def isfind(value , search):
 
 def search (columnNo , search):
     import csv
-    file = csv.reader(open('D:/semester 2/Dsa/midterm-project/CS261F22PID42/UI/AllPakPropertyData.csv', 'r'))
+    file = csv.reader(open('AllPakPropertyData.csv', 'r'))
     rows = [row for row in file]    
     n = len(rows)
     list = []    

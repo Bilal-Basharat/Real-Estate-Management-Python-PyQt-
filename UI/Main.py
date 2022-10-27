@@ -10,6 +10,7 @@ from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
+import DynamicSearch
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -174,6 +175,10 @@ class ShowTableData(QMainWindow):
         super(ShowTableData,self).__init__()
         loadUi("ShowData.ui",self)
         
+        # reading file to show data
+        file = csv.reader(open('AllPakPropertyData.csv', 'r'))
+        rows = [row for row in file]    
+
         self.tableWidgetData = QtWidgets.QTableWidget()
         self.TableWidgetData.setColumnWidth(0, 200)
         self.TableWidgetData.setColumnWidth(1, 100)
@@ -191,6 +196,7 @@ class ShowTableData(QMainWindow):
         self.SubCombo = self.findChild(QComboBox,"cmbxSortBySubType")
         
         # adding items into combobox
+        # self.MainCombo.lineEdit().setPlaceHolderText("Select")
         self.MainCombo.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
         self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
         self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
@@ -200,14 +206,12 @@ class ShowTableData(QMainWindow):
         # updating combobox value at runtime
         self.MainCombo.activated.connect(self.UpdateSortByType)
 
-        self.BtnSort.clicked.connect(self.Sort)
+        # self.BtnSort.clicked.connect(self.Sort)
         # function for updating combobox value at runtime
     def UpdateSortByType(self,index):
         self.SubCombo.clear()
         self.SubCombo.addItems(self.MainCombo.itemData(index))
     
-    def Sort(self):
-        df = pd.read_csv('')
 
 
     def loaddata(self):
