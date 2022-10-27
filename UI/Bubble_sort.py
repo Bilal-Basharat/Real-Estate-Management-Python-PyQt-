@@ -38,38 +38,43 @@ for i in range (1,h-1):
             s=s+var[t]
         q=float(s)
         readable_price.append(q) 
-split=[]
 area=[]
 for j in range (1,h-1):
-    s=""
+    a=""
+    s=0.0
     v=got[j][4]
-    split = v.split(' ')
-    a=split[0]
-    var=split[1]
-    if var[len(v)-1]=='l':
-        s=float(a)*20    
+    for w in range(0,4):
+        if v[w]==' ':
+            break
+        if (v[w]!=' ')and(v[w]!=','):
+            a=a+(v[w])    
+    
+    if v[len(v)-1]=='l':
+        s=float(a)*20.0    
         area.append(s)
-    if var[len(v)-1]=='a':
+    if v[len(v)-1]=='a':
         s=float(a)
         area.append(s)
-    if var[len(v)-1]=='d':
-        s=float(a)*0.03
+    if v[len(v)-1]=='d':
+        s=float(a)
+        s=s*0.03
         area.append(s) 
-    if var[len(v)-1]=='.':
-        s=float(a)*0.03
+    if v[len(v)-1]=='.':
+        s=float(a)
+        s=s*0.03
         area.append(s)       
-
+# for i in range(0,50):
+    # print(area[i])
 # for i in range(10):
 #     print(readable_price[i],"LAKH")            
 duplicate=got
 def bubble_sort(arr,c):
-    if c==4:
+    if c==4:#this 4 is for area
       for i in range(0,h-2,1):
         arr[i][4]=area[i]       
-    if c==3:
+    if c==2:#this is for price 
         for i in range(0,h-2,1):
-            arr[i][3]=readable_price[i]       
-
+            arr[i][2]=readable_price[i]       
     n = len(arr)-50000
     for i in range(n - 1):
         for j in range(0, n - i - 1,1):
@@ -79,10 +84,10 @@ def bubble_sort(arr,c):
 
     return arr
 st=time.time()    
-sorted_rows = bubble_sort(duplicate) #this is to sort on base of price
-for i in range(0,1000):#if you wish to apply on string pass {bubble_sort(got)}
+sorted_rows = bubble_sort(duplicate,4) #this is to sort on base of price
+for i in range(0,100):#if you wish to apply on string pass {bubble_sort(got)}
     for j in range(0,5):
-        print(duplicate[i][j])
+        print(sorted_rows[i][j])
     print("\n") 
 et=time.time()
 t=et-st
