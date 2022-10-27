@@ -244,16 +244,6 @@ background-color: white;
 color: rgb(0,120,0);
 </string>
      </property>
-     <item>
-      <property name="text">
-       <string>Ascending</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Descending</string>
-      </property>
-     </item>
     </widget>
     <widget class="QPushButton" name="BtnSearch">
      <property name="geometry">
