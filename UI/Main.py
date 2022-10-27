@@ -5,7 +5,7 @@ import csv
 import os
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView, QMessageBox, QComboBox
+from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView, QMessageBox, QComboBox,QHBoxLayout
 from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
@@ -173,9 +173,8 @@ class ShowTableData(QMainWindow):
     def __init__(self):
         super(ShowTableData,self).__init__()
         loadUi("ShowData.ui",self)
-        self.BtnSort
         
-        # self.tableWidgetData = QtWidgets.QTableWidget()
+        self.tableWidgetData = QtWidgets.QTableWidget()
         self.TableWidgetData.setColumnWidth(0, 200)
         self.TableWidgetData.setColumnWidth(1, 100)
         self.TableWidgetData.setColumnWidth(2, 150)
@@ -186,19 +185,31 @@ class ShowTableData(QMainWindow):
         self.TableWidgetData.setColumnWidth(7, 180)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata()
+
+        # obtaining combobox from ui file
+        self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
+        self.SubCombo = self.findChild(QComboBox,"cmbxSortBySubType")
         
-        # defining comboBox for sorting purpose 
-        self.CmbxSort = QComboBox()
-        self.CmbxSort.setGeometry(QtCore.QRect(170, 30, 140, 35))
-        self.CmbxSort.setStyleSheet("font: bold 12pt \"Roboto\";\n"
-        "background-color: white;\n"
-        "color: rgb(0,120,0);\n"
-        "")
-        self.CmbxSort.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
-        self.CmbxSort.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala','Agricultural Land'])
-        self.CmbxSort.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
-        self.CmbxSort.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
-        self.CmbxSort.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
+        # adding items into combobox
+        self.MainCombo.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
+        self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
+        self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
+        self.MainCombo.addItem('Price',['Ascending','Descending'])
+        self.MainCombo.addItem('Area',['Ascending','Descending'])
+        
+        # updating combobox value at runtime
+        self.MainCombo.activated.connect(self.UpdateSortByType)
+
+        self.BtnSort.clicked.connect(self.Sort)
+        # function for updating combobox value at runtime
+    def UpdateSortByType(self,index):
+        self.SubCombo.clear()
+        self.SubCombo.addItems(self.MainCombo.itemData(index))
+    
+    def Sort(self):
+        df = pd.read_csv('')
+
+
     def loaddata(self):
         path = "AllPakPropertyData.csv"
         with open(path , 'r', newline="") as csvfile:

@@ -85,7 +85,7 @@ font: 10pt &quot;Roboto&quot;;</string>
       </property>
      </column>
     </widget>
-    <widget class="QComboBox" name="cmbxSortAlgo">
+    <widget class="QComboBox" name="CmbxSortByType">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -100,38 +100,8 @@ background-color: white;
 color: rgb(0,120,0);
 </string>
      </property>
-     <item>
-      <property name="text">
-       <string>Sort By</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Property Type</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Price</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>City</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Area</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Purpose</string>
-      </property>
-     </item>
     </widget>
-    <widget class="QComboBox" name="cmbxSortByItem">
+    <widget class="QComboBox" name="CmbxSortAlgo">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -229,7 +199,7 @@ color:rgb(0,120,0);</string>
       <string>Sort</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="cmbxSortByItem_2">
+    <widget class="QComboBox" name="cmbxSortBySubType">
      <property name="geometry">
       <rect>
        <x>320</x>
@@ -270,8 +240,8 @@ color:white;
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>cmbxSortAlgo</tabstop>
-  <tabstop>cmbxSortByItem</tabstop>
+  <tabstop>CmbxSortByType</tabstop>
+  <tabstop>CmbxSortAlgo</tabstop>
   <tabstop>BtnSort</tabstop>
   <tabstop>txtSearch</tabstop>
   <tabstop>TableWidgetData</tabstop>
