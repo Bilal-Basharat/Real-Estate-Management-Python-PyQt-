@@ -28,48 +28,43 @@ for i in range (0,len(Price)):
         for t in range (3,len(var),1): 
             s=s+var[t]
             #q=int(s)
-        s = float(s)
-        readable_price.append(s*100.0)
+        s = float(s)*100000000
+        readable_price.append(s)
     else:
         for t in range (3,len(var),1): 
             s=s+var[t]
-        q=float(s)
+        q=float(s)*1000000
         readable_price.append(float(s)) 
-st=time.time()
-def partition(array, low, high):
-  # choose the rightmost element as pivot
-  pivot = array[high]
-  # pointer for greater element
-  i = low - 1
-  # traverse through all elements
-  # compare each element with pivot
-  for j in range(low, high):
-    if array[j] <= pivot:
-      # if element smaller than pivot is found
-      # swap it with the greater element pointed by i
-      i = i + 1
-      # swapping element at i with element at j
-      (array[i], array[j]) = (array[j], array[i])
-  # swap the pivot element with the greater element specified by i
-  (array[i + 1], array[high]) = (array[high], array[i + 1])
-  # return the position from where partition is done
-  return i + 1
-# function to perform quicksort
-def quickSort(array, low, high):
-  if low < high:
-    # find pivot element such that
-    # element smaller than pivot are on the left
-    # element greater than pivot are on the right
-    pi = partition(array, low, high)
-    # recursive call on the left of pivot
-    quickSort(array, low, pi - 1)
-    # recursive call on the right of pivot
-    quickSort(array, pi + 1, high)
-et =time.time()
-t=et-st
-quickSort(readable_price, 0, 68000)
-print(readable_price) 
-print("Total time in Sorting ",t)       
+#w=len(readable_price)
+#print(w)        
+for i in range(0,len(readable_price),1):
+    print(readable_price[i])
+def BubbleSort(array,start,end):
+    for i in range(start,end):
+        for j in range(0, end - i - 1): 
+            if (array[j] > array[j + 1]):
+                temp = array[j]
+                array[j] = array[j+1]
+                array[j+1] = temp
+                t1=Area[j]
+                Area[j]=Area[j+1]
+                Area[j+1]=t1
+                t2=City[j]
+                City[j]=City[j+1]
+                City[j+1]=t2
+    return array 
+# st=time.time()
+# for i in range (0,100):
+#     print(Area[i]," ",City[i]," ",Price[i])
+# BubbleSort(readable_price, 0, 100)
+# print("After sorting")
+# print("\n")
+# print("\n")
+# for i in range (0,100):
+#     print(Area[i]," ",City[i]," ",Price[i])
+# et =time.time()
+# t=et-st
+# print("Total time in Sorting ",t)       
 #for i in range (0,len(sorted_indeces)):    
  #   print(Agency_list[sorted_indeces[i]]+Price[sorted_indeces[i]]+City[sorted_indeces[i]])            
 
