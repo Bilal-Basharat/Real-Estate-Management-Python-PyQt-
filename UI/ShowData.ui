@@ -25,7 +25,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: green;
-font: 12pt &quot;Roboto&quot;;</string>
+font: 10pt &quot;Roboto&quot;;</string>
     </property>
     <widget class="QTableWidget" name="TableWidgetData">
      <property name="geometry">
@@ -85,17 +85,17 @@ font: 10pt &quot;Roboto&quot;;</string>
       </property>
      </column>
     </widget>
-    <widget class="QComboBox" name="cmbxSort">
+    <widget class="QComboBox" name="cmbxSortAlgo">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>170</x>
        <y>30</y>
-       <width>200</width>
+       <width>141</width>
        <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: bold 12pt &quot;Roboto&quot;;
+      <string notr="true">font: bold 8pt &quot;Roboto&quot;;
 background-color: white;
 color: rgb(0,120,0);
 </string>
@@ -131,28 +131,78 @@ color: rgb(0,120,0);
       </property>
      </item>
     </widget>
-    <widget class="QComboBox" name="cmbxSort_2">
+    <widget class="QComboBox" name="cmbxSortByItem">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>20</x>
        <y>30</y>
-       <width>200</width>
+       <width>140</width>
        <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: bold 12pt &quot;Roboto&quot;;
+      <string notr="true">font: bold 8pt &quot;Roboto&quot;;
 background-color: white;
 color: rgb(0,120,0);
 </string>
      </property>
+     <item>
+      <property name="text">
+       <string>Select Sort Type</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Insertion Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Merge Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Bubble Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>HybridMerge Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Selection Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Quick Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Counting Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Radix Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Heap Sort</string>
+      </property>
+     </item>
     </widget>
     <widget class="QTextEdit" name="txtSearch">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>30</y>
-       <width>221</width>
+       <x>570</x>
+       <y>27</y>
+       <width>201</width>
        <height>40</height>
       </rect>
      </property>
@@ -162,34 +212,12 @@ border-radius: 20px;
 font: 12pt &quot;Roboto&quot;;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="lblSearch">
+    <widget class="QPushButton" name="BtnSort">
      <property name="geometry">
       <rect>
-       <x>730</x>
-       <y>35</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:none;</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="../icons/icons.qrc">:/icons/magnifier.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
+       <x>472</x>
        <y>30</y>
-       <width>93</width>
+       <width>81</width>
        <height>35</height>
       </rect>
      </property>
@@ -201,14 +229,60 @@ color:rgb(0,120,0);</string>
       <string>Sort</string>
      </property>
     </widget>
+    <widget class="QComboBox" name="cmbxSortByItem_2">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>30</y>
+       <width>140</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 8pt &quot;Roboto&quot;;
+background-color: white;
+color: rgb(0,120,0);
+</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Ascending</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Descending</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPushButton" name="BtnSearch">
+     <property name="geometry">
+      <rect>
+       <x>715</x>
+       <y>30</y>
+       <width>51</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#BtnSearch{
+border-radius:16px;
+	font: 7pt &quot;Roboto&quot;;
+color:white;
+}</string>
+     </property>
+     <property name="text">
+      <string>Search</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>cmbxSort</tabstop>
-  <tabstop>cmbxSort_2</tabstop>
-  <tabstop>pushButton</tabstop>
+  <tabstop>cmbxSortAlgo</tabstop>
+  <tabstop>cmbxSortByItem</tabstop>
+  <tabstop>BtnSort</tabstop>
   <tabstop>txtSearch</tabstop>
   <tabstop>TableWidgetData</tabstop>
  </tabstops>
