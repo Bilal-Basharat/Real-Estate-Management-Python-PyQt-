@@ -10,7 +10,8 @@ from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
-import DynamicSearch
+# import DynamicSearch
+# import SpecificSearch
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -177,7 +178,7 @@ class ShowTableData(QMainWindow):
         
         # reading file to show data
         file = csv.reader(open('AllPakPropertyData.csv', 'r'))
-        rows = [row for row in file]    
+        rows = [row for row in file]
 
         self.tableWidgetData = QtWidgets.QTableWidget()
         self.TableWidgetData.setColumnWidth(0, 200)
@@ -189,7 +190,12 @@ class ShowTableData(QMainWindow):
         self.TableWidgetData.setColumnWidth(6, 150)
         self.TableWidgetData.setColumnWidth(7, 180)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
-        self.loaddata()
+        self.loaddata(rows)
+    #     self.BtnSearch.clicked.connect(self.SearchedData)
+    # def SearchedData(self, rows):
+    #     searchedText = self.txtSearch.text()
+    #     specifiedSearchArray = SpecificSearch.finalSearchFunction(rows, searchedText)
+    #     self.loaddata(specifiedSearchArray)
 
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
@@ -205,34 +211,37 @@ class ShowTableData(QMainWindow):
         
         # updating combobox value at runtime
         self.MainCombo.activated.connect(self.UpdateSortByType)
+        # self.BtnSort.clicked.connect(self.SortData)
+
+        # def SortData(self, rows):
+
 
         # self.BtnSort.clicked.connect(self.Sort)
         # function for updating combobox value at runtime
     def UpdateSortByType(self,index):
         self.SubCombo.clear()
         self.SubCombo.addItems(self.MainCombo.itemData(index))
-    
 
 
-    def loaddata(self):
-        path = "AllPakPropertyData.csv"
-        with open(path , 'r', newline="") as csvfile:
-            # create the object of csv.reader()
-            # df = pd.read_csv(csvfile,delimiter=',')
-            csvReader = csv.reader(csvfile,delimiter=",")
-            # self.tableWidgetData = QtWidgets.QTableWidget()
-            self.TableWidgetData.setRowCount(73409)
-            i = 0
-            for row in csvReader:
-                self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
-                self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
-                self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
-                self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
-                self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
-                self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
-                self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
-                self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
-                i += 1
+    def loaddata(self, rows):
+        # path = "AllPakPropertyData.csv"
+        # with open(path , 'r', newline="") as csvfile:
+        #     # create the object of csv.reader()
+        #     # df = pd.read_csv(csvfile,delimiter=',')
+        #     csvReader = csv.reader(csvfile,delimiter=",")
+        #     # self.tableWidgetData = QtWidgets.QTableWidget()
+        self.TableWidgetData.setRowCount(len(rows))
+        i = 0
+        for row in rows:
+            self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
+            self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
+            self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
+            self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
+            self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
+            i += 1
             
 #main
 app = QApplication(sys.argv)
