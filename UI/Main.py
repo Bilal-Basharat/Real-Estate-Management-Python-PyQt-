@@ -229,7 +229,7 @@ class ShowTableData(QMainWindow):
                 self.loaddata(sortedArray)
 
             elif(self.MainCombo.currentText() == "City"):
-                sortedArray = Bubble_sort.bubble_sort(self.rows, 6,len(self.rows))
+                sortedArray = Bubble_sort.bubble_sort(self.rows, 6,100)
                 self.loaddata(sortedArray)
 
             elif(self.MainCombo.currentText() == "Purpose"):
@@ -241,7 +241,7 @@ class ShowTableData(QMainWindow):
                 self.loaddata(sortedArray)
         
             elif(self.MainCombo.currentText() == "Area"):
-                sortedArray = Bubble_sort.bubble_sort(self.rows, 4,len(self.rows))
+                sortedArray = Bubble_sort.bubble_sort(self.rows, 4,100)
                 self.loaddata(sortedArray)
        
         # if(self.CmbxSortAlgo.currentText() == "Selection Sort"):

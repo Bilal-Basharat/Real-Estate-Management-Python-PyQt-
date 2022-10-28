@@ -85,6 +85,7 @@ def bubble_sort(arr, c, h):
     n = len(arr)-50000
     for i in range(n - 1):
         for j in range(0, n - i - 1, 1):
+            # print(arr[j][c], arr[j + 1][c])
             if arr[j][c] > arr[j + 1][c]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
