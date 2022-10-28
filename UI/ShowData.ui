@@ -31,9 +31,9 @@ font: 10pt &quot;Roboto&quot;;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>90</y>
+       <y>80</y>
        <width>800</width>
-       <height>500</height>
+       <height>431</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -89,7 +89,7 @@ font: 10pt &quot;Roboto&quot;;</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>30</y>
+       <y>25</y>
        <width>141</width>
        <height>35</height>
       </rect>
@@ -105,7 +105,7 @@ color: rgb(0,120,0);
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>30</y>
+       <y>25</y>
        <width>140</width>
        <height>35</height>
       </rect>
@@ -167,26 +167,11 @@ color: rgb(0,120,0);
       </property>
      </item>
     </widget>
-    <widget class="QTextEdit" name="txtSearch">
-     <property name="geometry">
-      <rect>
-       <x>570</x>
-       <y>27</y>
-       <width>201</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 20px;
-font: 12pt &quot;Roboto&quot;;</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="BtnSort">
      <property name="geometry">
       <rect>
        <x>472</x>
-       <y>30</y>
+       <y>25</y>
        <width>81</width>
        <height>35</height>
       </rect>
@@ -203,7 +188,7 @@ color:rgb(0,120,0);</string>
      <property name="geometry">
       <rect>
        <x>320</x>
-       <y>30</y>
+       <y>25</y>
        <width>140</width>
        <height>35</height>
       </rect>
@@ -219,7 +204,7 @@ color: rgb(0,120,0);
      <property name="geometry">
       <rect>
        <x>715</x>
-       <y>30</y>
+       <y>28</y>
        <width>51</width>
        <height>34</height>
       </rect>
@@ -235,6 +220,85 @@ color:white;
       <string>Search</string>
      </property>
     </widget>
+    <widget class="QLineEdit" name="txtSearch">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>25</y>
+       <width>201</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 20px;
+font: 12pt &quot;Roboto&quot;;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BtnExit">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>525</y>
+       <width>81</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 120, 0);
+font: bold 12pt &quot;Roboto&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Exit</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BtnShowAll">
+     <property name="geometry">
+      <rect>
+       <x>560</x>
+       <y>525</y>
+       <width>200</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 120, 0);
+font: bold 12pt &quot;Roboto&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Show All</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="BtnBack">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>525</y>
+       <width>81</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 120, 0);
+font: bold 12pt &quot;Roboto&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Back</string>
+     </property>
+    </widget>
+    <zorder>txtSearch</zorder>
+    <zorder>TableWidgetData</zorder>
+    <zorder>CmbxSortByType</zorder>
+    <zorder>CmbxSortAlgo</zorder>
+    <zorder>BtnSort</zorder>
+    <zorder>cmbxSortBySubType</zorder>
+    <zorder>BtnSearch</zorder>
+    <zorder>BtnExit</zorder>
+    <zorder>BtnShowAll</zorder>
+    <zorder>BtnBack</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -243,7 +307,6 @@ color:white;
   <tabstop>CmbxSortByType</tabstop>
   <tabstop>CmbxSortAlgo</tabstop>
   <tabstop>BtnSort</tabstop>
-  <tabstop>txtSearch</tabstop>
   <tabstop>TableWidgetData</tabstop>
  </tabstops>
  <resources>

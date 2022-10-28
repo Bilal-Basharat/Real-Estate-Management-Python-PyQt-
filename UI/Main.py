@@ -10,7 +10,10 @@ from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
-import DynamicSearch
+# import DynamicSearch
+import SpecificSearch
+import Bubble_sort
+from sortingAlgo import SortintAlgo
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -177,7 +180,7 @@ class ShowTableData(QMainWindow):
         
         # reading file to show data
         file = csv.reader(open('AllPakPropertyData.csv', 'r'))
-        rows = [row for row in file]    
+        rows = [row for row in file]
 
         self.tableWidgetData = QtWidgets.QTableWidget()
         self.TableWidgetData.setColumnWidth(0, 200)
@@ -189,7 +192,9 @@ class ShowTableData(QMainWindow):
         self.TableWidgetData.setColumnWidth(6, 150)
         self.TableWidgetData.setColumnWidth(7, 180)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
-        self.loaddata()
+        self.loaddata(rows)
+        self.BtnSearch.clicked.connect(self.SearchedData)
+        self.BtnSort.clicked.connect(self.SortData)
 
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
@@ -198,41 +203,87 @@ class ShowTableData(QMainWindow):
         # adding items into combobox
         # self.MainCombo.lineEdit().setPlaceHolderText("Select")
         self.MainCombo.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
-        self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
-        self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
         self.MainCombo.addItem('Price',['Ascending','Descending'])
         self.MainCombo.addItem('Area',['Ascending','Descending'])
+        self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
+        self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
         
         # updating combobox value at runtime
         self.MainCombo.activated.connect(self.UpdateSortByType)
 
-        # self.BtnSort.clicked.connect(self.Sort)
+
         # function for updating combobox value at runtime
     def UpdateSortByType(self,index):
         self.SubCombo.clear()
         self.SubCombo.addItems(self.MainCombo.itemData(index))
     
+    def SortData(self, rows):
+        if(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
+            if(self.MainCombo.currentText() == "Property Type"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 1)
+                self.loaddata(sortedArray)
 
+            elif(self.MainCombo.currentText() == "City"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 6)
+                self.loaddata(sortedArray)
 
-    def loaddata(self):
-        path = "AllPakPropertyData.csv"
-        with open(path , 'r', newline="") as csvfile:
-            # create the object of csv.reader()
-            # df = pd.read_csv(csvfile,delimiter=',')
-            csvReader = csv.reader(csvfile,delimiter=",")
-            # self.tableWidgetData = QtWidgets.QTableWidget()
-            self.TableWidgetData.setRowCount(73409)
-            i = 0
-            for row in csvReader:
-                self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
-                self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
-                self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
-                self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
-                self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
-                self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
-                self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
-                self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
-                i += 1
+            elif(self.MainCombo.currentText() == "Purpose"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 5)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "Price"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 2)
+                self.loaddata(sortedArray)
+        
+            elif(self.MainCombo.currentText() == "Area"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 4)
+                self.loaddata(sortedArray)
+       
+        if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
+            if(self.MainCombo.currentText() == "Property Type"):
+                sortedArray = SortintAlgo.SelectionSortForString(rows, 1)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "City"):
+                sortedArray = SortintAlgo.SelectionSortForString(rows, 6)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "Purpose"):
+                sortedArray = SortintAlgo.SelectionSortForString(rows, 5)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "Price"):
+                sortedArray = SortintAlgo.SelectionSort(rows, 2)
+                self.loaddata(sortedArray)
+        
+            elif(self.MainCombo.currentText() == "Area"):
+                sortedArray = SortintAlgo.SelectionSort(rows, 4)
+                self.loaddata(sortedArray)
+    
+    def SearchedData(self, rows):
+        searchedText = self.txtSearch.text()
+        specifiedSearchArray = SpecificSearch.finalSearchFunction(rows, searchedText)
+        self.loaddata(specifiedSearchArray)
+
+    def loaddata(self, rows):
+        # path = "AllPakPropertyData.csv"
+        # with open(path , 'r', newline="") as csvfile:
+        #     # create the object of csv.reader()
+        #     # df = pd.read_csv(csvfile,delimiter=',')
+        #     csvReader = csv.reader(csvfile,delimiter=",")
+        #     # self.tableWidgetData = QtWidgets.QTableWidget()
+        self.TableWidgetData.setRowCount(len(rows))
+        i = 0
+        for row in rows:
+            self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
+            self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
+            self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
+            self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
+            self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
+            i += 1
             
 #main
 app = QApplication(sys.argv)
