@@ -36,7 +36,7 @@ def search (row ,columnNo , search):
                     row.remove(row[i])
         
     return list
-def finalSearchFunction( rows , key):
+def finalSearchFunction(rows , key):
     a=[]
     for i in range(7):
         a = a + search(rows,i, key)
@@ -46,14 +46,14 @@ def finalSearchFunction( rows , key):
 
 
 
-import csv
-file = csv.reader(open('AllPakPropertyData.csv', 'r'))
-rows = [row for row in file] 
-a= finalSearchFunction(rows, "Karachi")
-# print (a)
-with open("search.csv" , 'w',newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(a)
+# import csv
+# file = csv.reader(open('AllPakPropertyData.csv', 'r'))
+# rows = [row for row in file] 
+# a= finalSearchFunction(rows, "Karachi")
+# # print (a)
+# with open("search.csv" , 'w',newline="") as f:
+#     writer = csv.writer(f)
+#     writer.writerows(a)
     
 
 

@@ -11,7 +11,8 @@ from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
 # import DynamicSearch
-# import SpecificSearch
+import SpecificSearch
+# import Bubble_sort
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -191,11 +192,8 @@ class ShowTableData(QMainWindow):
         self.TableWidgetData.setColumnWidth(7, 180)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata(rows)
-    #     self.BtnSearch.clicked.connect(self.SearchedData)
-    # def SearchedData(self, rows):
-    #     searchedText = self.txtSearch.text()
-    #     specifiedSearchArray = SpecificSearch.finalSearchFunction(rows, searchedText)
-    #     self.loaddata(specifiedSearchArray)
+        self.BtnSearch.clicked.connect(self.SearchedData)
+        # self.BtnSort.clicked.connect(self.SortData)
 
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
@@ -204,24 +202,45 @@ class ShowTableData(QMainWindow):
         # adding items into combobox
         # self.MainCombo.lineEdit().setPlaceHolderText("Select")
         self.MainCombo.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
-        self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
-        self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
         self.MainCombo.addItem('Price',['Ascending','Descending'])
         self.MainCombo.addItem('Area',['Ascending','Descending'])
+        self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
+        self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
         
         # updating combobox value at runtime
         self.MainCombo.activated.connect(self.UpdateSortByType)
-        # self.BtnSort.clicked.connect(self.SortData)
-
-        # def SortData(self, rows):
 
 
-        # self.BtnSort.clicked.connect(self.Sort)
         # function for updating combobox value at runtime
     def UpdateSortByType(self,index):
         self.SubCombo.clear()
         self.SubCombo.addItems(self.MainCombo.itemData(index))
+    
+    # def SortData(self, rows):
+    #     if(self.MainCombo.currentText() == "Property Type"):
+    #         sortedArray = Bubble_sort.bubble_sort(rows, 2)
+    #         self.loaddata(sortedArray)
 
+    #     elif(self.MainCombo.currentText() == "City"):
+    #         sortedArray = Bubble_sort.bubble_sort(rows, 7)
+    #         self.loaddata(sortedArray)
+
+    #     elif(self.MainCombo.currentText() == "Purpose"):
+    #         sortedArray = Bubble_sort.bubble_sort(rows, 6)
+    #         self.loaddata(sortedArray)
+
+    #     elif(self.MainCombo.currentText() == "Price"):
+    #         sortedArray = Bubble_sort.bubble_sort(rows, 3)
+    #         self.loaddata(sortedArray)
+       
+    #     elif(self.MainCombo.currentText() == "Area"):
+    #         sortedArray = Bubble_sort.bubble_sort(rows, 5)
+    #         self.loaddata(sortedArray)
+    
+    def SearchedData(self, rows):
+        searchedText = self.txtSearch.text()
+        specifiedSearchArray = SpecificSearch.finalSearchFunction(rows, searchedText)
+        self.loaddata(specifiedSearchArray)
 
     def loaddata(self, rows):
         # path = "AllPakPropertyData.csv"
