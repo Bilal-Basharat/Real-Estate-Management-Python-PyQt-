@@ -4,14 +4,19 @@ from operator import and_
 import re
 
   # reading file to show data
-file = csv.reader(open('AllPakPropertyData.csv', 'r'))
+file = csv.reader(open('test.csv', 'r'))
 rows = [row for row in file]
 def printArray(rows):
-  print(rows[1][2])
-  # for row in rows:
-  if ('Crore' in rows[2][2]):
-    price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',rows[2][2])
-    print(price)
-    
+  # price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',rows[1][2])
+  for i in range(len(rows)):
+    if 'Crore' in rows[i][2]:
+      price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',rows[i][2])
+      price = price * 100
+      # rows[i][2] = price
+    elif 'Lakh' in rows[i][2]:
+      price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',rows[i][2])
+      # rows[i][2] = price
+  return price
+      
 
 print(printArray(rows))

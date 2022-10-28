@@ -8,9 +8,10 @@ class SortintAlgo:
         lengthOfArray = len(array)
         for i in range(lengthOfArray):
             if 'Crore' in array[i][columnNo]:
-                # price = [int(i) for i in array[i][columnNo].split() if i.isdigit()]
-                # price = re.findall(r'\d+',array[i][columnNo])
+                price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',array[i][columnNo])
                 price = price * 100
+            elif 'Lakh' in array[i][columnNo]:
+                price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',array[i][columnNo])
                 return price
         # for i in range(lengthOfArray):
         #     min_idx = i
@@ -38,11 +39,12 @@ class SortintAlgo:
 
 file = csv.reader(open('test.csv', 'r'))
 rows = [row for row in file]
-# array = ['Lahore','Karachi','abbotabad','RawalPindi','Islamabad']
-# print(SortintAlgo.SelectionSortForString(array, 0,len(array)))
+array = ['Lahore','Karachi','Abbotabad','RawalPindi','Islamabad']
+print(SortintAlgo.SelectionSort(rows, 2))
 
-# array1 = [2,3,4,6,1,7,8,10]
-for i in range(len(rows)):
-    print(SortintAlgo.SelectionSort(rows, 2))
+array1 = [2,3,4,6,1,7,8,10]
+print(SortintAlgo.SelectionSortForString(array1, 0,len(array1)))
+# for i in range(len(rows)):
+#     print(SortintAlgo.SelectionSort(rows, 2))
 
 

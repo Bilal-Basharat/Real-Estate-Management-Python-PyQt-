@@ -16,7 +16,7 @@ import SpecificSearch
 import Bubble_sort
 # from sortingAlgo import SortintAlgo
 import test
-searchData = []    
+# searchData = []    
 # welcome screen
 class WelcomeScreen(QMainWindow):
     def __init__(self):
@@ -124,6 +124,7 @@ class userDashBoard(QMainWindow):
     def __init__(self):
         super(userDashBoard,self).__init__()
         loadUi("User_Dashboard.ui",self)
+        
         self.BtnShowAll.clicked.connect(self.gotoShowAllData)
         self.BtnAdd.clicked.connect(self.gotoAddProperty)
         self.BtnExit.clicked.connect(self.gotoExit)
@@ -131,7 +132,7 @@ class userDashBoard(QMainWindow):
         
         # reading data from file 
         file = csv.reader(open('AllPakPropertyData.csv', 'r'))
-        rows = [row for row in file]
+        self.rows = [row for row in file]
 
     def gotoShowAllData(self):
         showTable = ShowTableData()
@@ -151,18 +152,18 @@ class userDashBoard(QMainWindow):
         propertyType = self.cmbxType.currentText()
         city = self.cmbxCity.currentText()
         purpose = self.cmbxPurpose.currentText()
-        area = self.cmbxAead.currentText()
-        PriceFrom = txtPriceFrom.text() 
-        PriceTo = txtPriceTo.text()
-        searchedData = self.rows
+        area = self.cmbxArea.currentText()
+        PriceFrom = self.txtPriceFrom.text() 
+        PriceTo = self.txtPriceTo.text()
+        searchData = self.rows
         if(propertyType != 'Property Type'):
-            searchedData = DynamicSearch.search(searchedData ,1, propertyType) 
+            searchData = DynamicSearch.search(searchData ,1, propertyType) 
         if (city !="City"):
-            searchedData = DynamicSearch.search(searchedData ,6,city)
+            searchData = DynamicSearch.search(searchData ,6,city)
         if (purpose !="Purpose"):
-            searchedData = DynamicSearch.search(searchedData ,5,purpose)
+            searchData = DynamicSearch.search(searchData ,5,purpose)
         if (area !="Area ( Unit: Marla )"):
-            searchedData = DynamicSearch.search(searchedData ,4,Area)
+            searchData = DynamicSearch.search(searchData ,4,area)
         showTable = ShowSpecificTableData()
         widget.addWidget(showTable)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -217,9 +218,9 @@ class ShowSpecificTableData(QMainWindow):
         self.TableWidgetData.setColumnWidth(6, 150)
         self.TableWidgetData.setColumnWidth(7, 180)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
-        self.loaddata(SearchedData)
+        self.loaddata()
         self.BtnSearch.clicked.connect(self.SearchedData)
-        self.BtnSort.clicked.connect(self.SortData)
+        # self.BtnSort.clicked.connect(self.SortData)
 
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
@@ -247,16 +248,19 @@ class ShowSpecificTableData(QMainWindow):
         specifiedSearchArray = test.finalSearchFunction(self.rows, searchedText)
         self.loaddata(specifiedSearchArray)
 
-    def loaddata(self, SearchedData):
+    def loaddata(self):
+        global searchData
+        # showTable = userDashBoard()
         # path = "AllPakPropertyData.csv"
         # with open(path , 'r', newline="") as csvfile:
         #     # create the object of csv.reader()
         #     # df = pd.read_csv(csvfile,delimiter=',')
         #     csvReader = csv.reader(csvfile,delimiter=",")
         #     # self.tableWidgetData = QtWidgets.QTableWidget()
-        self.TableWidgetData.setRowCount(len(SearchedData))
+        print(len(searchData))
+        self.TableWidgetData.setRowCount(len(searchData))
         i = 0
-        for row in SearchedData:
+        for row in searchData:
             self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
             self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
             self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
