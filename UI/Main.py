@@ -12,7 +12,8 @@ from mUserDL import MUserDL
 import pandas as pd
 # import DynamicSearch
 import SpecificSearch
-# import Bubble_sort
+import Bubble_sort
+from sortingAlgo import SortintAlgo
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -193,7 +194,7 @@ class ShowTableData(QMainWindow):
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata(rows)
         self.BtnSearch.clicked.connect(self.SearchedData)
-        # self.BtnSort.clicked.connect(self.SortData)
+        self.BtnSort.clicked.connect(self.SortData)
 
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
@@ -216,26 +217,48 @@ class ShowTableData(QMainWindow):
         self.SubCombo.clear()
         self.SubCombo.addItems(self.MainCombo.itemData(index))
     
-    # def SortData(self, rows):
-    #     if(self.MainCombo.currentText() == "Property Type"):
-    #         sortedArray = Bubble_sort.bubble_sort(rows, 2)
-    #         self.loaddata(sortedArray)
+    def SortData(self, rows):
+        if(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
+            if(self.MainCombo.currentText() == "Property Type"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 1)
+                self.loaddata(sortedArray)
 
-    #     elif(self.MainCombo.currentText() == "City"):
-    #         sortedArray = Bubble_sort.bubble_sort(rows, 7)
-    #         self.loaddata(sortedArray)
+            elif(self.MainCombo.currentText() == "City"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 6)
+                self.loaddata(sortedArray)
 
-    #     elif(self.MainCombo.currentText() == "Purpose"):
-    #         sortedArray = Bubble_sort.bubble_sort(rows, 6)
-    #         self.loaddata(sortedArray)
+            elif(self.MainCombo.currentText() == "Purpose"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 5)
+                self.loaddata(sortedArray)
 
-    #     elif(self.MainCombo.currentText() == "Price"):
-    #         sortedArray = Bubble_sort.bubble_sort(rows, 3)
-    #         self.loaddata(sortedArray)
+            elif(self.MainCombo.currentText() == "Price"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 2)
+                self.loaddata(sortedArray)
+        
+            elif(self.MainCombo.currentText() == "Area"):
+                sortedArray = Bubble_sort.bubble_sort(rows, 4)
+                self.loaddata(sortedArray)
        
-    #     elif(self.MainCombo.currentText() == "Area"):
-    #         sortedArray = Bubble_sort.bubble_sort(rows, 5)
-    #         self.loaddata(sortedArray)
+        if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
+            if(self.MainCombo.currentText() == "Property Type"):
+                sortedArray = SortintAlgo.SelectionSortForString(rows, 1)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "City"):
+                sortedArray = SortintAlgo.SelectionSortForString(rows, 6)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "Purpose"):
+                sortedArray = SortintAlgo.SelectionSortForString(rows, 5)
+                self.loaddata(sortedArray)
+
+            elif(self.MainCombo.currentText() == "Price"):
+                sortedArray = SortintAlgo.SelectionSort(rows, 2)
+                self.loaddata(sortedArray)
+        
+            elif(self.MainCombo.currentText() == "Area"):
+                sortedArray = SortintAlgo.SelectionSort(rows, 4)
+                self.loaddata(sortedArray)
     
     def SearchedData(self, rows):
         searchedText = self.txtSearch.text()
