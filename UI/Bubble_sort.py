@@ -2,7 +2,7 @@ import csv
 from multiprocessing.reduction import duplicate
 from os import read
 import time
-file = csv.reader(open('AllPakPropertyData.csv', 'r'))
+file = csv.reader(open('E:/mid_project/CS261F22PID42/UI/AllPakPropertyData.csv', 'r'))
 got = [row for row in file]
 h=len(got)
 area=[]
