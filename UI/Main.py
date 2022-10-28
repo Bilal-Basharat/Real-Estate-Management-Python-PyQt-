@@ -14,6 +14,7 @@ import pandas as pd
 import SpecificSearch
 import Bubble_sort
 # from sortingAlgo import SortintAlgo
+import test
 
 # welcome screen
 class WelcomeScreen(QMainWindow):
@@ -265,9 +266,9 @@ class ShowTableData(QMainWindow):
         #         sortedArray = SortintAlgo.SelectionSort(rows, 4)
         #         self.loaddata(sortedArray)
     
-    def SearchedData(self, rows):
+    def SearchedData(self):
         searchedText = self.txtSearch.text()
-        specifiedSearchArray = SpecificSearch.finalSearchFunction(rows, searchedText)
+        specifiedSearchArray = test.finalSearchFunction(self.rows, searchedText)
         self.loaddata(specifiedSearchArray)
 
     def loaddata(self, rows):
