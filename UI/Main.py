@@ -129,6 +129,7 @@ class userDashBoard(QMainWindow):
         self.BtnAdd.clicked.connect(self.gotoAddProperty)
         self.BtnExit.clicked.connect(self.gotoExit)
         self.BtnSearch.clicked.connect(self.multipleSearch)
+        self.BtnScrap.clicked.connect(self.ScrapData)
         
         # reading data from file 
         file = csv.reader(open('AllPakPropertyData.csv', 'r'))
@@ -138,6 +139,12 @@ class userDashBoard(QMainWindow):
         showTable = ShowTableData()
         widget.addWidget(showTable)
         widget.setCurrentIndex(widget.currentIndex()+1)
+   
+    def ScrapData(self):
+        Scrap = ScrapData()
+        widget.addWidget(Scrap)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setFixedSize(800, 100)
 
     def gotoAddProperty(self):
         showAddProperty = AddProperty()
@@ -299,6 +306,7 @@ class ShowTableData(QMainWindow):
         
         # adding items into combobox
         # self.MainCombo.lineEdit().setPlaceHolderText("Select")
+        self.MainCombo.addItem('Select Column')
         self.MainCombo.addItem('Agency Name')
         self.MainCombo.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
         self.MainCombo.addItem('Price',['Ascending','Descending'])
@@ -363,96 +371,311 @@ class ShowTableData(QMainWindow):
     
     def SortData(self):
         import sortingAlgo
+    
+        if(self.CmbxSortAlgo.currentText() != "Select Sort Type" and self.CmbxSortByType.currentText() != "Select Column" and self.CmbxSortByOrder.currentText() != "Select Order"):
+            if(self.CmbxSortByOrder.currentText() == "Ascending Order"):
+                #implementing selection sort    
+                if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 1)
+                        self.loaddata(sortedArray)
 
-    #implementing selection sort    
-        if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
-            sortedArray = []
-            if(self.MainCombo.currentText() == "Agency Name"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 0)
-                self.loaddata(sortedArray)
-            if(self.MainCombo.currentText() == "Property Type"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 1)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 2)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Price"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 2)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 3)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Location"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 3)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 4)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Area"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 4)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 5)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Purpose"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 5)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 6)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "City"):
-                sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 6)
-                self.loaddata(sortedArray)
+            #implementing Merge sort    
+                if(self.CmbxSortAlgo.currentText() == "Merge Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
 
-    #implementing Merge sort    
-        if(self.CmbxSortAlgo.currentText() == "Merge Sort"):
-            sortedArray = []
-            if(self.MainCombo.currentText() == "Agency Name"):
-                sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 0)
-                self.loaddata(sortedArray)
-            if(self.MainCombo.currentText() == "Property Type"):
-                sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 1)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Price"):
-                sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 2)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Location"):
-                sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 3)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Area"):
-                sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 4)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Purpose"):
-                sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 5)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.MergeSort(self,self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "City"):
-                sortedArray = SortintAlgo.MergeSort(self,self.newRows,0,len(self.newRows), 6)
-                self.loaddata(sortedArray)
+            #implementing Insertion sort    
+                if(self.CmbxSortAlgo.currentText() == "Insertion Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
 
-    #implementing Insertion sort    
-        if(self.CmbxSortAlgo.currentText() == "Merge Sort"):
-            sortedArray = []
-            if(self.MainCombo.currentText() == "Agency Name"):
-                sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 0)
-                self.loaddata(sortedArray)
-            if(self.MainCombo.currentText() == "Property Type"):
-                sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 1)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Price"):
-                sortedArray = SortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 2)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Location"):
-                sortedArray = SortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 3)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Area"):
-                sortedArray = SortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 4)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "Purpose"):
-                sortedArray = SortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 5)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+        
+            #implementing bubble sort    
+                if(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
 
-            elif(self.MainCombo.currentText() == "City"):
-                sortedArray = SortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 6)
-                self.loaddata(sortedArray)
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+            
+            #implementing hybrid merge sort    
+                if(self.CmbxSortAlgo.currentText() == "HybridMerge Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+        
+        #    desceding order algorithms
+            elif(self.CmbxSortByOrder.currentText() == "Descending Order"):
+                #implementing selection sort    
+                if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 6)
+                        self.loaddata(sortedArray)
+
+            #implementing Merge sort    
+                if(self.CmbxSortAlgo.currentText() == "Merge Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.MergeSort(self,self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+
+            #implementing Insertion sort    
+                if(self.CmbxSortAlgo.currentText() == "Insertion Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+        
+            #implementing bubble sort    
+                if(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+            
+            #implementing hybrid merge sort    
+                if(self.CmbxSortAlgo.currentText() == "HybridMerge Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 6)
+                        self.loaddata(sortedArray)
+
     
     def SearchedData(self):
         searchedText = self.txtSearch.text()
@@ -480,6 +703,14 @@ class ShowTableData(QMainWindow):
             self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
             self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
             i += 1
+class ScrapData(QMainWindow):
+    def __init__(self):
+        super(ScrapData,self).__init__()
+        loadUi("ScrapURL.ui",self)
+        self.BtnScrap.clicked.connect(self.scrapDataFromWeb)
+    
+    def scrapDataFromWeb(self):
+        from 
             
 #main
 app = QApplication(sys.argv)

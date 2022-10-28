@@ -88,9 +88,9 @@ font: 10pt &quot;Roboto&quot;;</string>
     <widget class="QComboBox" name="CmbxSortByType">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>165</x>
        <y>25</y>
-       <width>150</width>
+       <width>130</width>
        <height>35</height>
       </rect>
      </property>
@@ -106,7 +106,7 @@ color: rgb(0,120,0);
       <rect>
        <x>20</x>
        <y>25</y>
-       <width>150</width>
+       <width>130</width>
        <height>35</height>
       </rect>
      </property>
@@ -170,7 +170,7 @@ color: rgb(0,120,0);
     <widget class="QPushButton" name="BtnSort">
      <property name="geometry">
       <rect>
-       <x>450</x>
+       <x>460</x>
        <y>25</y>
        <width>81</width>
        <height>35</height>
@@ -255,6 +255,37 @@ font: bold 12pt &quot;Roboto&quot;;</string>
       <string>Back</string>
      </property>
     </widget>
+    <widget class="QComboBox" name="CmbxSortByType_2">
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>25</y>
+       <width>130</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 8pt &quot;Roboto&quot;;
+background-color: white;
+color: rgb(0,120,0);
+</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Select Order</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Ascending</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Descending</string>
+      </property>
+     </item>
+    </widget>
     <zorder>txtSearch</zorder>
     <zorder>TableWidgetData</zorder>
     <zorder>CmbxSortByType</zorder>
@@ -263,6 +294,7 @@ font: bold 12pt &quot;Roboto&quot;;</string>
     <zorder>BtnSearch</zorder>
     <zorder>BtnExit</zorder>
     <zorder>BtnBack</zorder>
+    <zorder>CmbxSortByType_2</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
