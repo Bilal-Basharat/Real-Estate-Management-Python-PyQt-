@@ -4,6 +4,8 @@ import csv
 file = csv.reader(open('AllPakPropertyData.csv', 'r'))
 rows = [row for row in file]
 def printArray(rows):
-    print(len(rows))
+  length= len(rows)
+  print(rows)
+  print(length)
 
 print(printArray(rows))
