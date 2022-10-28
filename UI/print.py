@@ -2,10 +2,10 @@ import csv
 import re
 
   # reading file to show data
-file = csv.reader(open('test.csv', 'r'))
+file = csv.reader(open('AllPakPropertyData.csv', 'r'))
 rows = [row for row in file]
-def convertStrToDigits(rows):
-  for i in range(1,len(rows)):
+def printArray(rows):
+  for i in range(len(rows)):
     if 'Crore' in rows[i][2]:
       price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',rows[i][2])
       value =  float(price[0])

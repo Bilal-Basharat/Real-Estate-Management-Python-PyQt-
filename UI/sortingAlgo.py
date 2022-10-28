@@ -3,31 +3,16 @@ from multiprocessing.dummy import Array
 import pandas as pd
 import re
 
-class SortintAlgo:
-    def SelectionSort(array, columnNo):
-        lengthOfArray = len(array)
-        for i in range(lengthOfArray):
-            if 'Crore' in array[i][columnNo]:
-                price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',array[i][columnNo])
-                price = price * 100
-            elif 'Lakh' in array[i][columnNo]:
-                price = re.findall(r'[-+]?(?:\d*\.\d+|\d+)',array[i][columnNo])
-                return price
-        # for i in range(lengthOfArray):
-        #     min_idx = i
-        #     for j in range(i + 1, lengthOfArray):
-        #         if array[j][columnNo] < array[min_idx][columnNo]:
-        #             min_idx = j
-        #     (array[i], array[min_idx]) = (array[min_idx], array[i])
-        # return array
+class SortingAlgo:
 
-    def SelectionSortForString(array, start, end):
+    def SelectionSortForString(array,colNo):
+        end = len(array)
         for i in range(end):
             min_idx = i
-            min_value = array[i]
+            min_value = array[i][colNo]
             for j in range(i + 1, end):
-                if array[j] < min_value:
-                    min_value = array[j]
+                if array[j][colNo] < min_value:
+                    min_value = array[j][colNo]
                     min_idx = j
                     
             if min_idx != i:
@@ -36,15 +21,56 @@ class SortintAlgo:
                 array[min_idx] = temp
                 # array[i], array[min_idx] = array[min_idx], array[i]
         return array
+    
+    def InsertionSort(array,start,end,colNo):
+        for x in range(start, end):
+            key = array[x][colNo]
+            j = x - 1
+            while j >= start and key < array[j][colNo]:
+                array[j + 1] = array[j]
+                j = j - 1
+            array[j + 1] = key
+        return array
 
-file = csv.reader(open('test.csv', 'r'))
-rows = [row for row in file]
-array = ['Lahore','Karachi','Abbotabad','RawalPindi','Islamabad']
-print(SortintAlgo.SelectionSort(rows, 2))
+# merge sort for project
+def MergeSort(array,start,end, colNo):
+    if end <= 1:
+        return array
+    p = start
+    r = end
+    q = len(array) // 2
+    left_half = array[:q][colNo]
+    right_half = array[q:][colNo]
+    left = MergeSort(left_half,p,q,colNo)
+    right = MergeSort(right_half,q+1,r,colNo)
+    return Merge(left, right,colNo)
 
-array1 = [2,3,4,6,1,7,8,10]
-print(SortintAlgo.SelectionSortForString(array1, 0,len(array1)))
+def Merge(left, right,colNo):    
+    i = 0
+    j = 0
+    l = []
+    while i < len(left) and j < len(right):
+        if left[i][colNo] <= right[j][colNo]:
+            l.append(left[i])
+            i += 1
+        else:
+            l.append(right[j])
+            j += 1
+    while i < len(left):
+        l.append(left[i])
+        i += 1
+    while j < len(right):
+        l.append(right[j])
+        j += 1
+    return l
+# file = csv.reader(open('test.csv', 'r'))
+# rows = [row for row in file]
+# print(SortintAlgo.SelectionSort(rows, 2))
+
+# def main():
+# array1 = ['Lahore','Karachi','Abbotabad','RawalPindi','Islamabad']
+# # array1 = [2,3,4,6,1,7,8,10]
+# print(SortintAlgo.InsertionSort(array1, 0,len(array1)))
+# main()
 # for i in range(len(rows)):
 #     print(SortintAlgo.SelectionSort(rows, 2))
-
-

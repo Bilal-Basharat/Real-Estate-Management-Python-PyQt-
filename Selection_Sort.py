@@ -37,7 +37,8 @@ def extract_price():
             for t in range (3,len(var),1): 
                 s=s+var[t]
             q=float(s)
-            readable_price.append(q) 
+            readable_price.append(q)
+             
 def extract_area():
     for j in range (1,h-1):
         a=""
