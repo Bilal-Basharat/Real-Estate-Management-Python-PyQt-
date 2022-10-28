@@ -21,10 +21,10 @@ def isfind(value , search):
     return False
 
 
-def search (columnNo , search):
-    import csv
-    file = csv.reader(open('AllPakPropertyData.csv', 'r'))
-    rows = [row for row in file]    
+def search (rows ,columnNo , search):
+    
+    
+       
     n = len(rows)
     list = []    
     for i in range(n - 1):
@@ -35,11 +35,11 @@ def search (columnNo , search):
                 
     return list
 
-a =search(1, "Portion")
-print (a)
-with open("search.csv" , 'w',newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(a)
+
+# import csv
+# file = csv.reader(open('AllPakPropertyData.csv', 'r'))
+# rows = [row for row in file]  
+
     
 
 

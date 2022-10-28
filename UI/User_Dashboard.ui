@@ -112,7 +112,7 @@ border: 3px solid rgb(0,120,0);
      <widget class="QComboBox" name="cmbxType">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>50</x>
         <y>210</y>
         <width>200</width>
         <height>35</height>

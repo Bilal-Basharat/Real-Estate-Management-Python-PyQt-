@@ -10,12 +10,13 @@ from PyQt5.QtGui import QPixmap
 from muser import MUser
 from mUserDL import MUserDL
 import pandas as pd
+import DynamicSearch
 # import DynamicSearch
 import SpecificSearch
 import Bubble_sort
 # from sortingAlgo import SortintAlgo
 import test
-
+searchData = []    
 # welcome screen
 class WelcomeScreen(QMainWindow):
     def __init__(self):
@@ -126,7 +127,12 @@ class userDashBoard(QMainWindow):
         self.BtnShowAll.clicked.connect(self.gotoShowAllData)
         self.BtnAdd.clicked.connect(self.gotoAddProperty)
         self.BtnExit.clicked.connect(self.gotoExit)
-    
+        self.BtnSearch.clicked.connect(self.multipleSearch)
+        
+        # reading data from file 
+        file = csv.reader(open('AllPakPropertyData.csv', 'r'))
+        rows = [row for row in file]
+
     def gotoShowAllData(self):
         showTable = ShowTableData()
         widget.addWidget(showTable)
@@ -139,6 +145,28 @@ class userDashBoard(QMainWindow):
     
     def gotoExit(self):
         sys.exit(app.exec_())
+    
+    def multipleSearch(self):
+        global searchData
+        propertyType = self.cmbxType.currentText()
+        city = self.cmbxCity.currentText()
+        purpose = self.cmbxPurpose.currentText()
+        area = self.cmbxAead.currentText()
+        PriceFrom = txtPriceFrom.text() 
+        PriceTo = txtPriceTo.text()
+        searchedData = self.rows
+        if(propertyType != 'Property Type'):
+            searchedData = DynamicSearch.search(searchedData ,1, propertyType) 
+        if (city !="City"):
+            searchedData = DynamicSearch.search(searchedData ,6,city)
+        if (purpose !="Purpose"):
+            searchedData = DynamicSearch.search(searchedData ,5,purpose)
+        if (area !="Area ( Unit: Marla )"):
+            searchedData = DynamicSearch.search(searchedData ,4,Area)
+        showTable = ShowSpecificTableData()
+        widget.addWidget(showTable)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        
 
 
 # defining add new property class
@@ -173,6 +201,72 @@ class AddProperty(QMainWindow):
         widget.addWidget(dashBoard)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
+# Show Specific Table Data
+class ShowSpecificTableData(QMainWindow):
+    def __init__(self):
+        super(ShowSpecificTableData,self).__init__()
+        loadUi("ShowData.ui",self)        
+
+        self.tableWidgetData = QtWidgets.QTableWidget()
+        self.TableWidgetData.setColumnWidth(0, 200)
+        self.TableWidgetData.setColumnWidth(1, 100)
+        self.TableWidgetData.setColumnWidth(2, 150)
+        self.TableWidgetData.setColumnWidth(3, 200)
+        self.TableWidgetData.setColumnWidth(4, 100)
+        self.TableWidgetData.setColumnWidth(5, 100)
+        self.TableWidgetData.setColumnWidth(6, 150)
+        self.TableWidgetData.setColumnWidth(7, 180)
+        # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
+        self.loaddata(SearchedData)
+        self.BtnSearch.clicked.connect(self.SearchedData)
+        self.BtnSort.clicked.connect(self.SortData)
+
+        # obtaining combobox from ui file
+        self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
+        self.SubCombo = self.findChild(QComboBox,"cmbxSortBySubType")
+        
+        # adding items into combobox
+        # self.MainCombo.lineEdit().setPlaceHolderText("Select")
+        self.MainCombo.addItem('Property Type',['House','Flat','Residential Plot','Plot File','Commercial Plot','Agricultural Land'])
+        self.MainCombo.addItem('Price',['Ascending','Descending'])
+        self.MainCombo.addItem('Area',['Ascending','Descending'])
+        self.MainCombo.addItem('Purpose',['For Sale','For Rent'])
+        self.MainCombo.addItem('City',['Lahore','Islamabad','Rawalpindi','Karachi','Sialkot','Gujranwala'])
+        
+        # updating combobox value at runtime
+        self.MainCombo.activated.connect(self.UpdateSortByType)
+
+
+        # function for updating combobox value at runtime
+    def UpdateSortByType(self,index):
+        self.SubCombo.clear()
+        self.SubCombo.addItems(self.MainCombo.itemData(index))
+           
+    def SearchedData(self):
+        searchedText = self.txtSearch.text()
+        specifiedSearchArray = test.finalSearchFunction(self.rows, searchedText)
+        self.loaddata(specifiedSearchArray)
+
+    def loaddata(self, SearchedData):
+        # path = "AllPakPropertyData.csv"
+        # with open(path , 'r', newline="") as csvfile:
+        #     # create the object of csv.reader()
+        #     # df = pd.read_csv(csvfile,delimiter=',')
+        #     csvReader = csv.reader(csvfile,delimiter=",")
+        #     # self.tableWidgetData = QtWidgets.QTableWidget()
+        self.TableWidgetData.setRowCount(len(SearchedData))
+        i = 0
+        for row in SearchedData:
+            self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
+            self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
+            self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
+            self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
+            self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
+            i += 1
+            
 # Show Table Data
 class ShowTableData(QMainWindow):
     def __init__(self):
@@ -294,7 +388,7 @@ class ShowTableData(QMainWindow):
 #main
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
-welcome = ShowTableData()
+welcome = userDashBoard()
 # loginPage= LoginScreen()
 # signUppage = SignUpScreen()
 # user_Dashboard = userDashBoard()
