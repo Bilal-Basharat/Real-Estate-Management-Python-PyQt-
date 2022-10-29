@@ -73,9 +73,26 @@ p=len(price)
 for i in range(1, p-2, 1):
     got[i][4] = area[i]
     got[i][2] = price[i]
-def quicksort(got,col):
-    got.sort(key=itemgetter(col))
-        
+def partition(got,l,h,col):
+    pivot = got[h][col]
+    i = l - 1
+    for j in range(l, h):
+        if got[j][col] <= pivot:
+            i = i + 1
+            (got[i], got[j]) = (got[j], got[i])
+    (got[i + 1], got[h]) = (got[h], got[i + 1])
+    return i + 1
+def quicksort(got,l,h,col):
+    if l<h:
+        pi=partition(got,l,h,col)
+        quicksort(got, l, pi - 1,col)
+        quicksort(got, pi + 1, h,col)
+    # sorted(got, key=lambda x:x[2])
+quicksort(got,0,len(got)-100,2) 
+for i in range (0,100):
+    for j in range(0,5):
+        print(got[i][j])
+    print("\n")             
 
 # def sort(data):
 #     if len(data)-50000 > 1:
@@ -109,11 +126,7 @@ def quicksort(got,col):
 #             c += 1
 #         # print(data, 'done')
     
-quicksort(got,2) 
-for i in range (0,100):
-    for j in range(0,5):
-        print(got[i][j])
-    print("\n")       
+  
 # # Driver code to test above
 # arr = [4, 3, 5, 2, 1, 3, 2, 3]
 # n = len(arr)

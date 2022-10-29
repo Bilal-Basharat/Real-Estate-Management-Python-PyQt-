@@ -36,6 +36,6 @@ def quickSort(array, low, high):
     quickSort(array, low, pi - 1)
     # recursive call on the right of pivot
     quickSort(array, pi + 1, high)
-array=RandomArray(5000)
+array=RandomArray(200000)
 quickSort(array,0,len(array)-1)
 print (array)
