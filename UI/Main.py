@@ -3,6 +3,8 @@ import sys
 import re
 import csv
 import os
+import time
+from tracemalloc import start
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableWidget, QTableView, QMessageBox, QComboBox,QHBoxLayout
@@ -13,7 +15,7 @@ import pandas as pd
 import DynamicSearch
 # import DynamicSearch
 import SpecificSearch
-import test
+import SpecifiedSearch
 from sortingAlgo import SortingAlgo
 
 # searchData = []    
@@ -195,15 +197,20 @@ class AddProperty(QMainWindow):
         Price = self.linePrice.text()
         AgencyName = self.lineAgencyName.text()
         Contact = self.lineContact.text()
-        path = 'AllPakPropertyData.csv'
-        with open(path,'a',encoding="utf-8",newline="") as fileInput:
-            writer = csv.writer(fileInput)
-            writer.writerow([AgencyName,PropertyType,Price,Location,Area,Purpose,City,Contact])
-            fileInput.close()
-        msg = QMessageBox()
-        msg.setText("Property added successfully")
-        msg.exec_()
-        self.userDashboard()
+        if(Purpose == "Purpose" and PropertyType == "Property Type" and City == "Select City" and Location == "" and Area == "Select Area" and Price == "" and AgencyName == "" and Contact == ""):
+            msg = QMessageBox()
+            msg.setText("Please fill in all the fields")
+            msg.exec_()
+        else:
+            path = 'AllPakPropertyData.csv'
+            with open(path,'a',encoding="utf-8",newline="") as fileInput:
+                writer = csv.writer(fileInput)
+                writer.writerow([AgencyName,PropertyType,Price,Location,Area,Purpose,City,Contact])
+                fileInput.close()
+            msg = QMessageBox()
+            msg.setText("Property added successfully")
+            msg.exec_()
+            self.userDashboard()
         
     def userDashboard(self):
         dashBoard = userDashBoard()
@@ -246,7 +253,7 @@ class ShowSpecificTableData(QMainWindow):
     def SearchedData(self):
         global searchData
         searchedText = self.txtSearch.text()
-        self.specifiedSearchArray = test.finalSearchFunction(searchData, searchedText)
+        self.specifiedSearchArray = SpecifiedSearch.finalSearchFunction(searchData, searchedText)
         self.loaddata(self.specifiedSearchArray)
 
     def loaddata(self, searchData):
@@ -289,14 +296,14 @@ class ShowTableData(QMainWindow):
         self.BtnExit.clicked.connect(self.Exit)
 
         self.tableWidgetData = QtWidgets.QTableWidget()
-        self.TableWidgetData.setColumnWidth(0, 200)
-        self.TableWidgetData.setColumnWidth(1, 100)
-        self.TableWidgetData.setColumnWidth(2, 150)
-        self.TableWidgetData.setColumnWidth(3, 200)
+        self.TableWidgetData.setColumnWidth(0, 150)
+        self.TableWidgetData.setColumnWidth(1, 70)
+        self.TableWidgetData.setColumnWidth(2, 100)
+        self.TableWidgetData.setColumnWidth(3, 150)
         self.TableWidgetData.setColumnWidth(4, 100)
         self.TableWidgetData.setColumnWidth(5, 100)
-        self.TableWidgetData.setColumnWidth(6, 150)
-        self.TableWidgetData.setColumnWidth(7, 180)
+        self.TableWidgetData.setColumnWidth(6, 100)
+        self.TableWidgetData.setColumnWidth(7, 150)
         # tableWidget.setColumnWidth.setHorizontalHeaderLabels(["Name","Type","Price","Location","Area","Purpose","City","Contact"])
         self.loaddata(self.newRows)
         self.BtnSearch.clicked.connect(self.SearchedData)
@@ -379,450 +386,255 @@ class ShowTableData(QMainWindow):
     # def UpdateSortByType(self,index):
     #     self.SubCombo.clear()
     #     self.SubCombo.addItems(self.MainCombo.itemData(index))
-    
+       
     def SortData(self):
         import sortingAlgo
-    
+        sortedArray = []
+        columnArray = ["Agency Name","Property Type","Price","Location","Area","Purpose","City"]
+       
         if(self.CmbxSortAlgo.currentText() != "Select Sort Type" and self.MainCombo.currentText() != "Select Column" and self.CmbxSortByOrder.currentText() != "Select Order"):
+       
             if(self.CmbxSortByOrder.currentText() == "Ascending"):
+       
                 #implementing selection sort    
                 if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.SelectionSortForString(self.newRows, 6)
-                        self.loaddata(sortedArray)
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = SortingAlgo.SelectionSortForString(self.newRows, i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Selection Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
 
             #implementing Merge sort    
-                if(self.CmbxSortAlgo.currentText() == "Merge Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.MergeSort(self,self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
-
+                elif(self.CmbxSortAlgo.currentText() == "Merge Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Merge Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
+                    
             #implementing Insertion sort    
-                if(self.CmbxSortAlgo.currentText() == "Insertion Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Insertion Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = SortingAlgo.InsertionSort(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Insertion Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
         
             #implementing bubble sort    
-                if(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = SortingAlgo.BubbleSort(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Bubble Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
             
             #implementing hybrid merge sort    
-                if(self.CmbxSortAlgo.currentText() == "HybridMerge Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "HybridMerge Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by HybridMerge Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
             
             #implementing Heap sort    
-                if(self.CmbxSortAlgo.currentText() == "Heap Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = sortingAlgo.heapSort(self.newRows, 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Heap Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.heapSort(self.newRows, i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Heap Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
             
             #implementing Quick sort    
-                if(self.CmbxSortAlgo.currentText() == "Quick Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,1)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Quick Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Quick Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
 
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,2)
-                        self.loaddata(sortedArray)
 
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = sortingAlgo.quickSort(self.newRows,0,len(self.newRows)-1,6)
-                        self.loaddata(sortedArray)
-        
         #    desceding order algorithms
             elif(self.CmbxSortByOrder.currentText() == "Descending"):
                 #implementing selection sort    
                 if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, 6)
-                        self.loaddata(sortedArray)
-
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = SortingAlgo.SelectionSortForStringDescending(self.newRows, i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Selection Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
+        
             #implementing Merge sort    
-                if(self.CmbxSortAlgo.currentText() == "Merge Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.MergeSort(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.MergeSort(self,self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Merge Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.MergeSortDescending(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Merge Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
 
             #implementing Insertion sort    
-                if(self.CmbxSortAlgo.currentText() == "Insertion Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Insertion Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = SortingAlgo.InsertionSortForDescending(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Insertion Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
         
             #implementing bubble sort    
-                if(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Bubble Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = SortingAlgo.BubbleSortForDescending(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Bubble Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
+        
             
             #implementing hybrid merge sort    
-                if(self.CmbxSortAlgo.currentText() == "HybridMerge Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "HybridMerge Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by HybridMerge Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
 
             #implementing Heap sort    
-                if(self.CmbxSortAlgo.currentText() == "Heap Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 6)
-                        self.loaddata(sortedArray)
+                elif(self.CmbxSortAlgo.currentText() == "Heap Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.heapSortDescending(self.newRows, i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Heap Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
            
             #implementing Quick sort    
-                if(self.CmbxSortAlgo.currentText() == "Quick Sort"):
-                    sortedArray = []
-                    if(self.MainCombo.currentText() == "Agency Name"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,0)
-                        self.loaddata(sortedArray)
-                    if(self.MainCombo.currentText() == "Property Type"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,1)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Price"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,2)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Location"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,3)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Area"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,4)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "Purpose"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,5)
-                        self.loaddata(sortedArray)
-
-                    elif(self.MainCombo.currentText() == "City"):
-                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,6)
-                        self.loaddata(sortedArray)
-    
+                elif(self.CmbxSortAlgo.currentText() == "Quick Sort"):
+                    for i in range(len(columnArray)):
+                        if(self.MainCombo.currentText() == columnArray[i]):
+                            startTime = time.time()
+                        # applying sorting algorithm
+                            sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,i)
+                        # calculating time taken by selection sorting algorithm
+                            EndTime = time.time()  
+                            totalTime = EndTime- startTime
+                            msg = QMessageBox()
+                            msg.setText("The time taken by Quick Sort is "+str(totalTime))
+                            msg.exec_()
+                        # loading data after sorting   
+                            self.loaddata(sortedArray)
+        else:
+            msg = QMessageBox()
+            msg.setText("Please select all values from dropdown lists")
+            msg.exec_()                
 
     def SearchedData(self):
         searchedText = self.txtSearch.text()
-        specifiedSearchArray = test.finalSearchFunction(self.rows, searchedText)
+        specifiedSearchArray = SpecifiedSearch.finalSearchFunction(self.rows, searchedText)
         self.loaddata(specifiedSearchArray)
 
-    def loaddata(self, newRows):
-        self.TableWidgetData.setRowCount(len(newRows))
-        self.TableWidgetData.setItem(0, 0, QtWidgets.QTableWidgetItem('Agency Name'))
-        self.TableWidgetData.setItem(0, 1, QtWidgets.QTableWidgetItem('Type'))
-        self.TableWidgetData.setItem(0, 2, QtWidgets.QTableWidgetItem('Price (Lakh)'))
-        self.TableWidgetData.setItem(0, 3, QtWidgets.QTableWidgetItem('Location'))
-        self.TableWidgetData.setItem(0, 4, QtWidgets.QTableWidgetItem('Area (Marla)'))
-        self.TableWidgetData.setItem(0, 5, QtWidgets.QTableWidgetItem('City'))
-        self.TableWidgetData.setItem(0, 6, QtWidgets.QTableWidgetItem("Purpose"))
-        self.TableWidgetData.setItem(0, 7, QtWidgets.QTableWidgetItem('Contact'))
+    def loaddata(self, newRows):  
+        self.TableWidgetData.setRowCount(len(newRows)) 
         i = 1
         for row in newRows:
             self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
@@ -834,6 +646,8 @@ class ShowTableData(QMainWindow):
             self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
             self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
             i += 1
+        
+
 class ScrapData(QMainWindow):
     def __init__(self):
         super(ScrapData,self).__init__()

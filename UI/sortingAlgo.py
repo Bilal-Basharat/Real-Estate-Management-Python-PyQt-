@@ -320,7 +320,7 @@ def quickSortDescending(array, low, high,colNo):
   return array
 
 
-# merge sort for project
+# merge sort for project in Ascending Order
 def MergeSort(array,start,end, colNo):
     if len(array) <= 1:
         return array
@@ -339,6 +339,39 @@ def Merge(left, right,colNo):
     l = []
     while i < len(left) and j < len(right):
         if left[i][colNo] <= right[j][colNo]:
+            l.append(left[i])
+            i += 1
+        else:
+            l.append(right[j])
+            j += 1
+    while i < len(left):
+        l.append(left[i])
+        i += 1
+    while j < len(right):
+        l.append(right[j])
+        j += 1
+    return l
+
+
+# merge sort for project in Descending Order
+def MergeSortDescending(array,start,end, colNo):
+    if len(array) <= 1:
+        return array
+    p = start
+    r = end
+    q = len(array) // 2
+    left_half = array[:q]
+    right_half = array[q:]
+    left = MergeSortDescending(left_half,p,q,colNo)
+    right = MergeSortDescending(right_half,q+1,r,colNo)
+    return MergeDescending(left, right,colNo)
+
+def MergeDescending(left, right,colNo):    
+    i = 0
+    j = 0
+    l = []
+    while i < len(left) and j < len(right):
+        if left[i][colNo] > right[j][colNo]:
             l.append(left[i])
             i += 1
         else:

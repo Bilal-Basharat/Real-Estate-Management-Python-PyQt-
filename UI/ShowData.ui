@@ -51,12 +51,12 @@ font: 10pt &quot;Roboto&quot;;</string>
      </column>
      <column>
       <property name="text">
-       <string>Property Type</string>
+       <string>Type</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Price</string>
+       <string>Price (in Lac)</string>
       </property>
      </column>
      <column>
@@ -66,7 +66,7 @@ font: 10pt &quot;Roboto&quot;;</string>
      </column>
      <column>
       <property name="text">
-       <string>Area</string>
+       <string>Area (in Marla)</string>
       </property>
      </column>
      <column>

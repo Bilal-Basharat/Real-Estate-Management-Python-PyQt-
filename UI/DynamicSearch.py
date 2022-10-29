@@ -14,7 +14,6 @@ def find(value , search):
 def isfind(value , search):
     for i in range (len(value)):
         if (value[i] == search[0]):
-          
             
             if( (find(value[i:len(value)+1], search))==True):
                 return True
@@ -22,9 +21,6 @@ def isfind(value , search):
 
 
 def search (rows ,columnNo , search):
-    
-    
-       
     n = len(rows)
     list = []    
     for i in range(n - 1):
