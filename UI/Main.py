@@ -382,8 +382,8 @@ class ShowTableData(QMainWindow):
     def SortData(self):
         import sortingAlgo
     
-        if(self.CmbxSortAlgo.currentText() != "Select Sort Type" and self.CmbxSortByType.currentText() != "Select Column" and self.CmbxSortByOrder.currentText() != "Select Order"):
-            if(self.CmbxSortByOrder.currentText() == "Ascending Order"):
+        if(self.CmbxSortAlgo.currentText() != "Select Sort Type" and self.MainCombo.currentText() != "Select Column" and self.CmbxSortByOrder.currentText() != "Select Order"):
+            if(self.CmbxSortByOrder.currentText() == "Ascending"):
                 #implementing selection sort    
                 if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
                     sortedArray = []
@@ -535,7 +535,7 @@ class ShowTableData(QMainWindow):
                         self.loaddata(sortedArray)
         
         #    desceding order algorithms
-            elif(self.CmbxSortByOrder.currentText() == "Descending Order"):
+            elif(self.CmbxSortByOrder.currentText() == "Descending"):
                 #implementing selection sort    
                 if(self.CmbxSortAlgo.currentText() == "Selection Sort"):
                     sortedArray = []

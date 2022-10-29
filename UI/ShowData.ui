@@ -255,7 +255,7 @@ font: bold 12pt &quot;Roboto&quot;;</string>
       <string>Back</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="CmbxSortByType_2">
+    <widget class="QComboBox" name="CmbxSortByOrder">
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -312,7 +312,7 @@ font: bold 12pt &quot;Roboto&quot;;</string>
     <zorder>BtnSearch</zorder>
     <zorder>BtnExit</zorder>
     <zorder>BtnBack</zorder>
-    <zorder>CmbxSortByType_2</zorder>
+    <zorder>CmbxSortByOrder</zorder>
     <zorder>BtnDetails</zorder>
    </widget>
   </widget>
