@@ -201,6 +201,81 @@ def hybMerge(colNo, left, right):
         j += 1
     return l
 
+
+# implementing Heap Sort 
+def heapify(arr, n, i,colNo):
+    # Find largest among root and children
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and arr[i][colNo] < arr[l][colNo]:
+        largest = l
+
+    if r < n and arr[largest][colNo] < arr[r][colNo]:
+        largest = r
+
+    # If root is not largest, swap with largest and continue heapifying
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest,colNo)
+
+def heapSort(arr,colNo):
+    n = len(arr)
+
+    # Build max heap
+    for i in range(n//2, -1, -1):
+        heapify(arr, n, i,colNo)
+
+    for i in range(n-1, 0, -1):
+        # Swap
+        arr[i], arr[0] = arr[0], arr[i]
+
+        # Heapify root element
+        heapify(arr, i, 0,colNo)
+    return arr
+
+# implementing Heap Sort in descending order 
+def heapifyDescending(arr, n, i,colNo):
+    # Find largest among root and children
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and arr[i][colNo] > arr[l][colNo]:
+        largest = l
+
+    if r < n and arr[largest][colNo] > arr[r][colNo]:
+        largest = r
+
+    # If root is not largest, swap with largest and continue heapifying
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapifyDescending(arr, n, largest,colNo)
+
+def heapSortDescending(arr,colNo):
+    n = len(arr)
+
+    # Build max heap
+    for i in range(n//2, -1, -1):
+        heapifyDescending(arr, n, i,colNo)
+
+    for i in range(n-1, 0, -1):
+        # Swap
+        arr[i], arr[0] = arr[0], arr[i]
+
+        # Heapify root element
+        heapifyDescending(arr, i, 0,colNo)
+    return arr
+    
+
+
+# arr = [1, 12, 9, 5, 6, 10]
+# sortedArray = heapSortDescending(arr)
+# # n = len(sortedArray)
+# print("Sorted array is",sortedArray)
+
+
 # file = csv.reader(open('test.csv', 'r'))
 # rows = [row for row in file]
 # print(SortintAlgo.SelectionSort(rows, 2))

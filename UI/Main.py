@@ -239,7 +239,7 @@ class ShowSpecificTableData(QMainWindow):
     def userDashboard(self):
         dashBoard = userDashBoard()
         widget.addWidget(dashBoard)
-        widget.setCurrentIndex(dashBoard.currentIndex()+1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
     def Exit(self):
         sys.exit(app.exec_())
 
@@ -324,7 +324,8 @@ class ShowTableData(QMainWindow):
     def userDashboard(self):
         dashBoard = userDashBoard()
         widget.addWidget(dashBoard)
-        widget.setCurrentIndex(dashBoard.currentIndex()+1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
     def Exit(self):
         sys.exit(app.exec_())
    
@@ -334,7 +335,7 @@ class ShowTableData(QMainWindow):
         index = QtWidgets.QTableWidget.currentRow()
         viewPropertyDetails = viewPropertyDetail()
         widget.addWidget(viewPropertyDetails)
-        widget.setCurrentIndex(viewPropertyDetails.currentIndex()+1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
 
 # function for converting unit price and marla unit
     def convertStrToDigits(self, rows):
@@ -533,6 +534,36 @@ class ShowTableData(QMainWindow):
                     elif(self.MainCombo.currentText() == "City"):
                         sortedArray = sortingAlgo.HybridMergeSort(self.newRows,0,len(self.newRows), 6)
                         self.loaddata(sortedArray)
+            
+            #implementing Heap sort    
+                if(self.CmbxSortAlgo.currentText() == "Heap Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = sortingAlgo.heapSort(self.newRows, 6)
+                        self.loaddata(sortedArray)
         
         #    desceding order algorithms
             elif(self.CmbxSortByOrder.currentText() == "Descending"):
@@ -686,7 +717,37 @@ class ShowTableData(QMainWindow):
                         sortedArray = sortingAlgo.HybridMergeSortForDescending(self.newRows,0,len(self.newRows), 6)
                         self.loaddata(sortedArray)
 
+            #implementing Heap sort    
+                if(self.CmbxSortAlgo.currentText() == "Heap Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = sortingAlgo.heapSortDescending(self.newRows, 6)
+                        self.loaddata(sortedArray)
     
+
     def SearchedData(self):
         searchedText = self.txtSearch.text()
         specifiedSearchArray = test.finalSearchFunction(self.rows, searchedText)
@@ -747,7 +808,7 @@ class viewPropertyDetail(QMainWindow):
     def showTable(self):
         showTableData = showTableData()
         widget.addWidget(showTableData)
-        widget.setCurrentIndex(showTableData.currentIndex()+1)
+        widget.setCurrentIndex(widget.currentIndex()+1)
     def Exit(self):
         sys.exit(app.exec_())
       
