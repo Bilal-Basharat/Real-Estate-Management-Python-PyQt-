@@ -13,10 +13,12 @@ import pandas as pd
 import DynamicSearch
 # import DynamicSearch
 import SpecificSearch
-import Bubble_sort
 import test
-# searchData = []    
 from sortingAlgo import SortingAlgo
+
+# searchData = []    
+index  = 0
+newRows = []
 # welcome screen
 class WelcomeScreen(QMainWindow):
     def __init__(self):
@@ -273,7 +275,7 @@ class ShowTableData(QMainWindow):
     def __init__(self):
         super(ShowTableData,self).__init__()
         loadUi("ShowData.ui",self)
-        
+        global newRows
         # reading file to show data
         file = csv.reader(open('AllPakPropertyData.csv', 'r'))
         self.rows = [row for row in file]
@@ -299,7 +301,8 @@ class ShowTableData(QMainWindow):
         self.loaddata(self.newRows)
         self.BtnSearch.clicked.connect(self.SearchedData)
         self.BtnSort.clicked.connect(self.SortData)
-
+        
+        self.BtnDetails.clicked.connect(self.viewDetails)
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
         self.SubCombo = self.findChild(QComboBox,"cmbxSortBySubType")
@@ -324,7 +327,14 @@ class ShowTableData(QMainWindow):
         widget.setCurrentIndex(dashBoard.currentIndex()+1)
     def Exit(self):
         sys.exit(app.exec_())
-        
+   
+    def viewDetails(self):
+        global index
+        # QTableWidget.selectionModel().selectionChanged.connect(self.)
+        index = QtWidgets.QTableWidget.currentRow()
+        viewPropertyDetails = viewPropertyDetail()
+        widget.addWidget(viewPropertyDetails)
+        widget.setCurrentIndex(viewPropertyDetails.currentIndex()+1)
 
 # function for converting unit price and marla unit
     def convertStrToDigits(self, rows):
@@ -710,7 +720,38 @@ class ScrapData(QMainWindow):
         self.BtnScrap.clicked.connect(self.scrapDataFromWeb)
     
     def scrapDataFromWeb(self):
-        from 
+        import Property_Scrap
+        scrapUrl = self.txtScrapURL.text()
+        Property_Scrap.scrapData(scrapUrl)
+
+class viewPropertyDetail(QMainWindow):
+    def __init__(self):
+        super(viewPropertyDetail,self).__init__()
+        loadUi("SingleObjectData.ui",self)
+        global index, newRows
+         
+         # back button implementation 
+        self.BtnBack.clicked.connect(self.userDashboard)
+        # exit button implementation 
+        self.BtnExit.clicked.connect(self.Exit)
+        self.lblTitle.setText('Property Details')
+        self.lblName.setText(newRows[index][0])
+        self.lblType.setText(newRows[index][1])
+        self.lblPrice.setText(newRows[index][2])
+        self.lblLocation.setText(newRows[index][3])
+        self.lblArea.setText(newRows[index][4])
+        self.lblPurpose.setText(newRows[index][5])
+        self.lblCity.setText(newRows[index][6])
+        self.lblContact.setText(newRows[index][7])
+
+    def showTable(self):
+        showTableData = showTableData()
+        widget.addWidget(showTableData)
+        widget.setCurrentIndex(showTableData.currentIndex()+1)
+    def Exit(self):
+        sys.exit(app.exec_())
+      
+       
             
 #main
 app = QApplication(sys.argv)
