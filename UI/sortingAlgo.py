@@ -82,37 +82,6 @@ class SortingAlgo:
                     array[j+1] = temp
         return array 
 
-# merge sort for project
-def MergeSort(array,start,end, colNo):
-    if end <= 1:
-        return array
-    p = start
-    r = end
-    q = len(array) // 2
-    left_half = array[:q][colNo]
-    right_half = array[q:][colNo]
-    left = MergeSort(left_half,p,q,colNo)
-    right = MergeSort(right_half,q+1,r,colNo)
-    return Merge(left, right,colNo)
-
-def Merge(left, right,colNo):    
-    i = 0
-    j = 0
-    l = []
-    while i < len(left) and j < len(right):
-        if left[i][colNo] <= right[j][colNo]:
-            l.append(left[i])
-            i += 1
-        else:
-            l.append(right[j])
-            j += 1
-    while i < len(left):
-        l.append(left[i])
-        i += 1
-    while j < len(right):
-        l.append(right[j])
-        j += 1
-    return l
 
 # implementing Hybrid Merge Sort Algorithm for ascending order
 def HybridMergeSort(array,start,end,colNo):
@@ -269,7 +238,7 @@ def heapSortDescending(arr,colNo):
     return arr
 
 
-# Quick sort implementation
+# Quick sort implementation in Ascending order
 # function to find the partition position
 def partition(array, low, high,colNo):
 
@@ -296,7 +265,7 @@ def partition(array, low, high,colNo):
   # return the position from where partition is done
   return i + 1
 
-# function to perform quicksort
+# function for performing Quicksort
 def quickSort(array, low, high,colNo):
   if low < high:
     # find pivot element such that
@@ -309,9 +278,85 @@ def quickSort(array, low, high,colNo):
     quickSort(array, pi + 1, high,colNo)
   return array
 
-# data = [8, 7, 2, 1, 0, 9, 6]
-# print("Unsorted Array")
-# print(data)
+
+# Quick sort implementation in Descending order
+# function to find the partition position
+def partitionDescending(array, low, high,colNo):
+
+  # choose the rightmost element as pivot
+  pivot = array[high][colNo]
+
+  # pointer for greater element
+  i = low - 1
+
+  # traverse through all elements
+  # compare each element with pivot
+  for j in range(low, high):
+    if array[j][colNo] > pivot:
+      # if element smaller than pivot is found
+      # swap it with the greater element pointed by i
+      i = i + 1
+
+      # swapping element at i with element at j
+      (array[i], array[j]) = (array[j], array[i])
+
+  # swap the pivot element with the greater element specified by i
+  (array[i + 1], array[high]) = (array[high], array[i + 1])
+
+  # return the position from where partition is done
+  return i + 1
+
+# function for performing Quicksort
+def quickSortDescending(array, low, high,colNo):
+  if low < high:
+    # find pivot element such that
+    pi = partitionDescending(array, low, high,colNo)
+
+    # recursive call on the left of pivot
+    quickSortDescending(array, low, pi - 1,colNo)
+
+    # recursive call on the right of pivot
+    quickSortDescending(array, pi + 1, high,colNo)
+  return array
+
+
+# merge sort for project
+def MergeSort(array,start,end, colNo):
+    if len(array) <= 1:
+        return array
+    p = start
+    r = end
+    q = len(array) // 2
+    left_half = array[:q]
+    right_half = array[q:]
+    left = MergeSort(left_half,p,q,colNo)
+    right = MergeSort(right_half,q+1,r,colNo)
+    return Merge(left, right,colNo)
+
+def Merge(left, right,colNo):    
+    i = 0
+    j = 0
+    l = []
+    while i < len(left) and j < len(right):
+        if left[i][colNo] <= right[j][colNo]:
+            l.append(left[i])
+            i += 1
+        else:
+            l.append(right[j])
+            j += 1
+    while i < len(left):
+        l.append(left[i])
+        i += 1
+    while j < len(right):
+        l.append(right[j])
+        j += 1
+    return l
+
+
+
+# data = [[8, 7, 2, 1, 0, 9, 6],[88, 77, 22, 11, 10, 19, 16],[58, 17, 22, 41, 60, 79, 86],[18, 57, 32, 21, 10, 39, 6],[38, 37, 32, 31, 30, 39, 36],[48, 47, 42, 41, 40, 49, 46],[98, 97, 92, 19, 90, 99, 96],[118, 117, 112, 111, 110, 119, 116]]
+# data1 = MergeSort(data,0,len(data),5)
+# print(data1)
 
 # size = len(data)
 

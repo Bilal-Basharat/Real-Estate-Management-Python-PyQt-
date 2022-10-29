@@ -128,11 +128,6 @@ color: rgb(0,120,0);
      </item>
      <item>
       <property name="text">
-       <string>Merge Sort</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
        <string>Bubble Sort</string>
       </property>
      </item>
@@ -143,22 +138,17 @@ color: rgb(0,120,0);
      </item>
      <item>
       <property name="text">
+       <string>Merge Sort</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Selection Sort</string>
       </property>
      </item>
      <item>
       <property name="text">
        <string>Quick Sort</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Counting Sort</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Radix Sort</string>
       </property>
      </item>
      <item>

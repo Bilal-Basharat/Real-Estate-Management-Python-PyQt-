@@ -776,6 +776,36 @@ class ShowTableData(QMainWindow):
                     elif(self.MainCombo.currentText() == "City"):
                         sortedArray = sortingAlgo.heapSortDescending(self.newRows, 6)
                         self.loaddata(sortedArray)
+           
+            #implementing Quick sort    
+                if(self.CmbxSortAlgo.currentText() == "Quick Sort"):
+                    sortedArray = []
+                    if(self.MainCombo.currentText() == "Agency Name"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,0)
+                        self.loaddata(sortedArray)
+                    if(self.MainCombo.currentText() == "Property Type"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,1)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Price"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,2)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Location"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,3)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Area"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,4)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "Purpose"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,5)
+                        self.loaddata(sortedArray)
+
+                    elif(self.MainCombo.currentText() == "City"):
+                        sortedArray = sortingAlgo.quickSortDescending(self.newRows,0,len(self.newRows)-1,6)
+                        self.loaddata(sortedArray)
     
 
     def SearchedData(self):
