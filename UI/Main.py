@@ -691,7 +691,7 @@ class viewPropertyDetail(QMainWindow):
 #main
 app = QApplication(sys.argv)
 widget = QtWidgets.QStackedWidget()
-welcome = userDashBoard()
+welcome = WelcomeScreen()
 # loginPage= LoginScreen()
 # signUppage = SignUpScreen()
 # user_Dashboard = userDashBoard()
