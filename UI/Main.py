@@ -148,7 +148,7 @@ class userDashBoard(QMainWindow):
         Scrap = ScrapData()
         widget.addWidget(Scrap)
         widget.setCurrentIndex(widget.currentIndex()+1)
-        widget.setFixedSize(800, 100)
+        widget.setFixedSize(800, 200)
 
     def gotoAddProperty(self):
         showAddProperty = AddProperty()

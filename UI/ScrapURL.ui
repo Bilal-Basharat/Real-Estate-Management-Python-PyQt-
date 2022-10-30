@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>100</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>100</height>
+     <height>200</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -30,20 +30,20 @@
      <rect>
       <x>119</x>
       <y>30</y>
-      <width>551</width>
-      <height>41</height>
+      <width>651</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 12px;</string>
+border-radius: 6px;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>27</y>
+      <y>20</y>
       <width>91</width>
       <height>41</height>
      </rect>
@@ -59,19 +59,94 @@ color: white;</string>
    <widget class="QPushButton" name="BtnScrap">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>30</y>
-      <width>93</width>
-      <height>40</height>
+      <x>120</x>
+      <y>80</y>
+      <width>151</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);
-border-radius: 10px;
-color:rgb(0,120,0);</string>
+border-radius: 8px;
+color:rgb(0,120,0);
+font: 12pt &quot;Roboto&quot;;</string>
     </property>
     <property name="text">
-     <string>Scrap</string>
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnPause">
+    <property name="geometry">
+     <rect>
+      <x>285</x>
+      <y>80</y>
+      <width>151</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 8px;
+color:rgb(0,120,0);
+font: 12pt &quot;Roboto&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Pause</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnStop">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>80</y>
+      <width>151</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 8px;
+color:rgb(0,120,0);
+font: 12pt &quot;Roboto&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BtnResume">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>80</y>
+      <width>151</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border-radius: 8px;
+color:rgb(0,120,0);
+font: 12pt &quot;Roboto&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Resume</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="ScrapProgressBar">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>751</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10pt &quot;Roboto&quot;;
+color:white;</string>
+    </property>
+    <property name="value">
+     <number>24</number>
     </property>
    </widget>
   </widget>

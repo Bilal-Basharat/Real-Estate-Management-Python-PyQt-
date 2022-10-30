@@ -1,3 +1,5 @@
+from ast import Import
+from tkinter.ttk import Progressbar
 from attr import attrs
 from select import select
 from webbrowser import Chrome
@@ -12,6 +14,9 @@ from selenium.webdriver.common.keys import Keys
 import csv
 from csv import writer
 from tqdm import tqdm
+from Main import ScrapData
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QStackedWidget, QMainWindow, QTableView, QMessageBox, QComboBox,QBoxLayout,QProgressBar
 
 linksList = []
 AgencyName = []
@@ -20,7 +25,11 @@ propertyprice = []
 propertyLocation = []
 propertyArea = []
 propertyPurpose = []
-
+# QWidget.setMinimumWidth(800)
+# layout = QBoxLayout()
+# progressbar = QProgressBar()
+# layout.addWidget(progressbar)
+# QWidget.setLayout(layout)
 def scrapData(scrapURL):
     
     filePath = 'AllPakPropertyData.csv'
@@ -34,6 +43,7 @@ def scrapData(scrapURL):
     chrome_options.add_argument('--blink-settings=imagesEnabled=false')
     chrome_options.add_argument("--window-size=1920x1080")
     exec_Path = "C:\Program Files (x86)\chromedriver.exe"
+    j = 1
     with open(filePath,'a', newline='') as outfile:
         writer = csv.writer(outfile)
         if(scrapURL == "https://www.zameen.com/"):
@@ -70,7 +80,9 @@ def scrapData(scrapURL):
                         propertyArea.append(area)
                         purpose = column.find('span', {"aria-label" : "Purpose"}).text
                         propertyPurpose.append(purpose)
-                        writer.writerow([Agency,type,Price,location,area,purpose])
+                        # writer.writerow([Agency,type,Price,location,area,purpose])
+                        # progressbar.setValue(j)
+                        # j += 1
     # print(AgencyName)
     # print(propertyType)
     # print(propertyprice)
