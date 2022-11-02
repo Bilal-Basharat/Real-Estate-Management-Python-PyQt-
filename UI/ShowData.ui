@@ -276,24 +276,6 @@ color: rgb(0,120,0);
       </property>
      </item>
     </widget>
-    <widget class="QPushButton" name="BtnDetails">
-     <property name="geometry">
-      <rect>
-       <x>320</x>
-       <y>525</y>
-       <width>150</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 120, 0);
-font: bold 12pt &quot;Roboto&quot;;</string>
-     </property>
-     <property name="text">
-      <string>View Details</string>
-     </property>
-    </widget>
     <zorder>txtSearch</zorder>
     <zorder>TableWidgetData</zorder>
     <zorder>CmbxSortByType</zorder>
@@ -303,7 +285,6 @@ font: bold 12pt &quot;Roboto&quot;;</string>
     <zorder>BtnExit</zorder>
     <zorder>BtnBack</zorder>
     <zorder>CmbxSortByOrder</zorder>
-    <zorder>BtnDetails</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

@@ -24,10 +24,13 @@ def search (rows ,columnNo , search):
     n = len(rows)
     list = []    
     for i in range(n - 1):
-            
-            if (isfind(rows[i][columnNo],search)==True):
-                
-                list.append(rows[i])
+            if(columnNo == 4):
+                value = str(rows[i][columnNo])
+                if (isfind(value,search)==True):
+                    list.append(rows[i])
+            else:
+                if (isfind(rows[i][columnNo],search)==True):
+                    list.append(rows[i])
                 
     return list
 

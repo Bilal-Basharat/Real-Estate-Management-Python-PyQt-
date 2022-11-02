@@ -138,6 +138,7 @@ class userDashBoard(QMainWindow):
         # reading data from file 
         file = csv.reader(open('AllPakPropertyData.csv', 'r'))
         self.rows = [row for row in file]
+        # self.newRows = ShowTableData.convertStrToDigits(self, self.rows)
 
     def gotoShowAllData(self):
         showTable = ShowTableData()
@@ -257,6 +258,7 @@ class ShowSpecificTableData(QMainWindow):
         self.loaddata(self.specifiedSearchArray)
 
     def loaddata(self, searchData):
+        self.newRows = ShowTableData.convertStrToDigits(self, searchData)
         # showTable = userDashBoard()
         # path = "AllPakPropertyData.csv"
         # with open(path , 'r', newline="") as csvfile:
@@ -264,14 +266,14 @@ class ShowSpecificTableData(QMainWindow):
         #     # df = pd.read_csv(csvfile,delimiter=',')
         #     csvReader = csv.reader(csvfile,delimiter=",")
         #     # self.tableWidgetData = QtWidgets.QTableWidget()
-        self.TableWidgetData.setRowCount(len(searchData))
+        self.TableWidgetData.setRowCount(len(self.newRows))
         i = 0
-        for row in searchData:
+        for row in self.newRows:
             self.TableWidgetData.setItem(i, 0, QtWidgets.QTableWidgetItem(row[0]))
             self.TableWidgetData.setItem(i, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.TableWidgetData.setItem(i, 2, QtWidgets.QTableWidgetItem(str(row[2])))
             self.TableWidgetData.setItem(i, 3, QtWidgets.QTableWidgetItem(row[3]))
-            self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(row[4]))
+            self.TableWidgetData.setItem(i, 4, QtWidgets.QTableWidgetItem(str(row[4])))
             self.TableWidgetData.setItem(i, 5, QtWidgets.QTableWidgetItem(row[5]))
             self.TableWidgetData.setItem(i, 6, QtWidgets.QTableWidgetItem(row[6]))
             self.TableWidgetData.setItem(i, 7, QtWidgets.QTableWidgetItem(row[7]))
@@ -309,7 +311,7 @@ class ShowTableData(QMainWindow):
         self.BtnSearch.clicked.connect(self.SearchedData)
         self.BtnSort.clicked.connect(self.SortData)
         
-        self.BtnDetails.clicked.connect(self.viewDetails)
+        # self.BtnDetails.clicked.connect(self.viewDetails)
         # obtaining combobox from ui file
         self.MainCombo = self.findChild(QComboBox,"CmbxSortByType")
         self.SubCombo = self.findChild(QComboBox,"cmbxSortBySubType")
@@ -336,13 +338,13 @@ class ShowTableData(QMainWindow):
     def Exit(self):
         sys.exit(app.exec_())
    
-    def viewDetails(self):
-        global index
-        # QTableWidget.selectionModel().selectionChanged.connect(self.)
-        index = QtWidgets.QTableWidget.currentRow()
-        viewPropertyDetails = viewPropertyDetail()
-        widget.addWidget(viewPropertyDetails)
-        widget.setCurrentIndex(widget.currentIndex()+1)
+    # def viewDetails(self):
+    #     global index
+    #     # QTableWidget.selectionModel().selectionChanged.connect(self.)
+    #     index = QtWidgets.QTableWidget.currentRow()
+    #     viewPropertyDetails = viewPropertyDetail()
+    #     widget.addWidget(viewPropertyDetails)
+    #     widget.setCurrentIndex(widget.currentIndex()+1)
 
 # function for converting unit price and marla unit
     def convertStrToDigits(self, rows):
