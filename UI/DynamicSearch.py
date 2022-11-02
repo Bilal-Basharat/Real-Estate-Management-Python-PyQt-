@@ -6,7 +6,6 @@ import time
 def find(value , search):
     for i in range(len(search)):
        
-
         if (search[i] != value[i]):
             return False
     return True

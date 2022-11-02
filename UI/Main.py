@@ -168,18 +168,22 @@ class userDashBoard(QMainWindow):
         PriceFrom = self.txtPriceFrom.text() 
         PriceTo = self.txtPriceTo.text()
         searchData = self.rows
-        if(propertyType != 'Property Type'):
-            searchData = DynamicSearch.search(searchData ,1, propertyType) 
-        if (city !="City"):
-            searchData = DynamicSearch.search(searchData ,6,city)
-        if (purpose !="Purpose"):
-            searchData = DynamicSearch.search(searchData ,5,purpose)
-        if (area !="Area ( Unit: Marla )"):
-            searchData = DynamicSearch.search(searchData ,4,area)
-        showTable = ShowSpecificTableData()
-        widget.addWidget(showTable)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-        
+        try:
+            if(propertyType != 'Property Type'):
+                searchData = DynamicSearch.search(searchData ,1, propertyType) 
+            if (city !="City"):
+                searchData = DynamicSearch.search(searchData ,6,city)
+            if (purpose !="Purpose"):
+                searchData = DynamicSearch.search(searchData ,5,purpose)
+            if (area !="Area"):
+                searchData = DynamicSearch.search(searchData ,4,area)
+            showTable = ShowSpecificTableData()
+            widget.addWidget(showTable)
+            widget.setCurrentIndex(widget.currentIndex()+1)
+        except IndexError as e:
+            msg = QMessageBox()
+            msg.setText("The searched data does not exist. Try another one")
+            msg.exec_()
 
 
 # defining add new property class
@@ -254,7 +258,7 @@ class ShowSpecificTableData(QMainWindow):
     def SearchedData(self):
         global searchData
         searchedText = self.txtSearch.text()
-        self.specifiedSearchArray = SpecifiedSearch.finalSearchFunction(searchData, searchedText)
+        self.specifiedSearchArray = SpecifiedSearch.finalSearchFunction(userDashBoard().rows, searchedText)
         self.loaddata(self.specifiedSearchArray)
 
     def loaddata(self, searchData):
@@ -632,7 +636,7 @@ class ShowTableData(QMainWindow):
 
     def SearchedData(self):
         searchedText = self.txtSearch.text()
-        specifiedSearchArray = SpecifiedSearch.finalSearchFunction(self.rows, searchedText)
+        specifiedSearchArray = SpecifiedSearch.finalSearchFunction(userDashBoard().rows, searchedText)
         self.loaddata(specifiedSearchArray)
 
     def loaddata(self, newRows):  
